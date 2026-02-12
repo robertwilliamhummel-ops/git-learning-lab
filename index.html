@@ -42,12 +42,619 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-M2VPMC5V');</script>
     <!-- End Google Tag Manager -->
+    
+    <style>
+        /* Modern Homepage Design */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Enhanced Microchip Icon Animation */
+        .nav-logo i.fa-microchip,
+        .footer-logo i.fa-microchip {
+            animation: microchipPulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        @keyframes microchipPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+            }
+        }
+
+        .nav-logo i.fa-microchip:hover,
+        .footer-logo i.fa-microchip:hover {
+            animation: microchipRotate 0.6s ease-in-out;
+        }
+
+        @keyframes microchipRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Hero Section with Image Shuffle */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0f0c29;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-image.active {
+            opacity: 1;
+        }
+
+        /* Placeholder gradients for homepage (3 images) */
+        .hero-image:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-image:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .hero-image:nth-child(3) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.75) 50%, rgba(36, 36, 62, 0.85) 100%);
+            z-index: 2;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-features .feature {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            padding: 0.8rem 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .hero-features .feature:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .hero-features .feature i {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* Services Section with Glassmorphism */
+        .services-overview {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #0f0c29 0%, #1a1a2e 100%);
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-header h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
+        }
+
+        .service-icon i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+        }
+
+        .service-features li {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .service-link {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-link:hover {
+            color: #764ba2;
+            gap: 0.8rem;
+        }
+
+        /* Why Choose Us Section */
+        .why-choose-us {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .why-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-feature {
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .why-feature:hover {
+            transform: translateY(-5px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .why-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .why-icon i {
+            font-size: 1.8rem;
+            color: #fff;
+        }
+
+        .why-info h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .why-info p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Testimonials with Modern Cards */
+        .testimonials {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #16213e 0%, #0f0c29 100%);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .testimonial-rating {
+            color: #ffd700;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .author-info h4 {
+            color: #fff;
+            margin-bottom: 0.25rem;
+        }
+
+        .author-info span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-large {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: #fff;
+            font-size: 1.1rem;
+        }
+
+        .cta-feature i {
+            font-size: 1.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-features {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .services-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .why-features {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-features {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M2VPMC5V"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
     
     <!-- Header -->
     <header class="header">
@@ -106,8 +713,15 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section with Image Shuffle -->
         <section class="hero">
+            <div class="hero-background">
+                <!-- 3 images for homepage - replace gradients with your Canva AI images -->
+                <div class="hero-image active" data-image="1"></div>
+                <div class="hero-image" data-image="2"></div>
+                <div class="hero-image" data-image="3"></div>
+            </div>
+            <div class="hero-overlay"></div>
             <div class="hero-container">
                 <div class="hero-content">
                     <h1 class="hero-title">
@@ -219,7 +833,7 @@
                             <li>System Optimization</li>
                             <li>Data Recovery Services</li>
                         </ul>
-                        <a href="services.html#it-support" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
+                        <a href="computer-repair.html" class="service-link">Learn More <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -228,115 +842,49 @@
         <!-- Why Choose Us -->
         <section class="why-choose-us">
             <div class="container">
-                <div class="why-content">
-                    <div class="why-text">
-                        <h2>Why Choose TechFlow Solutions?</h2>
-                        <p class="why-subtitle">Professional digital solutions with proven results</p>
-                        
-                        <div class="why-features">
-                            <div class="why-feature">
-                                <div class="why-icon">
-                                    <i class="fas fa-rocket"></i>
-                                </div>
-                                <div class="why-info">
-                                    <h4>Modern Solutions</h4>
-                                    <p>Cutting-edge website design and digital strategies that help your business grow</p>
-                                </div>
-                            </div>
-                            
-                            <div class="why-feature">
-                                <div class="why-icon">
-                                    <i class="fas fa-home"></i>
-                                </div>
-                                <div class="why-info">
-                                    <h4>Local GTA Service</h4>
-                                    <p>Serving the Greater Toronto Area with personalized, community-focused support</p>
-                                </div>
-                            </div>
-                            
-                            <div class="why-feature">
-                                <div class="why-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
-                                <div class="why-info">
-                                    <h4>Flexible Scheduling</h4>
-                                    <p>Evening and weekend appointments available to fit your busy schedule</p>
-                                </div>
-                            </div>
-                            
-                            <div class="why-feature">
-                                <div class="why-icon">
-                                    <i class="fas fa-shield-alt"></i>
-                                </div>
-                                <div class="why-info">
-                                    <h4>Satisfaction Guaranteed</h4>
-                                    <p>30-day warranty on all work with 100% satisfaction guarantee</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Service Area -->
-        <section class="service-area">
-            <div class="container">
                 <div class="section-header">
-                    <h2>Serving Greater Toronto Area</h2>
-                    <p>Professional tech support across the GTA with convenient on-site service</p>
+                    <h2>Why Choose TechFlow Solutions?</h2>
+                    <p>Professional digital solutions with proven results</p>
                 </div>
                 
-                <div class="area-content">
-                    <div class="area-map">
-                        <div class="map-container">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.57!2d-79.4163!3d43.7181!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb90d7c63ba5%3A0x323555502ab4c477!2sToronto%2C%20ON!5e0!3m2!1sen!2sca!4v1640000000000!5m2!1sen!2sca"
-                                width="100%"
-                                height="400"
-                                style="border:0; border-radius: 12px;"
-                                allowfullscreen=""
-                                loading="lazy"
-                                referrerpolicy="no-referrer-when-downgrade"
-                                title="TechFlow Solutions Service Area - Greater Toronto Area Coverage Map">
-                            </iframe>
-                            <noscript>
-                                <div class="map-fallback">
-                                    <i class="fas fa-map-marked-alt" style="font-size: 2rem; margin-bottom: 1rem; color: var(--primary-blue);"></i>
-                                    <h4>Interactive Map Unavailable</h4>
-                                    <p>We serve the entire Greater Toronto Area including Toronto, Mississauga, Brampton, Markham, Richmond Hill, Vaughan, Oakville, Burlington, Pickering, and Ajax.</p>
-                                    <p><strong>Contact us at (647) 572-8321 to confirm service availability in your area.</strong></p>
-                                </div>
-                            </noscript>
+                <div class="why-features">
+                    <div class="why-feature">
+                        <div class="why-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <div class="why-info">
+                            <h4>Modern Solutions</h4>
+                            <p>Cutting-edge website design and digital strategies that help your business grow</p>
                         </div>
                     </div>
                     
-                    <div class="area-info">
-                        <h3>Coverage Areas Include:</h3>
-                        <div class="area-grid">
-                            <div class="area-column">
-                                <ul>
-                                    <li><i class="fas fa-map-marker-alt"></i> Toronto</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Mississauga</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Brampton</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Markham</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Richmond Hill</li>
-                                </ul>
-                            </div>
-                            <div class="area-column">
-                                <ul>
-                                    <li><i class="fas fa-map-marker-alt"></i> Vaughan</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Oakville</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Burlington</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Pickering</li>
-                                    <li><i class="fas fa-map-marker-alt"></i> Ajax</li>
-                                </ul>
-                            </div>
+                    <div class="why-feature">
+                        <div class="why-icon">
+                            <i class="fas fa-home"></i>
                         </div>
-                        
-                        <div class="travel-info">
-                            <p><strong>Travel Policy:</strong> $50 within 25km, $2.50/km beyond</p>
-                            <p><strong>Response Time:</strong> Same day service available</p>
+                        <div class="why-info">
+                            <h4>Local GTA Service</h4>
+                            <p>Serving the Greater Toronto Area with personalized, community-focused support</p>
+                        </div>
+                    </div>
+                    
+                    <div class="why-feature">
+                        <div class="why-icon">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="why-info">
+                            <h4>Flexible Scheduling</h4>
+                            <p>Evening and weekend appointments available to fit your busy schedule</p>
+                        </div>
+                    </div>
+                    
+                    <div class="why-feature">
+                        <div class="why-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="why-info">
+                            <h4>Satisfaction Guaranteed</h4>
+                            <p>30-day warranty on all work with 100% satisfaction guarantee</p>
                         </div>
                     </div>
                 </div>
@@ -415,75 +963,6 @@
             </div>
         </section>
 
-        <!-- Remote Support Highlight -->
-        <section class="remote-support-highlight">
-            <div class="container">
-                <div class="remote-highlight-content">
-                    <div class="remote-highlight-text">
-                        <h2>Need Help Right Now?</h2>
-                        <h3>Get Instant Remote Support</h3>
-                        <p>Don't wait for an appointment. Connect with our technicians in minutes using secure remote access technology. We can install software, remove viruses, and fix most issues without leaving your home.</p>
-                        
-                        <div class="remote-highlight-features">
-                            <div class="highlight-feature">
-                                <i class="fas fa-zap"></i>
-                                <span>Connect in Minutes</span>
-                            </div>
-                            <div class="highlight-feature">
-                                <i class="fas fa-shield-alt"></i>
-                                <span>Full Admin Access</span>
-                            </div>
-                            <div class="highlight-feature">
-                                <i class="fas fa-dollar-sign"></i>
-                                <span>No Travel Charges</span>
-                            </div>
-                        </div>
-                        
-                        <div class="remote-highlight-cta">
-                            <a href="remote-support.html" class="btn btn-primary btn-large">
-                                <i class="fas fa-desktop"></i>
-                                Start Remote Session
-                            </a>
-                            <div class="remote-pricing">
-                                <span>Starting at $75/hour</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="remote-highlight-visual">
-                        <div class="remote-connection-demo">
-                            <div class="demo-device">
-                                <i class="fas fa-laptop"></i>
-                                <span>Your Computer</span>
-                            </div>
-                            <div class="demo-connection">
-                                <div class="connection-line"></div>
-                                <i class="fas fa-wifi"></i>
-                            </div>
-                            <div class="demo-device">
-                                <i class="fas fa-user-tie"></i>
-                                <span>Our Technician</span>
-                            </div>
-                        </div>
-                        <div class="demo-features">
-                            <div class="demo-feature">
-                                <i class="fas fa-download"></i>
-                                <span>Software Installation</span>
-                            </div>
-                            <div class="demo-feature">
-                                <i class="fas fa-bug"></i>
-                                <span>Virus Removal</span>
-                            </div>
-                            <div class="demo-feature">
-                                <i class="fas fa-cogs"></i>
-                                <span>System Optimization</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- CTA Section -->
         <section class="cta-section">
             <div class="container">
@@ -547,11 +1026,10 @@
                 <div class="footer-section">
                     <h4>Services</h4>
                     <ul>
-                        <li><a href="services.html#pc-repair">PC Repair</a></li>
-                        <li><a href="services.html#networking">Networking</a></li>
-                        <li><a href="services.html#hardware">Hardware Upgrades</a></li>
-                        <li><a href="services.html#data-recovery">Data Recovery</a></li>
-                        
+                        <li><a href="website-design.html">Website Design</a></li>
+                        <li><a href="seo-services.html">SEO Services</a></li>
+                        <li><a href="computer-repair.html">Computer Repair</a></li>
+                        <li><a href="remote-support.html">Remote Support</a></li>
                     </ul>
                 </div>
                 
@@ -594,5 +1072,51 @@
     <!-- JavaScript -->
     <script src="js/main.js"></script>
     <script src="js/analytics.js"></script>
+    <script>
+        // Hero Image Shuffle (3 images for homepage)
+        let currentImageIndex = 0;
+        const heroImages = document.querySelectorAll('.hero-image');
+        const totalImages = heroImages.length;
+
+        function shuffleHeroImages() {
+            heroImages[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % totalImages;
+            heroImages[currentImageIndex].classList.add('active');
+        }
+
+        // Change image every 6 seconds
+        setInterval(shuffleHeroImages, 6000);
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (window.scrollY / scrollHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe animated elements
+        document.querySelectorAll('.service-card, .why-feature, .testimonial-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
