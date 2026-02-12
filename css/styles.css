@@ -208,10 +208,15 @@ a:hover {
     left: 0;
     right: 0;
     z-index: 1000;
+    /* Fix jumpy navigation by setting consistent height */
+    height: 72px;
+    display: flex;
+    align-items: center;
 }
 
 .navbar {
     padding: var(--spacing-sm) 0;
+    width: 100%;
 }
 
 .nav-container {
