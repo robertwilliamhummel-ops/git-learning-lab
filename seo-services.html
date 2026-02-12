@@ -29,8 +29,718 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Modern SEO Services Page Design */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+
+        /* Hero Section with Image Shuffle */
+        .hero-seo {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: #0f0c29;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-image.active {
+            opacity: 1;
+        }
+
+        /* Placeholder gradients for SEO page (4 images) */
+        .hero-image:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .hero-image:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .hero-image:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .hero-image:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.75) 50%, rgba(36, 36, 62, 0.85) 100%);
+            z-index: 2;
+        }
+
+        .hero-container-seo {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-content-seo {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title-seo {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle-seo {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
+        }
+
+        .hero-cta-seo {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1.05rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            border: none;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-hero-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        /* SEO Benefits Section with Glassmorphism */
+        .seo-benefits-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #0f0c29 0%, #1a1a2e 100%);
+            position: relative;
+        }
+
+        .section-header-modern {
+            text-align: center;
+            margin-bottom: 4rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-header-modern h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .section-header-modern p {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: rgba(255, 255, 255, 0.7);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .benefit-card-modern {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .benefit-card-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .benefit-card-modern:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .benefit-card-modern:hover::before {
+            opacity: 1;
+        }
+
+        .benefit-icon-modern {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            animation: iconPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes iconPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            50% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
+        }
+
+        .benefit-icon-modern i {
+            font-size: 2.5rem;
+            color: #fff;
+        }
+
+        .benefit-card-modern h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            position: relative;
+        }
+
+        .benefit-card-modern p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+            position: relative;
+        }
+
+        /* SEO Services Details */
+        .seo-services-modern {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .services-list-modern {
+            display: grid;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-item-modern {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            padding: 2.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: all 0.4s ease;
+        }
+
+        .service-item-modern:hover {
+            transform: translateX(10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+        }
+
+        .service-icon-modern {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .service-icon-modern i {
+            font-size: 3rem;
+            color: #fff;
+        }
+
+        .service-content-modern h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-content-modern p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-content-modern ul {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .service-content-modern li {
+            color: rgba(255, 255, 255, 0.8);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-content-modern li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* SEO Process Timeline */
+        .seo-process-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #16213e 0%, #0f0c29 100%);
+        }
+
+        .process-timeline-modern {
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .process-timeline-modern::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+            transform: translateX(-50%);
+        }
+
+        .process-step-modern {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 2rem;
+            margin-bottom: 4rem;
+            align-items: center;
+        }
+
+        .process-step-modern:nth-child(even) .step-content-left {
+            order: 3;
+        }
+
+        .process-step-modern:nth-child(even) .step-number-modern {
+            order: 2;
+        }
+
+        .process-step-modern:nth-child(even) .step-content-right {
+            order: 1;
+        }
+
+        .step-number-modern {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            z-index: 2;
+        }
+
+        .step-content-left, .step-content-right {
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .step-content-left:hover, .step-content-right:hover {
+            transform: scale(1.05);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .step-content-left h3, .step-content-right h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-content-left p, .step-content-right p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+        }
+
+        .step-content-right {
+            text-align: right;
+        }
+
+        /* Pricing Section with Glassmorphism */
+        .seo-pricing-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #0f0c29 0%, #1a1a2e 100%);
+        }
+
+        .pricing-grid-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .pricing-card-modern {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 2.5rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card-modern.featured {
+            transform: scale(1.05);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.4);
+        }
+
+        .pricing-card-modern.featured::before {
+            content: 'MOST POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 5px 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .pricing-card-modern:hover {
+            transform: translateY(-10px);
+            border-color: rgba(102, 126, 234, 0.5);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+        }
+
+        .pricing-header-modern {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .pricing-header-modern h3 {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+
+        .price-modern {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-modern span {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.6);
+            font-weight: 400;
+        }
+
+        .pricing-header-modern p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+
+        .pricing-features-modern {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features-modern li {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.8rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .pricing-features-modern li i {
+            color: #667eea;
+            font-size: 1.2rem;
+        }
+
+        .pricing-card-modern .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* Contact Form Section */
+        .contact-form-section-modern {
+            padding: 6rem 2rem;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .contact-form-modern {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .form-row-modern {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-modern {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group-modern label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group-modern input,
+        .form-group-modern select,
+        .form-group-modern textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group-modern input:focus,
+        .form-group-modern select:focus,
+        .form-group-modern textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .form-group-modern textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .process-timeline-modern::before {
+                left: 40px;
+            }
+
+            .process-step-modern {
+                grid-template-columns: auto 1fr;
+                gap: 1.5rem;
+            }
+
+            .process-step-modern:nth-child(even) .step-content-left,
+            .process-step-modern:nth-child(even) .step-number-modern,
+            .process-step-modern:nth-child(even) .step-content-right {
+                order: initial;
+            }
+
+            .step-content-right {
+                text-align: left;
+            }
+
+            .step-content-left {
+                display: none;
+            }
+
+            .service-item-modern {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .service-icon-modern {
+                width: 80px;
+                height: 80px;
+            }
+
+            .service-icon-modern i {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
     <!-- Header -->
     <header class="header">
         <nav class="navbar">
@@ -87,22 +797,48 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
-        <section class="hero service-hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h1 class="hero-title">
-                        SEO Services That Get You Found
-                        <span class="highlight">By Local Customers in Toronto</span>
+        <!-- Hero Section with Image Shuffle -->
+        <section class="hero-seo">
+            <div class="hero-background">
+                <!-- 4 images for SEO page - replace gradients with your Canva AI images -->
+                <div class="hero-image active" data-image="1"></div>
+                <div class="hero-image" data-image="2"></div>
+                <div class="hero-image" data-image="3"></div>
+                <div class="hero-image" data-image="4"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container-seo">
+                <div class="hero-content-seo">
+                    <h1 class="hero-title-seo">
+                        Dominate Local Search with
+                        <span class="gradient-text">Expert SEO Services</span>
                     </h1>
-                    <p class="hero-subtitle">
-                        Professional SEO services to improve your search rankings and attract more customers. 
-                        Dominate local search results in the Greater Toronto Area with our proven strategies.
+                    <p class="hero-subtitle-seo">
+                        Get found by customers actively searching for your services in Toronto. 
+                        Our proven SEO strategies increase rankings, traffic, and revenue for local businesses.
                     </p>
                     
-                    <div class="hero-cta">
-                        <a href="#contact-form" class="btn btn-primary">Get SEO Audit</a>
-                        <a href="tel:+16475728321" class="btn btn-outline">
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">200%</span>
+                            <span class="stat-label">Avg. Traffic Increase</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">150+</span>
+                            <span class="stat-label">Keywords Ranked</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">90%</span>
+                            <span class="stat-label">Client Retention</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-cta-seo">
+                        <a href="#contact-form" class="btn btn-hero-primary">
+                            <i class="fas fa-rocket"></i>
+                            Get Free SEO Audit
+                        </a>
+                        <a href="tel:+16475728321" class="btn btn-hero-secondary">
                             <i class="fas fa-phone"></i>
                             Call (647) 572-8321
                         </a>
@@ -111,135 +847,161 @@
             </div>
         </section>
 
-        <!-- SEO Benefits -->
-        <section class="seo-benefits">
+        <!-- SEO Benefits with Glassmorphism -->
+        <section class="seo-benefits-section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header-modern">
                     <h2>Why Your Business Needs SEO</h2>
-                    <p>The power of search engine optimization for local Toronto businesses</p>
+                    <p>Transform your online presence and attract qualified customers</p>
                 </div>
                 
-                <div class="benefits-grid">
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
+                <div class="benefits-grid-modern">
+                    <div class="benefit-card-modern">
+                        <div class="benefit-icon-modern">
                             <i class="fas fa-chart-line"></i>
                         </div>
                         <h3>Increase Website Traffic</h3>
-                        <p>Get more qualified visitors to your website from people actively searching for your services.</p>
+                        <p>Get more qualified visitors from people actively searching for your services. Organic traffic converts 5x better than paid ads.</p>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
+                    <div class="benefit-card-modern">
+                        <div class="benefit-icon-modern">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <h3>Dominate Local Search</h3>
-                        <p>Show up first when customers in Toronto search for businesses like yours.</p>
+                        <p>Show up first when Toronto customers search for businesses like yours. Capture "near me" searches and local pack results.</p>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
+                    <div class="benefit-card-modern">
+                        <div class="benefit-icon-modern">
                             <i class="fas fa-dollar-sign"></i>
                         </div>
                         <h3>Higher Quality Leads</h3>
-                        <p>Attract customers who are ready to buy, not just browsing.</p>
+                        <p>Attract customers ready to buy, not just browsing. SEO targets high-intent searches with better conversion rates.</p>
                     </div>
                     
-                    <div class="benefit-card">
-                        <div class="benefit-icon">
+                    <div class="benefit-card-modern">
+                        <div class="benefit-icon-modern">
                             <i class="fas fa-trophy"></i>
                         </div>
                         <h3>Beat Your Competition</h3>
-                        <p>Outrank competitors and capture their potential customers.</p>
+                        <p>Outrank competitors and capture their potential customers. Dominate search results in your industry and location.</p>
+                    </div>
+
+                    <div class="benefit-card-modern">
+                        <div class="benefit-icon-modern">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Mobile Optimization</h3>
+                        <p>70% of searches happen on mobile. Ensure your business shows up perfectly on every device your customers use.</p>
+                    </div>
+
+                    <div class="benefit-card-modern">
+                        <div class="benefit-icon-modern">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3>24/7 Marketing</h3>
+                        <p>SEO works around the clock, bringing customers to your business even while you sleep. Sustainable long-term growth.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SEO Services -->
-        <section class="seo-services-details">
+        <!-- SEO Services Details -->
+        <section class="seo-services-modern">
             <div class="container">
-                <div class="section-header">
-                    <h2>Our SEO Services</h2>
-                    <p>Comprehensive search optimization to grow your business</p>
+                <div class="section-header-modern">
+                    <h2>Comprehensive SEO Services</h2>
+                    <p>Everything you need to dominate search results in Toronto</p>
                 </div>
                 
-                <div class="services-list">
-                    <div class="service-item">
-                        <div class="service-icon">
+                <div class="services-list-modern">
+                    <div class="service-item-modern">
+                        <div class="service-icon-modern">
                             <i class="fas fa-search-location"></i>
                         </div>
-                        <div class="service-content">
+                        <div class="service-content-modern">
                             <h3>Local SEO Optimization</h3>
-                            <p>Optimize your business for local Toronto searches. We'll help you appear in "near me" searches and Google's local pack results.</p>
+                            <p>Dominate local Toronto searches and appear in "near me" results. We optimize your Google Business Profile, build local citations, and target location-specific keywords to put your business on the map.</p>
                             <ul>
                                 <li>Google Business Profile optimization</li>
                                 <li>Local citation building</li>
                                 <li>Location-based keyword targeting</li>
                                 <li>Local directory submissions</li>
+                                <li>Review management strategy</li>
+                                <li>Local link building</li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div class="service-item">
-                        <div class="service-icon">
+                    <div class="service-item-modern">
+                        <div class="service-icon-modern">
                             <i class="fas fa-key"></i>
                         </div>
-                        <div class="service-content">
+                        <div class="service-content-modern">
                             <h3>Keyword Research & Strategy</h3>
-                            <p>Identify the exact terms your customers use to find businesses like yours, then optimize your content accordingly.</p>
+                            <p>Discover the exact terms your customers use to find businesses like yours. We analyze search intent, competition, and opportunities to create a winning keyword strategy.</p>
                             <ul>
                                 <li>Comprehensive keyword analysis</li>
                                 <li>Competitor keyword research</li>
                                 <li>Long-tail keyword opportunities</li>
                                 <li>Search intent optimization</li>
+                                <li>Keyword difficulty assessment</li>
+                                <li>Content gap analysis</li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div class="service-item">
-                        <div class="service-icon">
+                    <div class="service-item-modern">
+                        <div class="service-icon-modern">
                             <i class="fas fa-code"></i>
                         </div>
-                        <div class="service-content">
+                        <div class="service-content-modern">
                             <h3>Technical SEO</h3>
-                            <p>Ensure your website meets all technical requirements for search engines to properly crawl and index your content.</p>
+                            <p>Ensure your website meets all technical requirements for search engines. We optimize site speed, mobile responsiveness, and technical structure for maximum crawlability and indexing.</p>
                             <ul>
                                 <li>Site speed optimization</li>
-                                <li>Mobile responsiveness</li>
+                                <li>Mobile responsiveness audit</li>
                                 <li>Schema markup implementation</li>
                                 <li>XML sitemap creation</li>
+                                <li>Robots.txt optimization</li>
+                                <li>Core Web Vitals improvement</li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div class="service-item">
-                        <div class="service-icon">
+                    <div class="service-item-modern">
+                        <div class="service-icon-modern">
                             <i class="fas fa-edit"></i>
                         </div>
-                        <div class="service-content">
+                        <div class="service-content-modern">
                             <h3>Content Optimization</h3>
-                            <p>Optimize your website content to rank higher and convert more visitors into customers.</p>
+                            <p>Transform your website content to rank higher and convert better. We optimize existing pages and create new content that resonates with both search engines and customers.</p>
                             <ul>
                                 <li>On-page SEO optimization</li>
                                 <li>Meta tags and descriptions</li>
-                                <li>Content gap analysis</li>
+                                <li>Header tag optimization</li>
                                 <li>Internal linking strategy</li>
+                                <li>Content quality improvement</li>
+                                <li>Image optimization</li>
                             </ul>
                         </div>
                     </div>
                     
-                    <div class="service-item">
-                        <div class="service-icon">
+                    <div class="service-item-modern">
+                        <div class="service-icon-modern">
                             <i class="fas fa-chart-bar"></i>
                         </div>
-                        <div class="service-content">
+                        <div class="service-content-modern">
                             <h3>SEO Reporting & Analytics</h3>
-                            <p>Track your progress with detailed monthly reports showing rankings, traffic, and conversions.</p>
+                            <p>Track your progress with detailed reports showing rankings, traffic, and ROI. We provide transparent monthly reporting so you always know how your SEO investment is performing.</p>
                             <ul>
                                 <li>Monthly ranking reports</li>
                                 <li>Traffic and conversion tracking</li>
                                 <li>Google Analytics setup</li>
                                 <li>ROI measurement</li>
+                                <li>Competitor monitoring</li>
+                                <li>Custom dashboards</li>
                             </ul>
                         </div>
                     </div>
@@ -247,149 +1009,156 @@
             </div>
         </section>
 
-        <!-- SEO Process -->
-        <section class="seo-process">
+        <!-- SEO Process Timeline -->
+        <section class="seo-process-section">
             <div class="container">
-                <div class="section-header">
-                    <h2>Our SEO Process</h2>
-                    <p>Proven methodology for sustainable search rankings</p>
+                <div class="section-header-modern">
+                    <h2>Our Proven SEO Process</h2>
+                    <p>A systematic approach to sustainable search rankings</p>
                 </div>
                 
-                <div class="process-timeline">
-                    <div class="process-step">
-                        <div class="step-number">1</div>
-                        <div class="step-content">
+                <div class="process-timeline-modern">
+                    <div class="process-step-modern">
+                        <div class="step-content-left"></div>
+                        <div class="step-number-modern">1</div>
+                        <div class="step-content-right">
                             <h3>SEO Audit & Analysis</h3>
-                            <p>Comprehensive analysis of your current website, rankings, and opportunities for improvement.</p>
+                            <p>Comprehensive analysis of your website, current rankings, technical issues, and opportunities for improvement. We identify quick wins and long-term strategies.</p>
                         </div>
                     </div>
                     
-                    <div class="process-step">
-                        <div class="step-number">2</div>
-                        <div class="step-content">
+                    <div class="process-step-modern">
+                        <div class="step-content-left">
                             <h3>Strategy Development</h3>
-                            <p>Create a customized SEO strategy based on your business goals and target market.</p>
+                            <p>Create a customized SEO roadmap based on your business goals, target market, and competitive landscape. Prioritize actions for maximum impact.</p>
                         </div>
+                        <div class="step-number-modern">2</div>
+                        <div class="step-content-right"></div>
                     </div>
                     
-                    <div class="process-step">
-                        <div class="step-number">3</div>
-                        <div class="step-content">
+                    <div class="process-step-modern">
+                        <div class="step-content-left"></div>
+                        <div class="step-number-modern">3</div>
+                        <div class="step-content-right">
                             <h3>Implementation</h3>
-                            <p>Execute technical optimizations, content improvements, and local SEO tactics.</p>
+                            <p>Execute technical optimizations, content improvements, and local SEO tactics. Build citations, optimize pages, and improve site structure.</p>
                         </div>
                     </div>
                     
-                    <div class="process-step">
-                        <div class="step-number">4</div>
-                        <div class="step-content">
+                    <div class="process-step-modern">
+                        <div class="step-content-left">
                             <h3>Monitor & Optimize</h3>
-                            <p>Continuous monitoring and refinement to maintain and improve your search rankings.</p>
+                            <p>Continuous monitoring and refinement to maintain and improve rankings. Monthly reporting, performance analysis, and strategy adjustments.</p>
                         </div>
+                        <div class="step-number-modern">4</div>
+                        <div class="step-content-right"></div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SEO Pricing -->
-        <section class="seo-pricing">
+        <!-- SEO Pricing with Glassmorphism -->
+        <section class="seo-pricing-section">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header-modern">
                     <h2>SEO Service Packages</h2>
-                    <p>Choose the right SEO package for your business</p>
+                    <p>Flexible plans to fit your business needs and budget</p>
                 </div>
                 
-                <div class="pricing-grid">
-                    <div class="pricing-card">
-                        <div class="pricing-header">
+                <div class="pricing-grid-modern">
+                    <div class="pricing-card-modern">
+                        <div class="pricing-header-modern">
                             <h3>SEO Starter</h3>
-                            <div class="price">$500<span>/month</span></div>
+                            <div class="price-modern">$500<span>/month</span></div>
                             <p>Perfect for small businesses</p>
                         </div>
-                        <ul class="pricing-features">
+                        <ul class="pricing-features-modern">
                             <li><i class="fas fa-check"></i> Google Business Profile optimization</li>
-                            <li><i class="fas fa-check"></i> Basic keyword research</li>
+                            <li><i class="fas fa-check"></i> Basic keyword research (10 keywords)</li>
                             <li><i class="fas fa-check"></i> On-page SEO (5 pages)</li>
                             <li><i class="fas fa-check"></i> Monthly ranking report</li>
                             <li><i class="fas fa-check"></i> Google Analytics setup</li>
+                            <li><i class="fas fa-check"></i> Basic technical SEO audit</li>
                         </ul>
-                        <a href="#contact-form" class="btn btn-outline">Get Started</a>
+                        <a href="#contact-form" class="btn btn-hero-secondary">Get Started</a>
                     </div>
                     
-                    <div class="pricing-card featured">
-                        <div class="pricing-header">
+                    <div class="pricing-card-modern featured">
+                        <div class="pricing-header-modern">
                             <h3>SEO Professional</h3>
-                            <div class="price">$800<span>/month</span></div>
+                            <div class="price-modern">$800<span>/month</span></div>
                             <p>Most popular choice</p>
                         </div>
-                        <ul class="pricing-features">
+                        <ul class="pricing-features-modern">
                             <li><i class="fas fa-check"></i> Everything in Starter</li>
-                            <li><i class="fas fa-check"></i> Advanced keyword research</li>
+                            <li><i class="fas fa-check"></i> Advanced keyword research (25 keywords)</li>
                             <li><i class="fas fa-check"></i> Technical SEO optimization</li>
-                            <li><i class="fas fa-check"></i> Content optimization</li>
-                            <li><i class="fas fa-check"></i> Local citation building</li>
+                            <li><i class="fas fa-check"></i> Content optimization (10 pages)</li>
+                            <li><i class="fas fa-check"></i> Local citation building (20 citations)</li>
                             <li><i class="fas fa-check"></i> Bi-weekly progress calls</li>
+                            <li><i class="fas fa-check"></i> Competitor analysis</li>
                         </ul>
-                        <a href="#contact-form" class="btn btn-primary">Get Started</a>
+                        <a href="#contact-form" class="btn btn-hero-primary">Get Started</a>
                     </div>
                     
-                    <div class="pricing-card">
-                        <div class="pricing-header">
+                    <div class="pricing-card-modern">
+                        <div class="pricing-header-modern">
                             <h3>SEO Enterprise</h3>
-                            <div class="price">$1,200<span>/month</span></div>
+                            <div class="price-modern">$1,200<span>/month</span></div>
                             <p>For competitive markets</p>
                         </div>
-                        <ul class="pricing-features">
+                        <ul class="pricing-features-modern">
                             <li><i class="fas fa-check"></i> Everything in Professional</li>
-                            <li><i class="fas fa-check"></i> Competitor analysis</li>
-                            <li><i class="fas fa-check"></i> Content creation</li>
+                            <li><i class="fas fa-check"></i> Unlimited keyword targeting</li>
+                            <li><i class="fas fa-check"></i> Content creation (4 articles/month)</li>
                             <li><i class="fas fa-check"></i> Advanced link building</li>
                             <li><i class="fas fa-check"></i> Priority support</li>
                             <li><i class="fas fa-check"></i> Weekly progress calls</li>
+                            <li><i class="fas fa-check"></i> Custom reporting dashboard</li>
                         </ul>
-                        <a href="#contact-form" class="btn btn-outline">Get Quote</a>
+                        <a href="#contact-form" class="btn btn-hero-secondary">Get Quote</a>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- Contact Form -->
-        <section class="contact-form-section" id="contact-form">
+        <section class="contact-form-section-modern" id="contact-form">
             <div class="container">
-                <div class="section-header">
+                <div class="section-header-modern">
                     <h2>Get Your Free SEO Audit</h2>
-                    <p>Find out how your website is performing and get actionable recommendations</p>
+                    <p>Discover how your website is performing and get actionable recommendations</p>
                 </div>
                 
-                <form class="contact-form" id="seoAuditForm">
-                    <div class="form-row">
-                        <div class="form-group">
+                <form class="contact-form-modern" id="seoAuditForm">
+                    <div class="form-row-modern">
+                        <div class="form-group-modern">
                             <label for="name">Your Name *</label>
                             <input type="text" id="name" name="name" required>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group-modern">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
+                    <div class="form-row-modern">
+                        <div class="form-group-modern">
                             <label for="phone">Phone Number</label>
                             <input type="tel" id="phone" name="phone">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group-modern">
                             <label for="company">Company Name</label>
                             <input type="text" id="company" name="company">
                         </div>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group-modern">
                         <label for="website">Website URL *</label>
                         <input type="url" id="website" name="website" placeholder="https://yourwebsite.com" required>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group-modern">
                         <label for="business_type">What type of business do you have?</label>
                         <select id="business_type" name="business_type">
                             <option value="">Select business type</option>
@@ -403,17 +1172,20 @@
                         </select>
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group-modern">
                         <label for="current_marketing">What marketing are you currently doing?</label>
                         <textarea id="current_marketing" name="current_marketing" rows="3" placeholder="Tell us about your current marketing efforts..."></textarea>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="goals">What are your main business goals?</label>
+                    <div class="form-group-modern">
+                        <label for="goals">What are your main business goals? *</label>
                         <textarea id="goals" name="goals" rows="4" placeholder="What are you hoping to achieve with SEO? More customers, increased sales, better online visibility..." required></textarea>
                     </div>
                     
-                    <button type="submit" class="btn btn-primary">Get Free SEO Audit</button>
+                    <button type="submit" class="btn btn-hero-primary">
+                        <i class="fas fa-rocket"></i>
+                        Get Free SEO Audit
+                    </button>
                 </form>
             </div>
         </section>
@@ -441,8 +1213,8 @@
                     <ul>
                         <li><a href="website-design.html">Website Design</a></li>
                         <li><a href="seo-services.html">SEO Services</a></li>
+                        <li><a href="computer-repair.html">Computer Repair</a></li>
                         <li><a href="remote-support.html">Remote Support</a></li>
-                        <li><a href="services.html">IT Support</a></li>
                     </ul>
                 </div>
                 
@@ -475,7 +1247,29 @@
     <!-- JavaScript -->
     <script src="js/main.js"></script>
     <script>
-        // Form submission handler for SEO audit form
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / scrollTotal) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
+
+        // Hero Image Shuffle
+        const heroImages = document.querySelectorAll('.hero-image');
+        let currentImageIndex = 0;
+
+        function shuffleHeroImages() {
+            heroImages[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+            heroImages[currentImageIndex].classList.add('active');
+        }
+
+        // Change image every 5 seconds
+        setInterval(shuffleHeroImages, 5000);
+
+        // Form submission handler
         document.getElementById('seoAuditForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
@@ -483,12 +1277,25 @@
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
             
-            // Here you would typically send the data to your backend
-            // For now, we'll just show a success message
-            alert('Thank you for requesting your free SEO audit! We\'ll analyze your website and get back to you within 24 hours.');
+            // Show success message
+            alert('Thank you for requesting your free SEO audit! We\'ll analyze your website and get back to you within 24 hours with actionable recommendations.');
             
             // Reset form
             this.reset();
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
         });
     </script>
 </body>
