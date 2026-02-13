@@ -1101,7 +1101,7 @@
     <script>
         // Initialize EmailJS
         (function() {
-            emailjs.init("YOUR_PUBLIC_KEY"); // Replace with your EmailJS public key
+            emailjs.init("QPLcDCj74Fq0lTwK-"); // EmailJS public key
         })();
 
         // Booking State
@@ -1185,30 +1185,21 @@
             
             // Send emails via EmailJS
             try {
-                // Send confirmation to customer
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', {
-                    to_email: bookingState.formData.email,
-                    to_name: bookingState.formData.fullName,
-                    confirmation_number: confirmationNumber,
-                    service: bookingState.selectedServiceName,
-                    date: bookingState.formData.preferredDate,
-                    time: bookingState.formData.preferredTime,
-                    total: bookingState.basePrice + bookingState.urgencyPrice
-                });
-                
-                // Send notification to business
-                await emailjs.send('YOUR_SERVICE_ID', 'YOUR_BUSINESS_TEMPLATE_ID', {
-                    customer_name: bookingState.formData.fullName,
-                    customer_email: bookingState.formData.email,
-                    customer_phone: bookingState.formData.phone,
+                // Send notification to business (rob@techflowsolutions.ca)
+                await emailjs.send('service_fpx3i2b', 'template_dwmz48t', {
+                    to_email: 'rob@techflowsolutions.ca',
+                    from_name: bookingState.formData.fullName,
+                    from_email: bookingState.formData.email,
+                    phone: bookingState.formData.phone,
                     postal_code: bookingState.formData.postalCode,
                     service: bookingState.selectedServiceName,
                     urgency: bookingState.formData.urgency,
-                    date: bookingState.formData.preferredDate,
-                    time: bookingState.formData.preferredTime,
-                    issue: bookingState.formData.issueDescription || 'Not provided',
-                    total: bookingState.basePrice + bookingState.urgencyPrice,
-                    confirmation_number: confirmationNumber
+                    preferred_date: bookingState.formData.preferredDate,
+                    preferred_time: bookingState.formData.preferredTime,
+                    issue_description: bookingState.formData.issueDescription || 'Not provided',
+                    estimated_total: '$' + (bookingState.basePrice + bookingState.urgencyPrice),
+                    confirmation_number: confirmationNumber,
+                    submission_date: new Date().toLocaleString()
                 });
                 
                 // Show success
