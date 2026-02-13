@@ -58,56 +58,122 @@ Create a futuristic hero image (1920x1080px) featuring a holographic e-commerce 
 
 ---
 
-## 3. SEO Services Page (seo-services.html)
-**Filename**: `hero-seo-services.jpg`
+## 3. SEO Services Page (seo-services.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-seo-1.jpg`, `hero-seo-2.jpg`, `hero-seo-3.jpg`
 
+### Slide 1: Search Rankings & Visibility
 ```
 Create a futuristic SEO hero image (1920x1080px) showing a holographic globe with glowing search engine result pages floating around it. Feature rising purple gradient graphs (#667eea to #764ba2) and analytics charts with upward trending arrows. Include search engine logos subtly integrated, keyword clouds, and ranking position indicators (1, 2, 3). Add circuit board patterns forming network connections between cities. Style: Data-driven, analytical, futuristic with purple-blue gradients. Elements: Search bars, star ratings, location pins, traffic flow visualizations. Mood: Growth, visibility, digital success.
 ```
 
+### Slide 2: Analytics & Performance
+```
+Create a futuristic SEO analytics hero image (1920x1080px) featuring holographic dashboard displays with purple gradient (#667eea to #764ba2) performance metrics, traffic graphs, and conversion funnels. Show floating KPI cards (organic traffic, bounce rate, session duration) with neon purple numbers. Include search console data, Google Analytics interfaces, and heat map visualizations. Add circuit patterns forming data pathways. Style: Data-driven, metrics-focused with purple-blue gradients. Background: Dark with glowing data points and particle effects. Mood: Performance, insights, data-driven success.
+```
+
+### Slide 3: Content & Keywords
+```
+Create a futuristic SEO content hero image (1920x1080px) showing floating holographic content blocks with glowing keywords and meta tags in purple gradient (#667eea to #764ba2). Feature search intent analysis, keyword difficulty scores, and content optimization indicators. Include schema markup visualizations, heading hierarchies (H1, H2, H3), and semantic connections between topics. Add microchip patterns forming content structures. Style: Content-focused, strategic with purple neon accents. Background: Dark with flowing text streams and search queries. Mood: Content excellence, strategic optimization, search authority.
+```
+
 ---
 
-## 4. Computer Repair Page (computer-repair.html)
-**Filename**: `hero-computer-repair.jpg`
+## 4. Computer Repair Page (computer-repair.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-repair-1.jpg`, `hero-repair-2.jpg`, `hero-repair-3.jpg`
 
+### Slide 1: Hardware Diagnostics
 ```
 Create a futuristic computer repair hero image (1920x1080px) featuring an exploded view of a high-tech computer with glowing internal components. Show a detailed microchip at the center with purple energy (#667eea to #764ba2) flowing through circuit pathways. Include holographic diagnostic tools, repair instruments, and system health indicators floating around. Add binary code streams and hardware schematics. Style: Technical, precise, futuristic repair aesthetic with neon purple accents. Background: Dark with subtle circuit board patterns. Mood: Technical expertise, precision, high-tech solutions.
 ```
 
+### Slide 2: System Optimization
+```
+Create a futuristic system optimization hero image (1920x1080px) showing a holographic computer with purple gradient (#667eea to #764ba2) performance bars, speed indicators, and optimization metrics. Feature floating icons for RAM, CPU, GPU, and storage with health status glowing in neon purple. Include system monitoring graphs, temperature gauges, and performance benchmarks. Add circuit board patterns forming optimization pathways. Style: Performance-focused, technical with purple-blue gradients. Background: Dark with flowing data streams and particle effects. Mood: Speed, efficiency, peak performance.
+```
+
+### Slide 3: Virus Removal & Security
+```
+Create a futuristic cybersecurity hero image (1920x1080px) featuring a protected computer surrounded by purple gradient (#667eea to #764ba2) shield barriers blocking red threat indicators. Show floating antivirus scans, firewall visualizations, and security certificates with holographic effects. Include malware detection alerts being neutralized, encrypted data streams, and security locks. Add microchip patterns forming protective networks. Style: Security-focused, protective with purple neon shields. Background: Dark with red threats being blocked by purple defenses. Mood: Protection, security, threat elimination.
+```
+
 ---
 
-## 5. About Page (about.html)
-**Filename**: `hero-about.jpg`
+## 5. About Page (about.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-about-1.jpg`, `hero-about-2.jpg`, `hero-about-3.jpg`
 
+### Slide 1: Professional Expertise
 ```
 Create a futuristic about/team hero image (1920x1080px) showing a modern tech professional's silhouette working in a holographic digital environment. Feature flowing purple-blue gradient data streams (#667eea to #764ba2) connecting various tech devices and tools. Include floating badges representing skills: web design, SEO, computer repair, with glowing microchip icons. Add Toronto skyline with CN Tower in background with subtle purple glow. Style: Professional, approachable, tech-forward with human element. Background: Dark with circuit patterns and light particles. Mood: Expertise, trustworthiness, innovation.
 ```
 
+### Slide 2: Toronto Local Service
+```
+Create a futuristic Toronto-focused hero image (1920x1080px) featuring a stylized holographic Toronto map with CN Tower prominently glowing in purple gradient (#667eea to #764ba2). Show service area coverage with neon purple zones spreading across GTA (North York, Scarborough, Etobicoke, Mississauga). Include location pins, travel routes, and local business markers. Add circuit patterns forming city grid. Style: Location-focused, community-oriented with purple neon city lights. Background: Dark with Toronto skyline and geographical markers. Mood: Local, accessible, community-trusted.
+```
+
+### Slide 3: Innovation & Growth
+```
+Create a futuristic growth hero image (1920x1080px) showing an upward trajectory path with purple gradient (#667eea to #764ba2) milestones, achievement badges, and success indicators. Feature floating timeline elements showing company evolution, client projects completed, and skills acquired. Include holographic graphs showing business growth, customer satisfaction ratings (5 stars), and service expansion. Add microchip patterns forming growth networks. Style: Achievement-focused, progressive with purple-blue gradients. Background: Dark with upward-flowing energy streams. Mood: Growth, achievement, continuous improvement.
+```
+
 ---
 
-## 6. Contact Page (contact.html)
-**Filename**: `hero-contact.jpg`
+## 6. Contact Page (contact.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-contact-1.jpg`, `hero-contact-2.jpg`, `hero-contact-3.jpg`
 
+### Slide 1: Communication Network
 ```
 Create a futuristic contact hero image (1920x1080px) featuring a holographic communication network with glowing purple connection lines (#667eea to #764ba2) forming a web across Toronto map. Show floating contact icons (phone, email, location pin) with glassmorphism effects and neon purple outlines. Include chat bubbles, message notifications, and communication waves. Add subtle microchip patterns and circuit board elements. Style: Connected, accessible, modern communication aesthetic. Background: Dark with Toronto city lights and purple gradient overlay. Mood: Approachable, responsive, always connected.
 ```
 
+### Slide 2: 24/7 Availability
+```
+Create a futuristic availability hero image (1920x1080px) showing a glowing 24/7 clock with purple gradient (#667eea to #764ba2) time zones and availability indicators. Feature holographic calendar with highlighted service hours, instant response indicators, and real-time status displays. Include floating support icons (chat, phone, email) with "online now" badges. Add circuit patterns forming time networks. Style: Always-on, responsive with purple neon clock elements. Background: Dark with global time zone visualizations. Mood: Available, reliable, instant support.
+```
+
+### Slide 3: Get Started Today
+```
+Create a futuristic call-to-action hero image (1920x1080px) featuring a glowing "Get Started" button with purple gradient (#667eea to #764ba2) energy waves radiating outward. Show holographic form fields (name, email, message) with glassmorphism effects and neon purple outlines. Include floating service selection cards, calendar booking interface, and confirmation checkmarks. Add microchip patterns forming action pathways. Style: Action-oriented, encouraging with purple-blue gradients. Background: Dark with forward-moving energy streams. Mood: Easy first step, welcoming, action-ready.
+```
+
 ---
 
-## 7. Remote Support Page (remote-support.html)
-**Filename**: `hero-remote-support.jpg`
+## 7. Remote Support Page (remote-support.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-remote-1.jpg`, `hero-remote-2.jpg`, `hero-remote-3.jpg`
 
+### Slide 1: Secure Connection
 ```
 Create a futuristic remote support hero image (1920x1080px) showing two computers connected by flowing purple-blue energy streams (#667eea to #764ba2) representing remote connection. Feature holographic remote desktop interface with transparent windows showing system diagnostics and repair tools. Include VPN tunnel visualization, secure connection locks, and data packets flowing through circuit pathways. Add AnyDesk-style interface elements. Style: Secure, connected, instant access aesthetic with purple neon accents. Background: Dark with global network grid and microchip patterns. Mood: Security, instant access, professional remote service.
 ```
 
+### Slide 2: Real-Time Diagnostics
+```
+Create a futuristic remote diagnostics hero image (1920x1080px) featuring a holographic computer screen with purple gradient (#667eea to #764ba2) system scans, performance monitors, and diagnostic tools running in real-time. Show floating analysis windows with CPU usage, memory stats, disk health, and network speed indicators. Include remote cursor movements, screen sharing visualizations, and live troubleshooting interfaces. Add circuit patterns forming diagnostic pathways. Style: Technical, real-time monitoring with purple-blue data streams. Background: Dark with flowing system data. Mood: Instant diagnosis, expert analysis, problem-solving.
+```
+
+### Slide 3: Instant Problem Resolution
+```
+Create a futuristic problem-solving hero image (1920x1080px) showing a computer issue being resolved with purple gradient (#667eea to #764ba2) success indicators and checkmarks appearing. Feature before/after split screen with error states transforming into healthy green status. Include floating repair tools, system optimization indicators, and satisfaction ratings. Add microchip patterns forming solution networks. Style: Solution-focused, satisfying with purple-to-green color transitions. Background: Dark with problem indicators being eliminated. Mood: Success, resolution, expert problem-solving.
+```
+
 ---
 
-## 8. Booking Page (booking.html)
-**Filename**: `hero-booking.jpg`
+## 8. Booking Page (booking.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-booking-1.jpg`, `hero-booking-2.jpg`, `hero-booking-3.jpg`
 
+### Slide 1: Service Selection
 ```
 Create a futuristic booking hero image (1920x1080px) featuring a holographic calendar interface with glowing purple appointment slots (#667eea to #764ba2). Show floating service cards (computer repair, web design, SEO) with glassmorphism effects. Include time slots, checkmarks, and confirmation indicators with neon purple glow. Add circuit board patterns forming a scheduling grid. Style: Organized, efficient, modern booking aesthetic with purple-blue gradients. Background: Dark with subtle geometric patterns and light particles. Mood: Easy, efficient, professional scheduling.
+```
+
+### Slide 2: Calendar & Scheduling
+```
+Create a futuristic scheduling hero image (1920x1080px) showing a holographic calendar with purple gradient (#667eea to #764ba2) available time slots, date selectors, and appointment confirmations. Feature floating time pickers, date ranges, and scheduling preferences with glassmorphism effects. Include timezone indicators, duration selectors, and availability calendars. Add microchip patterns forming time grids. Style: Time-focused, organized with purple neon calendar elements. Background: Dark with geometric time patterns. Mood: Flexible scheduling, easy booking, time-efficient.
+```
+
+### Slide 3: Confirmation & Success
+```
+Create a futuristic booking confirmation hero image (1920x1080px) featuring a large glowing checkmark with purple gradient (#667eea to #764ba2) success indicators and confirmation messages. Show holographic appointment details (date, time, service) with glassmorphism cards. Include calendar event saved, email confirmation sent, and reminder set indicators with neon purple glow. Add circuit patterns forming completion networks. Style: Success-oriented, satisfying with purple-blue celebration effects. Background: Dark with confetti-like particles and success animations. Mood: Booked, confirmed, ready to go.
 ```
 
 ---
@@ -133,20 +199,49 @@ Create a futuristic booking hero image (1920x1080px) featuring a holographic cal
 assets/
   images/
     heroes/
-      hero-home-1.jpg (Homepage Slide 1)
-      hero-home-2.jpg (Homepage Slide 2)
-      hero-home-3.jpg (Homepage Slide 3)
-      hero-design-1.jpg (Website Design Slide 1)
-      hero-design-2.jpg (Website Design Slide 2)
-      hero-design-3.jpg (Website Design Slide 3)
-      hero-design-4.jpg (Website Design Slide 4)
-      hero-design-5.jpg (Website Design Slide 5)
-      hero-seo-services.jpg
-      hero-computer-repair.jpg
-      hero-about.jpg
-      hero-contact.jpg
-      hero-remote-support.jpg
-      hero-booking.jpg
+      # Homepage (3 images)
+      hero-home-1.jpg
+      hero-home-2.jpg
+      hero-home-3.jpg
+      
+      # Website Design (5 images)
+      hero-design-1.jpg
+      hero-design-2.jpg
+      hero-design-3.jpg
+      hero-design-4.jpg
+      hero-design-5.jpg
+      
+      # SEO Services (3 images)
+      hero-seo-1.jpg
+      hero-seo-2.jpg
+      hero-seo-3.jpg
+      
+      # Computer Repair (3 images)
+      hero-repair-1.jpg
+      hero-repair-2.jpg
+      hero-repair-3.jpg
+      
+      # About (3 images)
+      hero-about-1.jpg
+      hero-about-2.jpg
+      hero-about-3.jpg
+      
+      # Contact (3 images)
+      hero-contact-1.jpg
+      hero-contact-2.jpg
+      hero-contact-3.jpg
+      
+      # Remote Support (3 images)
+      hero-remote-1.jpg
+      hero-remote-2.jpg
+      hero-remote-3.jpg
+      
+      # Booking (3 images)
+      hero-booking-1.jpg
+      hero-booking-2.jpg
+      hero-booking-3.jpg
+
+TOTAL: 26 hero images for complete website slideshow experience
 ```
 
 **Total: 14 hero images** (3 for homepage + 5 for website design + 6 single images)
