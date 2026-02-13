@@ -8,20 +8,52 @@
 
 ---
 
-## 1. Homepage (index.html)
-**Filename**: `hero-home.jpg`
+## 1. Homepage (index.html) - 3 SLIDESHOW IMAGES
+**Filenames**: `hero-home-1.jpg`, `hero-home-2.jpg`, `hero-home-3.jpg`
 
+### Slide 1: Digital Workspace
 ```
 Create a futuristic tech hero image (1920x1080px) showing a holographic digital workspace with floating UI elements, code snippets, and circuit board patterns. Feature a central glowing microchip with purple-blue energy waves (#667eea to #764ba2) radiating outward. Include abstract geometric shapes (hexagons, triangles) with glassmorphism effects. Add subtle Toronto CN Tower silhouette in background with neon purple glow. Style: Ultra-modern, cyberpunk-inspired, professional tech aesthetic. Lighting: Dramatic purple and blue neon accents with dark navy background. Mood: Innovation, digital transformation, cutting-edge technology.
 ```
 
+### Slide 2: Data Flow & Networks
+```
+Create a futuristic hero image (1920x1080px) showing flowing data streams and network connections with glowing purple-blue gradients (#667eea to #764ba2). Feature interconnected nodes forming a web, with binary code and data packets flowing through circuit pathways. Include floating holographic screens showing analytics and system metrics. Add microchip patterns and neon accents. Style: Dynamic, connected, data-driven with purple gradients. Background: Dark with particle effects and light trails. Mood: Connectivity, speed, modern technology.
+```
+
+### Slide 3: Tech Solutions Hub
+```
+Create a futuristic hero image (1920x1080px) featuring three glowing service pillars: web design (laptop icon), SEO (graph icon), computer repair (microchip icon) with purple-blue energy (#667eea to #764ba2) connecting them. Show holographic interface elements, circuit board patterns, and Toronto city lights in background. Include floating tech icons and glassmorphism panels. Style: Service-focused, professional, modern with purple neon accents. Background: Dark with geometric patterns and light beams. Mood: Complete solutions, expertise, innovation.
+```
+
 ---
 
-## 2. Website Design Page (website-design.html)
-**Filename**: `hero-website-design.jpg`
+## 2. Website Design Page (website-design.html) - 5 SLIDESHOW IMAGES
+**Filenames**: `hero-design-1.jpg`, `hero-design-2.jpg`, `hero-design-3.jpg`, `hero-design-4.jpg`, `hero-design-5.jpg`
 
+### Slide 1: Responsive Mockups
 ```
 Create a futuristic web design hero image (1920x1080px) featuring multiple floating transparent screens displaying modern website mockups with glassmorphism effects. Show responsive design across devices (laptop, tablet, phone) with purple gradient interfaces (#667eea to #764ba2). Include wireframe blueprints, UI/UX elements, and flowing code streams in the background. Add holographic design tools and grid systems. Style: Modern, creative, designer-focused with purple neon accents. Background: Dark with circuit patterns and glowing nodes. Mood: Creativity, precision, modern web design.
+```
+
+### Slide 2: UI/UX Design Process
+```
+Create a futuristic design hero image (1920x1080px) showing a holographic UI/UX design workspace with floating artboards, color palettes, and typography samples. Feature purple gradient (#667eea to #764ba2) design elements, vector paths, and bezier curves glowing with neon light. Include design tool interfaces, grid systems, and alignment guides. Add microchip patterns forming design grids. Style: Creative, professional, design-focused with pink-purple accents. Background: Dark with geometric patterns. Mood: Design excellence, creativity, precision.
+```
+
+### Slide 3: Code & Development
+```
+Create a futuristic hero image (1920x1080px) featuring flowing code streams (HTML, CSS, JavaScript) with purple-blue syntax highlighting (#667eea to #764ba2). Show holographic code editor windows, terminal interfaces, and version control visualizations. Include floating brackets, functions, and variable declarations with neon glow. Add circuit board patterns forming code structure. Style: Developer-focused, technical, modern with purple gradients. Background: Dark with matrix-style code rain. Mood: Technical expertise, development power, innovation.
+```
+
+### Slide 4: SEO Integration
+```
+Create a futuristic hero image (1920x1080px) showing a holographic website with rising purple gradient SEO metrics (#667eea to #764ba2), search rankings (1, 2, 3), and analytics graphs. Feature floating keywords, meta tags, and schema markup glowing with neon purple. Include search engine result pages, traffic flow visualizations, and ranking indicators. Add circuit patterns forming network connections. Style: Data-driven, analytical with purple-blue gradients. Background: Dark with glowing data points. Mood: Visibility, growth, search success.
+```
+
+### Slide 5: E-commerce & Conversion
+```
+Create a futuristic hero image (1920x1080px) featuring a holographic e-commerce website with shopping cart, product cards, and conversion funnel visualization. Show purple gradient (#667eea to #764ba2) payment flows, checkout processes, and customer journey maps. Include floating icons (cart, credit card, analytics), glassmorphism product displays, and conversion rate graphs. Add microchip patterns forming sales pipelines. Style: Business-focused, conversion-oriented with purple neon accents. Background: Dark with currency symbols and transaction flows. Mood: Sales success, conversions, business growth.
 ```
 
 ---
@@ -101,8 +133,14 @@ Create a futuristic booking hero image (1920x1080px) featuring a holographic cal
 assets/
   images/
     heroes/
-      hero-home.jpg
-      hero-website-design.jpg
+      hero-home-1.jpg (Homepage Slide 1)
+      hero-home-2.jpg (Homepage Slide 2)
+      hero-home-3.jpg (Homepage Slide 3)
+      hero-design-1.jpg (Website Design Slide 1)
+      hero-design-2.jpg (Website Design Slide 2)
+      hero-design-3.jpg (Website Design Slide 3)
+      hero-design-4.jpg (Website Design Slide 4)
+      hero-design-5.jpg (Website Design Slide 5)
       hero-seo-services.jpg
       hero-computer-repair.jpg
       hero-about.jpg
@@ -110,6 +148,8 @@ assets/
       hero-remote-support.jpg
       hero-booking.jpg
 ```
+
+**Total: 14 hero images** (3 for homepage + 5 for website design + 6 single images)
 
 ---
 
