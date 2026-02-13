@@ -243,7 +243,7 @@ a:hover {
     gap: var(--spacing-xs);
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
-    font-size: 1.5rem;
+    font-size: 24px !important;
     line-height: 1.4;
     background: linear-gradient(135deg, #58a6ff 0%, #79c0ff 100%);
     -webkit-background-clip: text;
@@ -281,7 +281,7 @@ a:hover {
 }
 
 .nav-logo i {
-    font-size: 1.75rem;
+    font-size: 28px !important;
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
