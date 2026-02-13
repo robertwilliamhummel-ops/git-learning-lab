@@ -10,9 +10,6 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
     
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css?v=2025012312">
-    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,6 +17,9 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Stylesheets - Load BEFORE inline styles so inline styles can override -->
+    <link rel="stylesheet" href="css/styles.css?v=2025012312">
     
     <style>
         /* Modern Booking Page Design with Purple Gradients */
@@ -637,6 +637,14 @@
         .contact-option small {
             color: rgba(255, 255, 255, 0.6);
             font-size: 0.875rem;
+        }
+        
+        /* Override CSS variables for booking page to use purple theme */
+        :root {
+            --primary-blue: #667eea !important;
+            --secondary-blue: #764ba2 !important;
+            --accent-blue: #8b5cf6 !important;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
         }
     </style>
     
