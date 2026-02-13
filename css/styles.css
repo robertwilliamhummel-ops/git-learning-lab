@@ -244,30 +244,57 @@ a:hover {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--primary-blue);
+    background: linear-gradient(135deg, #58a6ff 0%, #79c0ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     text-decoration: none;
     transition: all var(--transition-normal);
     border-radius: var(--radius-md);
     padding: var(--spacing-xs) var(--spacing-sm);
     margin: calc(-1 * var(--spacing-xs)) calc(-1 * var(--spacing-sm));
+    position: relative;
+}
+
+.nav-logo a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(88, 166, 255, 0.1) 0%, rgba(121, 192, 255, 0.05) 100%);
+    border-radius: var(--radius-md);
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+}
+
+.nav-logo a:hover::before {
+    opacity: 1;
 }
 
 .nav-logo a:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
-    color: #79c0ff;
+    filter: drop-shadow(0 0 12px rgba(88, 166, 255, 0.4));
 }
 
 .nav-logo i {
     font-size: 1.75rem;
-    color: var(--accent-blue);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     flex-shrink: 0;
     transition: all var(--transition-normal);
+    filter: drop-shadow(0 2px 4px rgba(102, 126, 234, 0.3));
 }
 
 .nav-logo a:hover i {
-    color: #a5d6ff;
-    text-shadow: 0 0 8px rgba(88, 166, 255, 0.4);
+    filter: drop-shadow(0 0 8px rgba(102, 126, 234, 0.6));
+    animation: microchipSpin 0.6s ease-in-out;
+}
+
+@keyframes microchipSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.2); }
+    100% { transform: rotate(360deg) scale(1); }
 }
 
 /* Responsive font sizing to keep logo on one line */
