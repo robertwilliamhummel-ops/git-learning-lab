@@ -831,11 +831,11 @@ function initializeServiceCalculator() {
         'diagnostic': 125,              // $125 (waived with repair)
         'virus-removal': 200,           // $175-$225 → middle = $200
         'performance-optimization': 175, // $150-$200 → middle = $175
-        'ssd-upgrade': 225,             // Hardware upgrade estimate
-        'ram-upgrade': 150,             // Hardware upgrade estimate
-        'network-setup': 300,           // Network setup estimate
+        'ssd-upgrade': 225,             // $225 + SSD cost (service only)
+        'ram-upgrade': 125,             // $125 + RAM cost (service only)
+        'network-setup': 300,           // $250-$350 → middle = $300
         'data-recovery': 450,           // $300-$600+ → middle = $450
-        'custom-build': 450             // Custom build estimate
+        'custom-build': 400             // $300-$500 → middle = $400 (service only)
     };
     
     const urgencyMultipliers = {
@@ -929,6 +929,7 @@ function initializeServiceCalculator() {
         const urgency = urgencySelect.value;
         const completionTimeElement = calculator.querySelector('#completion-time');
         const completionTextElement = calculator.querySelector('#completion-text');
+        const bookingButton = calculator.querySelector('.calculator-actions a');
         
         console.log('📊 PRICING DEBUG: Selected values:', {
             service: service || '(empty)',
@@ -942,6 +943,10 @@ function initializeServiceCalculator() {
             estimateDisplay.style.color = '#6b7280';
             if (completionTimeElement) {
                 completionTimeElement.style.display = 'none';
+            }
+            // Reset booking button to default
+            if (bookingButton) {
+                bookingButton.href = 'booking.html';
             }
             return;
         }
@@ -990,6 +995,12 @@ function initializeServiceCalculator() {
                     completionTimeElement.style.opacity = '1';
                 }, 100);
             }
+        }
+        
+        // Update booking button with selected service
+        if (bookingButton && service) {
+            bookingButton.href = `booking.html?service=${service}`;
+            console.log('🔗 Updated booking link:', bookingButton.href);
         }
         
         // Update service recommendations
