@@ -210,6 +210,11 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Only animate icon on hover */
+        .contact-card:hover .contact-icon {
             animation: iconPulse 2s ease-in-out infinite;
         }
 
@@ -782,27 +787,7 @@
                 </div>
                 
                 <div class="contact-grid">
-                    <div class="contact-card remote-support">
-                        <div class="contact-icon">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <h3>Remote Support</h3>
-                        <p>Get instant help - connect in minutes from anywhere</p>
-                        <div class="contact-details">
-                            <div class="remote-features">
-                                <p>Full Administrative Access</p>
-                                <p>No Travel Charges</p>
-                                <p>Connect Immediately</p>
-                            </div>
-                            <div class="remote-pricing">
-                                <p>Starting at $75/hour</p>
-                            </div>
-                        </div>
-                        <a href="remote-support.html" class="btn btn-primary">
-                            <i class="fas fa-desktop"></i>
-                            Start Remote Session
-                        </a>
-                    </div>
+                    <!-- Remote Support card removed - dedicated page exists at remote-support.html -->
                     
                     <div class="contact-card primary">
                         <div class="contact-icon">
@@ -1251,21 +1236,23 @@
             scrollProgress.style.width = scrollPercent + '%';
         });
 
-        // FAQ Accordion
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                const isActive = faqItem.classList.contains('active');
-                
-                // Close all FAQs
-                document.querySelectorAll('.faq-item').forEach(item => {
-                    item.classList.remove('active');
+        // FAQ Accordion - wrapped in DOMContentLoaded to ensure DOM is ready
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', () => {
+                    const faqItem = question.parentElement;
+                    const isActive = faqItem.classList.contains('active');
+                    
+                    // Close all FAQs
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    
+                    // Open clicked FAQ if it wasn't active
+                    if (!isActive) {
+                        faqItem.classList.add('active');
+                    }
                 });
-                
-                // Open clicked FAQ if it wasn't active
-                if (!isActive) {
-                    faqItem.classList.add('active');
-                }
             });
         });
     </script>

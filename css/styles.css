@@ -6480,7 +6480,9 @@ a:hover {
     color: var(--secondary-blue);
 }
 
-/* Primary Contact Card (Call Us) */
+/* Primary Contact Card (Call Us) - DISABLED FOR CONSISTENCY */
+/* These special styles made the contact page look inconsistent with blue borders and badges */
+/*
 .contact-card.primary {
     border: 2px solid var(--primary-blue);
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--primary-blue) 5%, var(--bg-dark) 5%);
@@ -6515,6 +6517,7 @@ a:hover {
     transform: translateY(-5px);
     box-shadow: 0 15px 40px rgba(88, 166, 255, 0.3);
 }
+*/
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -6528,7 +6531,9 @@ a:hover {
     }
 }
 
-/* Remote Support Contact Card Styles */
+/* Remote Support Contact Card Styles - DISABLED FOR CONSISTENCY */
+/* These special styles made the contact page look inconsistent with blue borders */
+/*
 .contact-card.remote-support {
     background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
     border: 2px solid var(--primary-blue);
@@ -6600,6 +6605,7 @@ a:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 30px rgba(88, 166, 255, 0.2);
 }
+*/
 
 
 /* Homepage Gradient Styling Updates */
