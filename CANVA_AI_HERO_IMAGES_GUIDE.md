@@ -107,23 +107,24 @@ Prompt: "Dashboard showing website analytics and growth charts with upward trend
 ```
 assets/
   └── images/
-      └── hero/
-          ├── home-1.jpg
-          ├── home-2.jpg
-          ├── home-3.jpg
-          ├── home-4.jpg
-          ├── home-5.jpg
-          ├── design-1.jpg
-          ├── design-2.jpg
-          ├── design-3.jpg
-          ├── design-4.jpg
-          └── design-5.jpg
+      └── heroes/
+          ├── hero-home-1.png
+          ├── hero-home-2.png
+          ├── hero-home-3.png
+          ├── hero-home-4.png
+          ├── hero-home-5.png
+          ├── hero-design-1.png
+          ├── hero-design-2.png
+          ├── hero-design-3.png
+          ├── hero-design-4.png
+          └── hero-design-5.png
 ```
 
 ### Step 2: Naming Convention
-- **Homepage images**: `home-1.jpg`, `home-2.jpg`, etc.
-- **Design page images**: `design-1.jpg`, `design-2.jpg`, etc.
-- Use lowercase, no spaces, sequential numbering
+- **Homepage images**: `hero-home-1.png`, `hero-home-2.png`, etc.
+- **Design page images**: `hero-design-1.png`, `hero-design-2.png`, etc.
+- Use lowercase, dashes for spaces, sequential numbering
+- PNG or JPG format both work
 
 ---
 
@@ -146,11 +147,9 @@ assets/
 3. **Replace with:**
 ```html
 <div class="hero-background">
-    <div class="hero-image active" style="background-image: url('assets/images/hero/home-1.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/home-2.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/home-3.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/home-4.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/home-5.jpg');"></div>
+    <div class="hero-image active" style="background-image: url('assets/images/heroes/hero-home-1.png');"></div>
+    <div class="hero-image" style="background-image: url('assets/images/heroes/hero-home-2.png');"></div>
+    <div class="hero-image" style="background-image: url('assets/images/heroes/hero-home-3.png');"></div>
 </div>
 ```
 
@@ -171,11 +170,11 @@ assets/
 3. **Replace with:**
 ```html
 <div class="hero-background">
-    <div class="hero-image active" style="background-image: url('assets/images/hero/design-1.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/design-2.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/design-3.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/design-4.jpg');"></div>
-    <div class="hero-image" style="background-image: url('assets/images/hero/design-5.jpg');"></div>
+    <div class="hero-image active" style="background-image: url('assets/images/heroes/hero-design-1.png');"></div>
+    <div class="hero-image" style="background-image: url('assets/images/heroes/hero-design-2.png');"></div>
+    <div class="hero-image" style="background-image: url('assets/images/heroes/hero-design-3.png');"></div>
+    <div class="hero-image" style="background-image: url('assets/images/heroes/hero-design-4.png');"></div>
+    <div class="hero-image" style="background-image: url('assets/images/heroes/hero-design-5.png');"></div>
 </div>
 ```
 
