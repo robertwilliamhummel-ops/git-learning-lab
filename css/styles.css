@@ -242,7 +242,7 @@ a:hover {
     align-items: center;
     gap: var(--spacing-xs);
     font-family: 'Poppins', sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     font-size: 1.5rem;
     line-height: 1.4;
     background: linear-gradient(135deg, #58a6ff 0%, #79c0ff 100%);
@@ -258,6 +258,7 @@ a:hover {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    paint-order: stroke fill;
 }
 
 .nav-logo a::before {
