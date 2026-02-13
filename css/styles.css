@@ -255,6 +255,9 @@ a:hover {
     padding: var(--spacing-sm);
     margin: calc(-1 * var(--spacing-sm));
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 .nav-logo a::before {
