@@ -2034,10 +2034,16 @@ a:hover {
     background: var(--bg-secondary);
     border: 2px solid var(--light-gray);
     border-radius: var(--radius-md);
-    color: var(--text-primary);
+    color: #ffffff;
     font-size: 1rem;
     transition: var(--transition-normal);
     cursor: pointer;
+}
+
+.input-group select option {
+    background: var(--bg-secondary);
+    color: #ffffff;
+    padding: 0.5rem;
 }
 
 .input-group select:focus {
