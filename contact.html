@@ -112,28 +112,26 @@
         }
 
         .page-header p {
-            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
             font-family: 'Inter', sans-serif;
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.9);
             margin-bottom: 1.5rem;
+            line-height: 1.6;
         }
 
-        .breadcrumb {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
+        /* Gradient text animation for hero title */
+        .hero-title-contact .gradient-text-contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
         }
 
-        .breadcrumb a {
-            color: #667eea;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .breadcrumb a:hover {
-            color: #764ba2;
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         /* Contact Methods with Glassmorphism */
@@ -767,13 +765,8 @@
         <section class="page-header">
             <div class="container">
                 <div class="page-header-content">
-                    <h1>Contact Us</h1>
+                    <h1 class="hero-title-contact">Contact <span class="gradient-text-contact">Us</span></h1>
                     <p>Get in touch for website design, SEO services, and tech support</p>
-                    <nav class="breadcrumb">
-                        <a href="index.html">Home</a>
-                        <span>/</span>
-                        <span>Contact</span>
-                    </nav>
                 </div>
             </div>
         </section>
