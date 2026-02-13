@@ -22,10 +22,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Modern Glassmorphism Styling for Booking Page */
+        /* Modern Booking Page Design with Purple Gradients */
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        /* Page Header with Purple Gradient */
         .page-header {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
             padding: 8rem 2rem 4rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            text-align: center;
             position: relative;
             overflow: hidden;
         }
@@ -52,7 +59,6 @@
             z-index: 2;
             max-width: 800px;
             margin: 0 auto;
-            text-align: center;
         }
 
         .page-header h1 {
@@ -74,7 +80,7 @@
 
         /* Modern step indicators */
         .booking-process {
-            background: #0a0e27;
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
             padding: 3rem 2rem;
         }
 
@@ -122,7 +128,7 @@
         }
 
         .step.active .step-number {
-            background: #667eea;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
         }
 
@@ -139,18 +145,27 @@
 
         /* Modern form styling */
         .booking-form-section {
-            background: #0a0e27;
-            padding: 4rem 2rem;
+            background: linear-gradient(180deg, #16213e 0%, #0f0c29 100%) !important;
+            padding: 4rem 2rem !important;
         }
 
         .booking-form-container {
             max-width: 900px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 3rem;
+            background: rgba(255, 255, 255, 0.05) !important;
+            backdrop-filter: blur(10px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 20px !important;
+            padding: 3rem !important;
+        }
+
+        /* Hide old form steps that might be visible */
+        .form-step {
+            display: none !important;
+        }
+
+        .form-step.active {
+            display: block !important;
         }
 
         .service-option {
@@ -166,15 +181,397 @@
         .service-option:hover {
             border-color: rgba(102, 126, 234, 0.5);
             transform: translateX(5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
         }
 
-        .service-option input[type="radio"]:checked + label {
-            border-color: #667eea;
+        .service-option input[type="radio"]:checked ~ .service-details {
+            border-left: 3px solid #667eea;
+        }
+
+        /* Step headers */
+        .step-header {
+            text-align: center !important;
+            margin-bottom: 2rem !important;
+        }
+
+        .step-header h2 {
+            color: white !important;
+            font-size: clamp(1.8rem, 3vw, 2.5rem) !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .step-header h2 i {
+            color: #667eea !important;
+        }
+
+        .step-header p {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-size: 1.1rem !important;
+        }
+
+        /* Service options grid */
+        .service-options {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .service-icon {
+            width: 60px !important;
+            height: 60px !important;
+            border-radius: 15px !important;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+        }
+
+        .service-icon i {
+            font-size: 2rem !important;
+            color: white !important;
+        }
+
+        .service-details h3 {
+            color: white !important;
+            font-size: 1.3rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .service-details p {
+            color: rgba(255, 255, 255, 0.7) !important;
+            margin-bottom: 0.75rem !important;
+        }
+
+        .service-features {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 0.3rem !important;
+            margin: 0.75rem 0 !important;
+        }
+
+        .service-features span {
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-size: 0.9rem !important;
+        }
+
+        .service-price {
+            color: #667eea !important;
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+            margin-top: 0.75rem !important;
+        }
+
+        .service-select label {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            padding: 0.75rem 1.5rem !important;
+            border-radius: 50px !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            display: inline-block !important;
+            border: none !important;
+        }
+
+        .service-select label:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4) !important;
+        }
+
+        /* Buttons */
+        .step-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem !important;
+            font-size: 1.05rem !important;
+            font-weight: 600 !important;
+            border-radius: 50px !important;
+            border: none !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4) !important;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px) !important;
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6) !important;
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5 !important;
+            cursor: not-allowed !important;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1) !important;
+            color: white !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.15) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .btn-large {
+            padding: 1.25rem 2.5rem !important;
+            font-size: 1.1rem !important;
+        }
+
+        /* Date and Time Selection */
+        .datetime-selection {
+            display: grid !important;
+            gap: 2rem !important;
+        }
+
+        .date-selection h3,
+        .time-selection h3,
+        .urgency-selection h3 {
+            color: white !important;
+            font-size: 1.2rem !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .date-selection input[type="date"],
+        .time-selection select,
+        #backup-time-select {
+            width: 100% !important;
+            padding: 1rem !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 2px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 10px !important;
+            color: white !important;
+            font-size: 1rem !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .date-selection input[type="date"]:focus,
+        .time-selection select:focus,
+        #backup-time-select:focus {
+            outline: none !important;
+            border-color: #667eea !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .date-info {
+            margin-top: 0.75rem !important;
+            padding: 1rem !important;
+            background: rgba(102, 126, 234, 0.1) !important;
+            border-left: 3px solid #667eea !important;
+            border-radius: 5px !important;
+        }
+
+        .date-info p {
+            color: rgba(255, 255, 255, 0.8) !important;
+            font-size: 0.9rem !important;
+            margin: 0 !important;
+        }
+
+        .time-slots {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
+            gap: 1rem !important;
+            margin-top: 1rem !important;
+        }
+
+        .select-date-first {
+            color: rgba(255, 255, 255, 0.6) !important;
+            text-align: center !important;
+            padding: 2rem !important;
+        }
+
+        .urgency-options {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+            gap: 1.5rem !important;
+        }
+
+        .urgency-option {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 2px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 15px !important;
+            padding: 1.5rem !important;
+            cursor: pointer !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .urgency-option:hover {
+            border-color: rgba(102, 126, 234, 0.5) !important;
+            transform: translateY(-2px) !important;
+        }
+
+        .urgency-option input[type="radio"] {
+            display: none !important;
+        }
+
+        .urgency-details h4 {
+            color: white !important;
+            font-size: 1.1rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .urgency-details p {
+            color: rgba(255, 255, 255, 0.7) !important;
+            font-size: 0.9rem !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .urgency-price {
+            color: #667eea !important;
+            font-weight: 600 !important;
+        }
+
+        /* Customer Details Form */
+        .customer-details {
+            display: grid !important;
+            gap: 1.5rem !important;
+        }
+
+        .form-row {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+            gap: 1.5rem !important;
+        }
+
+        .form-group {
+            display: flex !important;
+            flex-direction: column !important;
+        }
+
+        .form-group label {
+            color: white !important;
+            font-weight: 600 !important;
+            margin-bottom: 0.5rem !important;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 1rem !important;
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 2px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 10px !important;
+            color: white !important;
+            font-size: 1rem !important;
+            transition: all 0.3s ease !important;
+            font-family: 'Inter', sans-serif !important;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none !important;
+            border-color: #667eea !important;
+            background: rgba(255, 255, 255, 0.08) !important;
+        }
+
+        .form-group small {
+            color: rgba(255, 255, 255, 0.6) !important;
+            font-size: 0.85rem !important;
+            margin-top: 0.25rem !important;
+        }
+
+        /* Booking Review */
+        .booking-review {
+            display: grid !important;
+            gap: 2rem !important;
+        }
+
+        .review-section {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-radius: 15px !important;
+            padding: 1.5rem !important;
+        }
+
+        .review-section h3 {
+            color: white !important;
+            font-size: 1.2rem !important;
+            margin-bottom: 1rem !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 0.5rem !important;
+        }
+
+        .review-section h3 i {
+            color: #667eea !important;
+        }
+
+        .review-item {
+            display: flex !important;
+            justify-content: space-between !important;
+            padding: 0.75rem 0 !important;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+
+        .review-item:last-child {
+            border-bottom: none !important;
+        }
+
+        .review-item .label {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        .review-item .value {
+            color: white !important;
+            font-weight: 600 !important;
+        }
+
+        .review-description {
+            color: rgba(255, 255, 255, 0.8) !important;
+            line-height: 1.6 !important;
+            padding: 1rem !important;
+            background: rgba(255, 255, 255, 0.03) !important;
+            border-radius: 10px !important;
+        }
+
+        .booking-terms {
+            background: rgba(102, 126, 234, 0.1) !important;
+            border-left: 3px solid #667eea !important;
+            border-radius: 10px !important;
+            padding: 1.5rem !important;
+            margin-top: 2rem !important;
+        }
+
+        .terms-info h4 {
+            color: white !important;
+            margin-bottom: 1rem !important;
+        }
+
+        .terms-info ul {
+            list-style: none !important;
+            padding: 0 !important;
+        }
+
+        .terms-info li {
+            color: rgba(255, 255, 255, 0.8) !important;
+            padding: 0.5rem 0 !important;
+            padding-left: 1.5rem !important;
+            position: relative !important;
+        }
+
+        .terms-info li::before {
+            content: "✓" !important;
+            position: absolute !important;
+            left: 0 !important;
+            color: #667eea !important;
+            font-weight: bold !important;
         }
 
         /* Alternative contact section */
         .alternative-contact {
-            background: linear-gradient(180deg, #0a0e27 0%, #1a1a2e 100%);
+            background: linear-gradient(180deg, #0f0c29 0%, #1a1a2e 100%);
             padding: 4rem 2rem;
         }
 
@@ -218,6 +615,7 @@
         .contact-option:hover {
             border-color: #667eea;
             transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
         }
 
         .contact-option i {
