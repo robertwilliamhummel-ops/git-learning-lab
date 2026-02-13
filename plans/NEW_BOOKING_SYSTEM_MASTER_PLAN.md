@@ -1,7 +1,9 @@
 # Modern Booking System - Complete Implementation Plan
 
 ## Project Overview
-Create a brand new, modern booking system from scratch that perfectly matches TechFlow Solutions' purple gradient aesthetic and provides a streamlined user experience.
+Create a brand new, modern booking system from scratch that perfectly matches TechFlow Solutions' purple gradient aesthetic and provides a streamlined user experience **for PC repair and computer services only**.
+
+**Important Note:** This booking system is ONLY for computer repair services. Website design and SEO services will continue to use the contact form on [`contact.html`](../contact.html).
 
 ---
 
@@ -28,22 +30,29 @@ Create a brand new, modern booking system from scratch that perfectly matches Te
 #### Primary Entry Points:
 1. **Computer Repair Page** (`computer-repair.html`)
    - Hero section: "Book Repair" button
-   - Service cards: "Book This Service" buttons
+   - Service cards: "Book This Service" buttons (only for PC repair services)
    - Bottom CTA: "Ready to Get Started? Book Now"
 
 2. **Navigation Menu** (All Pages)
-   - Main nav: "Book Now" button (replaces current "Get Free Quote")
-   - Mobile menu: "Book Service" option
+   - Keep "Get Free Quote" button pointing to [`contact.html`](../contact.html)
+   - No booking link in main navigation (booking is service-specific)
 
 3. **Home Page** (`index.html`)
-   - Hero CTA: "Book Service" button
-   - Services section: Individual service booking buttons
+   - Computer repair section: "Book Repair" button
+   - Website design section: "Get Quote" button → contact.html
+   - SEO services section: "Get Quote" button → contact.html
 
-4. **Services Page** (`services.html`)
-   - Each service card: "Book Now" button
+4. **Website Design Page** (`website-design.html`)
+   - NO booking button - use "Get Free Quote" → contact.html
+   - Website design requires consultation, not instant booking
 
-5. **Contact Page** (`contact.html`)
-   - Add: "Prefer to book online? Click here" link
+5. **SEO Services Page** (`seo-services.html`)
+   - NO booking button - use "Get Free Quote" → contact.html
+   - SEO requires strategy discussion, not instant booking
+
+6. **Contact Page** (`contact.html`)
+   - Add note: "Need PC repair? [Book online here](booking.html)"
+   - Contact form remains for website design & SEO inquiries
 
 ### URL Structure
 - **Main Booking Page**: `booking.html`
