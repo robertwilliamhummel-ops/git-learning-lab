@@ -244,6 +244,7 @@ a:hover {
     font-family: 'Poppins', sans-serif;
     font-weight: 700;
     font-size: 1.5rem;
+    line-height: 1.4;
     background: linear-gradient(135deg, #58a6ff 0%, #79c0ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -251,8 +252,8 @@ a:hover {
     text-decoration: none;
     transition: all var(--transition-normal);
     border-radius: var(--radius-md);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    margin: calc(-1 * var(--spacing-xs)) calc(-1 * var(--spacing-sm));
+    padding: var(--spacing-sm);
+    margin: calc(-1 * var(--spacing-sm));
     position: relative;
 }
 
