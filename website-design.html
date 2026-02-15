@@ -638,6 +638,118 @@
             box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
 
+        /* Success/Error Modal Styles */
+        .notification-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.7);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            z-index: 10000;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .notification-modal.show {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            pointer-events: auto;
+        }
+
+        .notification-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .notification-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        .modal-icon.success {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+        }
+
+        .modal-icon.error {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #fff;
+        }
+
+        @keyframes scaleIn {
+            0% {
+                transform: scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .notification-modal h3 {
+            color: #1a1a2e;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .notification-modal p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .modal-close-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
         .form-row-design {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -1081,7 +1193,23 @@
         </div>
     </footer>
 
+    <!-- Success/Error Modal -->
+    <div class="notification-overlay" id="notificationOverlay" onclick="closeNotification()"></div>
+    <div class="notification-modal" id="notificationModal">
+        <div class="modal-icon" id="modalIcon">
+            <i class="fas fa-check" id="modalIconSymbol"></i>
+        </div>
+        <h3 id="modalTitle">Success!</h3>
+        <p id="modalMessage">Your message has been sent successfully.</p>
+        <button class="modal-close-btn" onclick="closeNotification()">Close</button>
+    </div>
+
     <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        emailjs.init("QPLcDCj74Fq0lTwK-");
+    </script>
     <script src="js/main.js"></script>
     <script>
         // Hero Image Shuffle
@@ -1129,17 +1257,97 @@
             observer.observe(el);
         });
 
-        // Form submission handler
-        document.getElementById('websiteQuoteForm').addEventListener('submit', function(e) {
+        // Modal helper functions
+        function showSuccessMessage(message) {
+            const modal = document.getElementById('notificationModal');
+            const overlay = document.getElementById('notificationOverlay');
+            const icon = document.getElementById('modalIcon');
+            const iconSymbol = document.getElementById('modalIconSymbol');
+            const title = document.getElementById('modalTitle');
+            const messageEl = document.getElementById('modalMessage');
+            
+            icon.className = 'modal-icon success';
+            iconSymbol.className = 'fas fa-check';
+            title.textContent = 'Success!';
+            messageEl.textContent = message;
+            
+            overlay.classList.add('show');
+            modal.classList.add('show');
+            
+            // Auto-dismiss after 5 seconds
+            setTimeout(() => {
+                closeNotification();
+            }, 5000);
+        }
+
+        function showErrorMessage(message) {
+            const modal = document.getElementById('notificationModal');
+            const overlay = document.getElementById('notificationOverlay');
+            const icon = document.getElementById('modalIcon');
+            const iconSymbol = document.getElementById('modalIconSymbol');
+            const title = document.getElementById('modalTitle');
+            const messageEl = document.getElementById('modalMessage');
+            
+            icon.className = 'modal-icon error';
+            iconSymbol.className = 'fas fa-exclamation-triangle';
+            title.textContent = 'Oops!';
+            messageEl.textContent = message;
+            
+            overlay.classList.add('show');
+            modal.classList.add('show');
+        }
+
+        function closeNotification() {
+            const modal = document.getElementById('notificationModal');
+            const overlay = document.getElementById('notificationOverlay');
+            
+            modal.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+
+        // Form submission handler with EmailJS
+        document.getElementById('websiteQuoteForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
             
-            // Here you would typically send the data to your backend
-            alert('Thank you for your quote request! We\'ll get back to you within 24 hours.');
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
             
-            this.reset();
+            try {
+                // Prepare template parameters
+                const templateParams = {
+                    to_email: 'rob@techflowsolutions.ca',
+                    from_name: this.name.value,
+                    from_email: this.email.value,
+                    phone: this.phone.value || 'Not provided',
+                    company: this.company.value || 'Not provided',
+                    website_type: this.website_type.value,
+                    budget: this.budget.value,
+                    message: this.message.value,
+                    form_type: 'Website Quote Request',
+                    submission_date: new Date().toLocaleString()
+                };
+                
+                // Send email using EmailJS
+                await emailjs.send('service_fpx3i2b', 'template_dwmz48t', templateParams);
+                
+                // Show success message
+                showSuccessMessage("We've received your website quote request! Our team will review your project details and get back to you within 24 hours with a detailed proposal.");
+                
+                // Reset form
+                this.reset();
+                
+            } catch (error) {
+                console.error('EmailJS Error:', error);
+                showErrorMessage("We're having trouble sending your message right now. Please email us directly at rob@techflowsolutions.ca or call (647) 696-7047.");
+            } finally {
+                // Restore button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
         });
 
         // Smooth scroll for anchor links
