@@ -360,8 +360,8 @@ Create a futuristic hero image (1024x1024px) featuring a holographic e-commerce 
 
 ### 5.3 SEO Services (seo-services.html)
 
-**3 Slideshow Images**  
-**File Naming:** `hero-seo-1.jpg`, `hero-seo-2.jpg`, `hero-seo-3.jpg`
+**5 Slideshow Images** ⭐ (UPDATED - Premium Service Tier)
+**File Naming:** `hero-seo-1.jpg`, `hero-seo-2.jpg`, `hero-seo-3.jpg`, `hero-seo-4.jpg`, `hero-seo-5.jpg`
 
 #### Slide 1: Search Rankings & Visibility
 
@@ -380,6 +380,24 @@ Create a futuristic SEO analytics hero image (1024x1024px) featuring holographic
 ```
 Create a futuristic SEO content hero image (1024x1024px) showing floating holographic content blocks with glowing keywords and meta tags in purple gradient (#667eea to #764ba2). Feature search intent analysis, keyword difficulty scores, and content optimization indicators. Include schema markup visualizations, heading hierarchies (H1, H2, H3), and semantic connections between topics. Add microchip patterns forming content structures. Style: Content-focused, strategic with purple neon accents. Background: Dark with flowing text streams and search queries. Mood: Content excellence, strategic optimization, search authority.
 ```
+
+#### Slide 4: Local SEO Toronto Focus ⭐ NEW
+
+```
+Create a futuristic local SEO hero image (1024x1024px) featuring a glowing holographic Toronto map with CN Tower prominent in purple gradient (#667eea to #764ba2). Show Google Business Profile interface with 5-star reviews, local pack rankings (1, 2, 3), and "near me" search queries floating around. Include location pins for Toronto neighborhoods (North York, Scarborough, Etobicoke, Mississauga), NAP citations (Name, Address, Phone), and local directory listings. Add circuit board patterns forming geographic service areas. Style: Toronto-focused, community-oriented with purple neon city lights. Background: Dark with GTA map overlay and local search elements. Mood: Local authority, Toronto expertise, community trust.
+```
+
+**Purpose:** Shows your Toronto local SEO expertise - critical for local clients!
+
+#### Slide 5: Results & ROI Success ⭐ NEW
+
+```
+Create a futuristic SEO success hero image (1024x1024px) showing dramatic before/after split screen with purple gradient (#667eea to #764ba2) transformation. LEFT SIDE: Website with low rankings (page 5-10), minimal traffic, declining graphs in desaturated colors. RIGHT SIDE: Same website with #1-3 rankings, massive traffic surge, rising graphs in bright purple gradient (#667eea to #764ba2) with celebration effects. Include ROI calculator showing revenue growth, conversion rate improvements, and customer acquisition cost reduction. Feature floating success metrics in purple gradient: "+500% organic traffic", "3x conversions", "ROI 12x". Add microchip patterns forming success pathways with trophy and achievement icons in purple. Style: Success-driven, transformative with CONSISTENT PURPLE GRADIENT (#667eea to #764ba2) throughout - NO gold, NO yellow, ONLY purple brand colors. Background: Dark navy (#0a0a1a to #1a1a2e) with before/after contrast and purple particle effects. Mood: Transformation, proven results, business growth.
+```
+
+**Purpose:** The closing power slide - shows tangible results and ROI that clients can visualize!
+
+**5-Slide Strategy:** Rankings → Analytics → Content → Local Toronto Expertise → Proven Results & Transformation
 
 ---
 
