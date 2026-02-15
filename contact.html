@@ -84,53 +84,120 @@
             }
         }
 
-        /* Page Header */
-        .page-header {
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            text-align: center;
+        /* Hero Section with Slideshow */
+        .hero-contact {
             position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             overflow: hidden;
+            background: #0f0c29;
         }
 
-        .page-header::before {
-            content: '';
+        .hero-background {
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            animation: float 20s ease-in-out infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
         }
 
-        .page-header-content {
-            position: relative;
+        .hero-image.active {
+            opacity: 1;
+        }
+
+        /* Contact Hero Images (3 slides) */
+        .hero-image:nth-child(1) {
+            background-image: url('assets/images/heroes/hero-contact-1.png');
+        }
+
+        .hero-image:nth-child(2) {
+            background-image: url('assets/images/heroes/hero-contact-2.png');
+        }
+
+        .hero-image:nth-child(3) {
+            background-image: url('assets/images/heroes/hero-contact-3.png');
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.75) 50%, rgba(36, 36, 62, 0.85) 100%);
             z-index: 2;
-            max-width: 800px;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 2rem;
         }
 
-        .page-header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
+        .hero-content {
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 4px 40px rgba(0, 0, 0, 0.2);
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
         }
 
-        .page-header p {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            font-family: 'Inter', sans-serif;
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.4rem);
             color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 1.5rem;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
             line-height: 1.6;
         }
 
@@ -874,12 +941,22 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <div class="page-header-content">
-                    <h1>Contact Us</h1>
-                    <p>Get in touch for website design, SEO services, and tech support</p>
+        <!-- Hero Section -->
+        <section class="hero-contact">
+            <div class="hero-background">
+                <div class="hero-image active" data-image="1"></div>
+                <div class="hero-image" data-image="2"></div>
+                <div class="hero-image" data-image="3"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="highlight">Contact</span> Us
+                    </h1>
+                    <p class="hero-subtitle">
+                        Get in touch for website design, SEO services, and tech support
+                    </p>
                 </div>
             </div>
         </section>
@@ -1345,6 +1422,28 @@
     <script>
         // Initialize EmailJS
         emailjs.init("QPLcDCj74Fq0lTwK-");
+
+        // Hero Image Slideshow
+        const heroImages = document.querySelectorAll('.hero-image');
+        let currentImageIndex = 0;
+
+        function shuffleHeroImages() {
+            heroImages[currentImageIndex].classList.remove('active');
+            currentImageIndex = (currentImageIndex + 1) % heroImages.length;
+            heroImages[currentImageIndex].classList.add('active');
+        }
+
+        // Change image every 5 seconds
+        setInterval(shuffleHeroImages, 5000);
+
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollTotal = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPosition = window.scrollY;
+            const progress = (scrollPosition / scrollTotal) * 100;
+            scrollProgress.style.width = progress + '%';
+        });
     </script>
     <script src="js/main.js"></script>
     <script src="js/analytics.js"></script>
