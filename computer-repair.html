@@ -82,46 +82,207 @@
             }
         }
 
-        /* Page Header */
-        .page-header {
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Hero Section with Slideshow */
+        .hero-repair {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            overflow: hidden;
+            background: #0f0c29;
+            padding-top: 140px;
+        }
+
+        .hero-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-image.active {
+            opacity: 1;
+        }
+
+        /* Computer Repair Hero Images (3 slides) - Double Overlay */
+        .hero-image:nth-child(1) {
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
+                        url('assets/images/heroes/hero-repair-1.png') center/cover no-repeat;
+        }
+
+        .hero-image:nth-child(2) {
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
+                        url('assets/images/heroes/hero-repair-2.png') center/cover no-repeat;
+        }
+
+        .hero-image:nth-child(3) {
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
+                        url('assets/images/heroes/hero-repair-3.png') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.4) 0%, rgba(48, 43, 99, 0.4) 100%);
+            z-index: 2;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .hero-content {
             text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-weight: 900;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 6px 30px rgba(0, 0, 0, 0.5);
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-title .highlight {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+            font-size: 1.15em;
+            display: inline-block;
+            transform: scale(1.05);
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+            font-weight: 400;
+        }
+
+        .hero-cta-repair {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 0;
+        }
+
+        .btn-hero {
+            padding: 1.3rem 2.8rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
             position: relative;
             overflow: hidden;
         }
 
-        .page-header::before {
+        .btn-hero-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn-hero-primary::before {
             content: '';
             position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            animation: float 20s ease-in-out infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
+        .btn-hero-primary:hover::before {
+            left: 100%;
         }
 
-        .page-header-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            margin: 0 auto;
+        .btn-hero-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
         }
 
-        .page-header h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            font-family: 'Poppins', sans-serif;
-            color: #ffffff;
-            margin-bottom: 1rem;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3), 0 4px 40px rgba(0, 0, 0, 0.2);
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Mobile Responsive for Hero CTA */
+        @media (max-width: 768px) {
+            .hero-cta-repair {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-hero {
+                width: 100%;
+                justify-content: center;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
         }
 
         .page-header p {
@@ -784,18 +945,28 @@
 
     <!-- Main Content -->
     <main>
-        <!-- Page Header -->
-        <section class="page-header">
-            <div class="container">
-                <div class="page-header-content">
-                    <h1>Computer Repair Toronto</h1>
-                    <p>Professional PC repair, maintenance, and IT support services for businesses and individuals in the Greater Toronto Area</p>
-                    <div class="cta-buttons" style="margin-top: 2rem;">
-                        <a href="booking.html?service=computer-repair" class="btn btn-primary btn-large">
+        <!-- Hero Section -->
+        <section class="hero-repair">
+            <div class="hero-background">
+                <div class="hero-image active" data-image="1"></div>
+                <div class="hero-image" data-image="2"></div>
+                <div class="hero-image" data-image="3"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        <span class="highlight">Computer Repair</span> Toronto
+                    </h1>
+                    <p class="hero-subtitle">
+                        Professional PC repair, maintenance, and IT support services for businesses and individuals in the Greater Toronto Area
+                    </p>
+                    <div class="hero-cta-repair">
+                        <a href="booking.html?service=computer-repair" class="btn-hero btn-hero-primary">
                             <i class="fas fa-calendar-check"></i>
                             Book Same-Day Service
                         </a>
-                        <a href="tel:6475728321" class="btn btn-secondary btn-large" style="margin-left: 1rem;">
+                        <a href="tel:6475728321" class="btn-hero btn-hero-secondary">
                             <i class="fas fa-phone"></i>
                             Call (647) 572-8321
                         </a>
@@ -1336,6 +1507,21 @@
             const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
             const scrollPercent = (window.scrollY / scrollHeight) * 100;
             scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Hero Repair Slideshow
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroImages = document.querySelectorAll('.hero-repair .hero-image');
+            let currentImage = 0;
+
+            function rotateHeroImages() {
+                heroImages[currentImage].classList.remove('active');
+                currentImage = (currentImage + 1) % heroImages.length;
+                heroImages[currentImage].classList.add('active');
+            }
+
+            // Rotate images every 5 seconds
+            setInterval(rotateHeroImages, 5000);
         });
     </script>
 </body>

@@ -64,83 +64,225 @@
             transition: width 0.1s ease;
         }
 
-        /* Hero Section */
-        .about-hero-modern {
+        /* Hero About Section with Slideshow */
+        .hero-about {
             position: relative;
-            min-height: 90vh;
+            min-height: 100vh;
             display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            align-items: flex-start;
+            justify-content: center;
             overflow: hidden;
-            padding: 6rem 2rem;
+            padding-top: 140px;
         }
 
-        .about-hero-modern::before {
-            content: '';
+        .hero-background {
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
-            pointer-events: none;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
         }
 
-        .hero-content-about {
-            position: relative;
+        .hero-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .hero-image.active {
+            opacity: 1;
+        }
+
+        .hero-image[data-image="1"] {
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
+                        url('assets/images/heroes/hero-about-1.png') center/cover no-repeat;
+        }
+
+        .hero-image[data-image="2"] {
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
+                        url('assets/images/heroes/hero-about-2.png') center/cover no-repeat;
+        }
+
+        .hero-image[data-image="3"] {
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
+                        url('assets/images/heroes/hero-about-3.png') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(15, 12, 41, 0.4) 0%, rgba(48, 43, 99, 0.4) 100%);
             z-index: 2;
-            max-width: 1200px;
+        }
+
+        .hero-container {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content {
+            max-width: 900px;
             margin: 0 auto;
             text-align: center;
         }
 
-        .hero-title-about {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            color: #fff;
+        .hero-title {
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-weight: 900;
+            color: #ffffff;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
-            animation: fadeInUp 1s ease-out;
+            line-height: 1.1;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .gradient-text-about {
+        .hero-title .highlight {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: block;
-            margin-top: 0.5rem;
+            animation: gradientShift 3s ease infinite;
+            background-size: 200% 200%;
+            display: inline-block;
+            transform: scale(1.05);
+            font-size: 1.15em;
         }
 
-        .hero-subtitle-about {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: rgba(255, 255, 255, 0.85);
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
             margin-bottom: 2rem;
-            max-width: 800px;
+            line-height: 1.6;
+            font-weight: 500;
+            text-align: left;
             margin-left: auto;
             margin-right: auto;
-            line-height: 1.6;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            max-width: fit-content;
+            padding-left: 3rem;
         }
 
         .hero-description {
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            color: rgba(255, 255, 255, 0.75);
-            max-width: 900px;
-            margin: 0 auto 3rem;
+            font-size: clamp(1.05rem, 1.8vw, 1.35rem);
+            color: rgba(255, 255, 255, 0.85);
             line-height: 1.8;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            margin-bottom: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-cta-about {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2.5rem;
+        }
+
+        .btn-hero {
+            padding: 1.3rem 2.8rem;
+            font-size: 1.15rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-hero i {
+            font-size: 1.2rem;
+        }
+
+        .btn-hero-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-hero-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn-hero-primary:hover::before {
+            left: 100%;
+        }
+
+        .btn-hero-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-hero-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-hero-secondary:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .hero-about {
+                padding-top: 120px;
+            }
+
+            .hero-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .hero-subtitle {
+                font-size: clamp(1.1rem, 4vw, 1.4rem);
+            }
+
+            .hero-description {
+                font-size: clamp(0.95rem, 3.5vw, 1.15rem);
+            }
+
+            .hero-cta-about {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-hero {
+                width: 100%;
+                justify-content: center;
+                padding: 1.1rem 2rem;
+                font-size: 1.05rem;
+            }
         }
 
         /* Values Section */
@@ -555,21 +697,38 @@
     <!-- Main Content -->
     <main>
         <!-- Hero Section -->
-        <section class="about-hero-modern">
-            <div class="hero-content-about">
-                <h1 class="hero-title-about">
-                    Hi, I'm Rob
-                    <span class="gradient-text-about">Website Designer & Local Tech Helper</span>
-                </h1>
-                <p class="hero-subtitle-about">
-                    Creating beautiful websites • Optimizing for search engines • Supporting local businesses with tech help
-                </p>
-                <p class="hero-description">
-                    I started TechFlow Solutions to help Toronto businesses succeed online. My main focus is creating custom websites and SEO strategies
-                    that actually get results - sites that look great, work perfectly, and bring in customers. I also provide computer repair and tech support
-                    because I understand that technology can be frustrating, and sometimes you just need someone who cares to help you out.
-                    No judgment, no jargon, just friendly, patient support for everything tech-related.
-                </p>
+        <section class="hero-about">
+            <div class="hero-background">
+                <div class="hero-image active" data-image="1"></div>
+                <div class="hero-image" data-image="2"></div>
+                <div class="hero-image" data-image="3"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="highlight">Rob</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Website Designer & Local Tech Helper
+                    </p>
+                    <p class="hero-description">
+                        I started TechFlow Solutions to help Toronto businesses succeed online. My main focus is creating custom websites and SEO strategies
+                        that actually get results - sites that look great, work perfectly, and bring in customers. I also provide computer repair and tech support
+                        because I understand that technology can be frustrating, and sometimes you just need someone who cares to help you out.
+                        No judgment, no jargon, just friendly, patient support for everything tech-related.
+                    </p>
+                    <div class="hero-cta-about">
+                        <a href="booking.html" class="btn-hero btn-hero-primary">
+                            <i class="fas fa-calendar-check"></i>
+                            Book a Service
+                        </a>
+                        <a href="#contact" class="btn-hero btn-hero-secondary">
+                            <i class="fas fa-envelope"></i>
+                            Get in Touch
+                        </a>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -809,6 +968,21 @@
             const scrollPosition = window.scrollY;
             const progress = (scrollPosition / scrollTotal) * 100;
             scrollProgress.style.width = progress + '%';
+        });
+
+        // Hero About Slideshow
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroImages = document.querySelectorAll('.hero-about .hero-image');
+            let currentImage = 0;
+
+            function rotateHeroImages() {
+                heroImages[currentImage].classList.remove('active');
+                currentImage = (currentImage + 1) % heroImages.length;
+                heroImages[currentImage].classList.add('active');
+            }
+
+            // Rotate images every 5 seconds
+            setInterval(rotateHeroImages, 5000);
         });
     </script>
 </body>
