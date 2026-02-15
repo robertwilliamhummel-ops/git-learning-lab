@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css?v=2025012312">
     
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
@@ -45,6 +45,35 @@
             --purple-primary: #667eea;
             --purple-secondary: #764ba2;
             --purple-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        /* Enhanced Microchip Icon Animation */
+        .nav-logo i.fa-microchip,
+        .footer-logo i.fa-microchip {
+            animation: microchipPulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        @keyframes microchipPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+            }
+        }
+
+        .nav-logo i.fa-microchip:hover,
+        .footer-logo i.fa-microchip:hover {
+            animation: microchipRotate 0.6s ease-in-out;
+        }
+
+        @keyframes microchipRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
         }
 
         /* Hero Section */
@@ -690,18 +719,19 @@
                     <li class="nav-item">
                         <a href="remote-support.html" class="nav-link">Remote Support</a>
                     </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="contact.html" class="nav-link cta-button">Get Free Quote</a>
-                    </li>
                 </ul>
                 
-                <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
-                    <span class="hamburger-line"></span>
+                <div class="nav-emergency">
+                    <a href="tel:+16475728321" class="emergency-btn">
+                        <i class="fas fa-phone"></i>
+                        Get Free Quote
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
                 </button>
             </div>
         </nav>
