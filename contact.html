@@ -3,23 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Contact TechFlow Solutions for website design, SEO services, and computer repair in Toronto. Phone (647) 572-8321, email, or book online. Serving the Greater Toronto Area.">
-    <meta name="keywords" content="contact TechFlow Solutions, Toronto web design contact, computer repair Toronto phone, SEO services contact, IT support Toronto, book computer repair, website design inquiry">
+    <meta name="description" content="Contact TechFlow Solutions for website design, SEO services, and business IT support in Toronto. Phone (647) 572-8321, email, or request a consultation. Serving the Greater Toronto Area.">
+    <meta name="keywords" content="contact TechFlow Solutions, Toronto web design contact, IT services Toronto phone, SEO services contact, business IT support Toronto, website design inquiry">
     <meta name="author" content="TechFlow Solutions">
-    <title>Contact - TechFlow Solutions | Get In Touch for PC Repair & Networking Services</title>
+    <meta name="robots" content="index, follow">
+    <title>Contact TechFlow Solutions | Website Design, SEO & IT Services Toronto</title>
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://techflowsolutions.ca/contact.html">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://techflowsolutions.ca/contact.html">
-    <meta property="og:title" content="Contact TechFlow Solutions | Get In Touch for PC Repair & Networking Services">
-    <meta property="og:description" content="Contact TechFlow Solutions for website design, SEO services, and computer repair in Toronto. Phone (647) 572-8321, email, or book online. Serving the Greater Toronto Area.">
+    <meta property="og:title" content="Contact TechFlow Solutions | Website Design, SEO & IT Services Toronto">
+    <meta property="og:description" content="Contact TechFlow Solutions for website design, SEO services, and business IT support in Toronto. Phone (647) 572-8321, email, or request a consultation. Serving the Greater Toronto Area.">
     <meta property="og:image" content="https://techflowsolutions.ca/assets/images/og-image.jpg">
+    <meta property="og:site_name" content="TechFlow Solutions">
+    <meta property="og:locale" content="en_CA">
     
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://techflowsolutions.ca/contact.html">
-    <meta property="twitter:title" content="Contact TechFlow Solutions | Get In Touch for PC Repair & Networking Services">
-    <meta property="twitter:description" content="Contact TechFlow Solutions for website design, SEO services, and computer repair in Toronto. Phone (647) 572-8321, email, or book online.">
+    <meta property="twitter:title" content="Contact TechFlow Solutions | Website Design, SEO & IT Services Toronto">
+    <meta property="twitter:description" content="Contact TechFlow Solutions for website design, SEO services, and business IT support in Toronto. Phone (647) 572-8321, email, or request a consultation. Serving the Greater Toronto Area.">
     <meta property="twitter:image" content="https://techflowsolutions.ca/assets/images/og-image.jpg">
     
     <!-- Favicon -->
@@ -328,15 +334,6 @@
             pointer-events: none;
         }
 
-        .contact-card:hover {
-            transform: translateY(-10px);
-            border-color: rgba(102, 126, 234, 0.5);
-            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
-        }
-
-        .contact-card:hover::before {
-            opacity: 1;
-        }
 
         .contact-icon {
             width: 80px;
@@ -350,15 +347,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Only animate icon on hover */
-        .contact-card:hover .contact-icon {
-            animation: iconPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes iconPulse {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-            50% { box-shadow: 0 0 0 20px rgba(102, 126, 234, 0); }
-        }
 
         .contact-icon i {
             font-size: 2.5rem;
@@ -717,6 +705,13 @@
             transition: all 0.3s ease;
         }
 
+        /* Dropdown option styling for visibility */
+        .form-group select option {
+            background: #1a1a2e;
+            color: #fff;
+            padding: 0.5rem;
+        }
+
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
@@ -996,7 +991,7 @@
                         <a href="seo-services.html" class="nav-link">SEO Services</a>
                     </li>
                     <li class="nav-item">
-                        <a href="computer-repair.html" class="nav-link">Computer Repair</a>
+                        <a href="it-services.html" class="nav-link">IT Services</a>
                     </li>
                     <li class="nav-item">
                         <a href="about.html" class="nav-link">About</a>
@@ -1038,10 +1033,10 @@
             <div class="hero-container">
                 <div class="hero-content">
                     <h1 class="hero-title">
-                        <span class="highlight">Contact</span> Us
+                        <span class="highlight">Contact</span> TechFlow Solutions
                     </h1>
                     <p class="hero-subtitle">
-                        Get in touch for website design, SEO services, and tech support
+                        Reach out for website design, SEO services, or professional business IT support
                     </p>
                     <div class="hero-cta-contact">
                         <a href="tel:+16475728321" class="btn-hero btn-hero-primary">
@@ -1050,11 +1045,11 @@
                         </a>
                         <a href="mailto:rob@techflowsolutions.ca" class="btn-hero btn-hero-secondary">
                             <i class="fas fa-envelope"></i>
-                            Email Us
+                            Email Me
                         </a>
-                        <a href="booking.html" class="btn-hero btn-hero-secondary">
-                            <i class="fas fa-calendar-check"></i>
-                            Book Online
+                        <a href="#contact-form" class="btn-hero btn-hero-secondary">
+                            <i class="fas fa-message"></i>
+                            Send Me a Message
                         </a>
                     </div>
                 </div>
@@ -1065,8 +1060,8 @@
         <section class="contact-methods">
             <div class="container">
                 <div class="section-header">
-                    <h2>Multiple Ways to Reach Us</h2>
-                    <p>Choose the contact method that works best for you</p>
+                    <h2>Get in Touch</h2>
+                    <p>Choose the contact method that works best for you.</p>
                 </div>
                 
                 <div class="contact-grid">
@@ -1076,63 +1071,47 @@
                         <div class="contact-icon">
                             <i class="fas fa-phone"></i>
                         </div>
-                        <h3>Call Us</h3>
-                        <p>Speak directly with our tech expert - Emergency line available 24/7</p>
+                        <h3>Call Me</h3>
+                        <p>Speak directly with me about your website, SEO, or IT needs</p>
                         <div class="contact-details">
-                            <a href="tel:+16475728321" class="contact-link">
-                                <strong>(647) 572-8321</strong>
-                            </a>
                             <div class="contact-hours">
-                                <p><strong>Emergency:</strong> 24/7 Available (Premium rates)</p>
-                                <p><strong>Regular hours:</strong> See detailed schedule below</p>
+                                <p><strong>Phone:</strong> (647) 572-8321</p>
+                                <p><strong>Typical Response:</strong> Within a few hours during business hours</p>
+                                <p><strong>Availability:</strong> See schedule below</p>
                             </div>
                         </div>
-                        <a href="tel:+16475728321" class="btn btn-primary">
-                            <i class="fas fa-phone"></i>
-                            Call Now
-                        </a>
                     </div>
                     
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
-                        <h3>Email Us</h3>
-                        <p>Send us a detailed message about your tech needs</p>
+                        <h3>Email Me</h3>
+                        <p>Send a detailed message and I'll get back to you promptly.</p>
                         <div class="contact-details">
-                            <a href="mailto:rob@techflowsolutions.ca" class="contact-link">
-                                <strong>rob@techflowsolutions.ca</strong>
-                            </a>
                             <div class="email-info">
+                                <p><strong>Email:</strong> rob@techflowsolutions.ca</p>
                                 <p><strong>Response Time:</strong></p>
-                                <p>Within 4 hours during business hours</p>
-                                <p>Within 24 hours on weekends</p>
+                                <p>• Same-day replies during business hours</p>
+                                <p>• Within 24 hours on weekends</p>
                             </div>
                         </div>
-                        <a href="mailto:rob@techflowsolutions.ca" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i>
-                            Send Email
-                        </a>
                     </div>
                     
                     <div class="contact-card">
                         <div class="contact-icon">
                             <i class="fas fa-calendar-check"></i>
                         </div>
-                        <h3>Online Booking</h3>
-                        <p>Schedule your service appointment online</p>
+                        <h3>Send a Message</h3>
+                        <p>Use the contact form to request a quote, ask a question, or schedule a consultation</p>
                         <div class="contact-details">
                             <div class="booking-benefits">
-                                <p><i class="fas fa-check"></i> Choose your preferred time</p>
-                                <p><i class="fas fa-check"></i> Instant confirmation</p>
-                                <p><i class="fas fa-check"></i> Service reminders</p>
-                                <p><i class="fas fa-check"></i> Easy rescheduling</p>
+                                <p><strong>Benefits:</strong></p>
+                                <p><i class="fas fa-check"></i> Fast replies throughout the day</p>
+                                <p><i class="fas fa-check"></i> Free consultation available</p>
+                                <p><i class="fas fa-check"></i> No-obligation quotes</p>
                             </div>
                         </div>
-                        <a href="booking.html" class="btn btn-primary">
-                            <i class="fas fa-calendar-check"></i>
-                            Book Online
-                        </a>
                     </div>
                 </div>
             </div>
@@ -1142,8 +1121,8 @@
         <section id="service-area" class="service-area-section">
             <div class="container">
                 <div class="section-header">
-                    <h2>Our Service Area</h2>
-                    <p>Professional tech support across the Greater Toronto Area</p>
+                    <h2>Service Area</h2>
+                    <p>Professional website design, SEO, and business IT support across the Greater Toronto Area</p>
                 </div>
                 
                 <div class="service-area-content">
@@ -1154,7 +1133,7 @@
                                     <i class="fas fa-map-marked-alt"></i>
                                     <div>
                                         <h4>Full GTA Coverage</h4>
-                                        <p>We serve 25+ cities across the Greater Toronto Area</p>
+                                        <p>Serving businesses across Toronto, the GTA, and surrounding regions.</p>
                                     </div>
                                 </div>
                             </div>
@@ -1175,7 +1154,7 @@
                                 <i class="fas fa-clock"></i>
                                 Business Hours
                             </h3>
-                            <p>We work around your schedule with flexible appointment times</p>
+                            <p>Flexible scheduling to accommodate your business needs</p>
                             
                             <div class="hours-schedule">
                                 <div class="schedule-item">
@@ -1202,12 +1181,12 @@
                                 
                                 <div class="schedule-item">
                                     <div>
-                                        <i class="fas fa-exclamation-triangle" style="color: #ef4444;"></i>
-                                        <span>Emergency</span>
+                                        <i class="fas fa-business-time"></i>
+                                        <span>After-Hours Support</span>
                                     </div>
                                     <div>
-                                        <div>24/7 Available</div>
-                                        <small>Premium rates apply</small>
+                                        <div>Available for business-critical issues</div>
+                                        <small>By appointment</small>
                                     </div>
                                 </div>
                             </div>
@@ -1271,15 +1250,15 @@
                                 <i class="fas fa-clock"></i>
                                 <div>
                                     <h4>Response Time</h4>
-                                    <p>Same-day service available<br>Emergency calls within 4 hours</p>
+                                    <p>Most remote support requests handled within 2 hours<br>On-site visits typically scheduled within 24-48 hours</p>
                                 </div>
                             </div>
                             
                             <div class="info-card">
                                 <i class="fas fa-shield-alt"></i>
                                 <div>
-                                    <h4>Service Guarantee</h4>
-                                    <p>100% satisfaction guaranteed<br>30-day warranty on all work</p>
+                                    <h4>Remote Support</h4>
+                                    <p>Canada-wide remote support available<br>Secure screen sharing and file transfer</p>
                                 </div>
                             </div>
                             
@@ -1293,7 +1272,7 @@
                         </div>
                         
                         <div class="area-note">
-                            <p><strong>Don't see your city listed?</strong> We serve the entire Greater Toronto Area and surrounding regions. Contact us to confirm service availability in your location.</p>
+                            <p><strong>Don't see your city listed?</strong> If you're in the GTA or surrounding areas, I can help. Contact me to confirm service availability in your location.</p>
                         </div>
                     </div>
                 </div>
@@ -1305,8 +1284,8 @@
             <div class="container">
                 <div class="contact-form-content">
                     <div class="form-info">
-                        <h2>Send Us a Message</h2>
-                        <p>Quick response within 4 hours during business hours</p>
+                        <h2>Send Me a Message</h2>
+                        <p>I respond quickly and personally to every message.</p>
                     </div>
                     
                     <div class="contact-form-container">
@@ -1331,18 +1310,20 @@
                                     <label for="service-type">Service Needed</label>
                                     <select id="service-type" name="serviceType">
                                         <option value="">Select service type</option>
-                                        <option value="pc-repair">PC Repair</option>
-                                        <option value="networking">Networking</option>
-                                        <option value="hardware-upgrade">Hardware Upgrades</option>
-                                        <option value="virus-removal">Virus/Malware Removal</option>
-                                        <option value="other">Other</option>
+                                        <option value="website-design">Website Design</option>
+                                        <option value="website-redesign">Website Redesign</option>
+                                        <option value="seo-services">SEO Services</option>
+                                        <option value="it-services">IT Services</option>
+                                        <option value="remote-support">Remote Support</option>
+                                        <option value="cloud-hosting-email">Cloud Hosting & Email Setup</option>
+                                        <option value="general-inquiry">General Inquiry</option>
                                     </select>
                                 </div>
                             </div>
                             
                             <div class="form-group">
-                                <label for="message">Describe Your Tech Issue *</label>
-                                <textarea id="message" name="message" rows="4" required placeholder="Describe your tech issue and what device is affected"></textarea>
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project or the support you need"></textarea>
                             </div>
                             
                             <div>
@@ -1362,27 +1343,57 @@
             <div class="container">
                 <div class="section-header">
                     <h2>Frequently Asked Questions</h2>
-                    <p>Quick answers to common questions about our services</p>
+                    <p>Quick answers to common questions about my services</p>
                 </div>
                 
                 <div class="faq-grid">
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h4>How quickly can you respond to service calls?</h4>
+                            <h4>Do you offer on-site support for businesses?</h4>
                             <i class="fas fa-plus"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>For standard service calls, we typically schedule within 24-48 hours. Same-day service is available for urgent issues, and emergency calls are responded to within 4 hours.</p>
+                            <p>Yes — on-site and remote IT support is available across the GTA. There's a $50 flat rate within 25km, and $2.50 per km beyond that.</p>
                         </div>
                     </div>
                     
                     <div class="faq-item">
                         <div class="faq-question">
-                            <h4>Do you provide on-site service?</h4>
+                            <h4>How quickly can you respond to IT issues?</h4>
                             <i class="fas fa-plus"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>Yes! We provide on-site service throughout the Greater Toronto Area. There's a $50 travel fee within 25km, and $2.50 per km beyond that. Many issues can be resolved right at your location.</p>
+                            <p>Most remote support requests are handled within 2 hours. On-site visits are typically scheduled within 24-48 hours.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Do you work with Microsoft 365 and Google Workspace?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes — I provide setup, migration, and ongoing support for both Microsoft 365 and Google Workspace.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Do you offer monthly IT support plans?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Yes — flexible plans are available for small and medium-sized businesses. Contact me to discuss your specific needs.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h4>Can you help with website updates or SEO improvements?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Absolutely — I provide ongoing website and SEO support to help your business stay competitive online.</p>
                         </div>
                     </div>
                     
@@ -1392,37 +1403,7 @@
                             <i class="fas fa-plus"></i>
                         </div>
                         <div class="faq-answer">
-                            <p>We accept cash, checks, all major credit cards, PayPal, and Venmo. We offer a 5% discount for cash payments and payment plans for services over $500.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h4>Do you offer warranties on your work?</h4>
-                            <i class="fas fa-plus"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Absolutely! All labor comes with a 30-day warranty, and parts carry the manufacturer's warranty. We also offer a 100% satisfaction guarantee on all our work.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h4>Can you help with both Windows and Mac computers?</h4>
-                            <i class="fas fa-plus"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Yes, we service both Windows PCs and Mac computers, as well as laptops, desktops, and servers. Our expertise covers all major operating systems and hardware platforms.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <div class="faq-question">
-                            <h4>What should I do to prepare for a service visit?</h4>
-                            <i class="fas fa-plus"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Please back up any critical data if possible, have your computer accessible, and be prepared to provide any passwords needed. We'll handle the rest!</p>
+                            <p>I accept cash, e-transfer, all major credit cards, and can provide invoices for business accounting purposes.</p>
                         </div>
                     </div>
                 </div>
@@ -1441,7 +1422,7 @@
                         <i class="fas fa-microchip"></i>
                         <span>TechFlow Solutions</span>
                     </div>
-                    <p>Professional website design and IT support services for Toronto businesses.</p>
+                    <p>Professional website design, SEO, and IT services for Toronto businesses.</p>
                     
                     <div class="footer-social">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
@@ -1457,7 +1438,7 @@
                     <ul>
                         <li><a href="website-design.html">Website Design</a></li>
                         <li><a href="seo-services.html">SEO Services</a></li>
-                        <li><a href="computer-repair.html">Computer Repair</a></li>
+                        <li><a href="it-services.html">IT Services</a></li>
                         <li><a href="remote-support.html">Remote Support</a></li>
                     </ul>
                 </div>
