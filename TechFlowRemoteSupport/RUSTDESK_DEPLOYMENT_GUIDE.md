@@ -147,9 +147,75 @@ sudo ufw allow 21119/tcp
 
 ---
 
-## Client Configuration
+## Pre-Configured Client Package (Recommended Method)
 
-### On Each Client Machine:
+### Creating the TechFlow Remote Support Package
+
+This method packages RustDesk with your server settings pre-configured, so clients don't need to manually enter server addresses.
+
+#### 1. Create Folder Structure
+```
+C:\TechFlowSupport\
+├── TechFlow Support.exe          (renamed RustDesk executable)
+└── config\
+    └── rustdesk.toml              (your server config)
+```
+
+#### 2. Create rustdesk.toml Config File
+In `C:\TechFlowSupport\config\rustdesk.toml`:
+```toml
+[server]
+id = "YOUR_PUBLIC_IP"
+relay = "YOUR_PUBLIC_IP"
+```
+
+Replace `YOUR_PUBLIC_IP` with your actual server IP.
+
+#### 3. Package Using IEXPRESS (Built-in Windows Tool)
+
+**Open IEXPRESS:**
+- Press `Win + R`
+- Type: `iexpress`
+- Press Enter
+
+**IEXPRESS Wizard Steps:**
+
+1. **Create new SED** → Select "Create new Self Extraction Directive file" → Next
+2. **Package Purpose** → Select "Extract files and run an installation command" → Next
+3. **Package Title** → Enter: `TechFlow Remote Support` → Next
+4. **Confirmation Prompt** → Select "No prompt" → Next
+5. **License Agreement** → Select "Do not display a license" → Next
+6. **Packaged Files** → Click "Add" and select:
+   - `TechFlow Support.exe`
+   - `config\rustdesk.toml`
+   → Next
+7. **Install Program** → Enter: `TechFlow Support.exe` → Post Install: "None" → Next
+8. **Show Window** → Select "Default" → Next
+9. **Finished Message** → Select "No message" → Next
+10. **Package Name** → Choose save location: `TechFlowRemoteSupport-Package.exe` → Next
+11. **Restart Options** → Select "No restart" → Next
+12. **Save SED** → Select "No" → Next
+13. **Create Package** → Click "Next" to build
+
+#### 4. Result: Pre-Configured Client Package
+
+**Your final package:**
+- File: `TechFlowRemoteSupport-Package.exe`
+- Size: ~15-20 MB
+- Contains: RustDesk + pre-configured server settings
+
+**When clients run it:**
+1. ✅ Extracts RustDesk to temp directory
+2. ✅ Loads `config\rustdesk.toml` automatically
+3. ✅ Server settings pre-configured
+4. ✅ No manual setup required
+5. ✅ Ready to share ID immediately
+
+---
+
+## Client Configuration (Manual Method - Alternative)
+
+### If Client Downloads RustDesk Directly:
 
 1. **Download RustDesk**
    - Visit: https://rustdesk.com/
