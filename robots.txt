@@ -19,6 +19,7 @@ Allow: /js/
 Allow: /assets/
 
 # Block internal tools and test pages
+Disallow: /TechFlowRemoteSupport/
 Disallow: /InvoiceSystem/
 Disallow: /card/
 Disallow: /mobile-menu-debug.html
