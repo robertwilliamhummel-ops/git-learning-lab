@@ -85,9 +85,10 @@ sudo docker run -d --restart unless-stopped --name hbbr \
   -p 21117:21117 \
   -p 21117:21117/udp \
   -p 21119:21119 \
-  -v /var/lib/rustdesk:/root \
   rustdesk/rustdesk-server hbbr
 ```
+
+**Note:** hbbr (relay) does not need the volume mount since it doesn't store persistent data.
 
 **📌 Important: Automatic Restart Policy**
 
@@ -260,7 +261,6 @@ sudo docker run -d --restart unless-stopped --name hbbr \
   -p 21117:21117 \
   -p 21117:21117/udp \
   -p 21119:21119 \
-  -v /var/lib/rustdesk:/root \
   rustdesk/rustdesk-server hbbr
 
 # 6. Verify
