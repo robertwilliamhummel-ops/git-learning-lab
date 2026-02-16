@@ -62,7 +62,7 @@ This directory stores:
 
 ### 5. Start hbbs (Broker Service)
 ```bash
-sudo docker run -d --name hbbs \
+sudo docker run -d --restart unless-stopped --name hbbs \
   -p 21115:21115 \
   -p 21116:21116 \
   -p 21116:21116/udp \
@@ -81,13 +81,28 @@ Example:
 
 ### 6. Start hbbr (Relay Service)
 ```bash
-sudo docker run -d --name hbbr \
+sudo docker run -d --restart unless-stopped --name hbbr \
   -p 21117:21117 \
   -p 21117:21117/udp \
   -p 21119:21119 \
   -v /var/lib/rustdesk:/root \
   rustdesk/rustdesk-server hbbr
 ```
+
+**📌 Important: Automatic Restart Policy**
+
+The `--restart unless-stopped` flag ensures:
+- ✅ Containers automatically start after server reboot
+- ✅ Containers restart if they crash
+- ✅ RustDesk server stays online 24/7
+- ✅ No manual intervention needed after maintenance
+
+To verify containers will auto-start after reboot:
+```bash
+sudo docker inspect hbbs hbbr | grep -A 3 "RestartPolicy"
+```
+
+You should see `"Name": "unless-stopped"` for both containers.
 
 ### 7. Verify Services Are Running
 ```bash
@@ -231,7 +246,7 @@ sudo docker rm hbbs hbbr
 sudo docker pull rustdesk/rustdesk-server
 
 # 4. Start hbbs (use your actual public IP)
-sudo docker run -d --name hbbs \
+sudo docker run -d --restart unless-stopped --name hbbs \
   -p 21115:21115 \
   -p 21116:21116 \
   -p 21116:21116/udp \
@@ -241,7 +256,7 @@ sudo docker run -d --name hbbs \
   -r YOUR_PUBLIC_IP:21117
 
 # 5. Start hbbr
-sudo docker run -d --name hbbr \
+sudo docker run -d --restart unless-stopped --name hbbr \
   -p 21117:21117 \
   -p 21117:21117/udp \
   -p 21119:21119 \
