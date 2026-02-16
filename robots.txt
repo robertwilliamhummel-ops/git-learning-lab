@@ -1,99 +1,40 @@
-# robots.txt for TechFlow Solutions
-# Comprehensive SEO-optimized configuration for local computer repair business
-# Last updated: 2026-02-07
+# Robots.txt for TechFlow Solutions – Web Design, SEO, and Business IT Support
+# Last updated: 2026-02-16
 
 User-agent: *
 Allow: /
 
-# === HIGH PRIORITY PAGES (Allow explicit crawling) ===
-# Main business pages - critical for local SEO
+# Main business pages
 Allow: /index.html
-Allow: /services.html
+Allow: /website-design.html
+Allow: /seo-services.html
+Allow: /it-services.html
 Allow: /contact.html
 Allow: /about.html
-Allow: /portfolio.html
-Allow: /booking.html
 Allow: /remote-support.html
 
-# === ASSETS (Allow for page rendering) ===
-# CSS files - needed for proper page rendering in search results
+# Assets
 Allow: /css/
-Allow: /css/styles.css
-
-# JavaScript files - allow crawling for enhanced search features
 Allow: /js/
-Allow: /js/main.js
-Allow: /js/analytics.js
-
-# Images and media - important for local business visibility
 Allow: /assets/
-Allow: /assets/images/
-Allow: /assets/favicon.ico
 
-# === BLOCK TEST/DEBUG PAGES ===
-# Development and testing pages - not for public consumption
+# Block internal tools and test pages
+Disallow: /InvoiceSystem/
+Disallow: /card/
 Disallow: /mobile-menu-debug.html
 Disallow: /mobile-menu-test*.html
 Disallow: /mobile-test.html
 Disallow: /chevron-test.html
-Disallow: /card/print-test.html
-
-# === BLOCK INTERNAL TOOLS ===
-# Invoice system - internal business tool, not for search indexing
-Disallow: /InvoiceSystem/
-
-# Block business card system (appears to be internal tool)
-Disallow: /card/
-
-# === BLOCK DOCUMENTATION ===
-# Technical documentation and implementation files
 Disallow: /*.md
 Disallow: /plans/
 Disallow: /*IMPLEMENTATION*
 Disallow: /*_GUIDE*
 Disallow: /*_SUMMARY*
 
-# === GITHUB PAGES SPECIFIC ===
-# Block GitHub Pages configuration
+# Block GitHub Pages config
 Disallow: /CNAME
 
-# === SEARCH ENGINE SPECIFIC DIRECTIVES ===
-
-# Google-specific optimizations
-User-agent: Googlebot
-Allow: /
-Allow: /css/
-Allow: /js/
-Allow: /assets/
-# Explicitly allow key pages for local search
-Allow: /index.html
-Allow: /services.html
-Allow: /contact.html
-Allow: /booking.html
-# Block same restricted content
-Disallow: /InvoiceSystem/
-Disallow: /card/
-Disallow: /*.md
-Disallow: /mobile-menu-debug.html
-Disallow: /mobile-menu-test*.html
-Disallow: /mobile-test.html
-Disallow: /chevron-test.html
-
-# Bing-specific optimizations
-User-agent: bingbot
-Allow: /
-Allow: /css/
-Allow: /js/
-Allow: /assets/
-Allow: /index.html
-Allow: /services.html
-Allow: /contact.html
-Allow: /booking.html
-Disallow: /InvoiceSystem/
-Disallow: /card/
-Disallow: /*.md
-
-# Block aggressive crawlers that might overload the server
+# Block aggressive crawlers
 User-agent: AhrefsBot
 Disallow: /
 
@@ -103,17 +44,8 @@ Disallow: /
 User-agent: DotBot
 Disallow: /
 
-# === CRAWL DELAY SETTINGS ===
-# Prevent server overload while allowing efficient crawling
+# Crawl delay
 Crawl-delay: 1
 
-# === SITEMAP LOCATION ===
-# Point search engines to your XML sitemap
+# Sitemap
 Sitemap: https://techflowsolutions.ca/sitemap.xml
-
-# === FUTURE EXPANSION READY ===
-# Prepared for additional service pages
-# Allow: /computer-repair-toronto.html
-# Allow: /onsite-pc-service.html
-# Allow: /custom-websites.html
-# Allow: /virus-removal.html
