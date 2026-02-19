@@ -688,6 +688,7 @@ a:hover {
 
 /* Hero Section */
 .hero {
+    position: relative;
     background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     padding: calc(80px + var(--spacing-2xl)) 0 var(--spacing-2xl);
     min-height: 100vh;
@@ -4140,12 +4141,6 @@ a:hover {
     /* Reduce animations on mobile for better performance */
     .feature-item:hover {
         transform: none;
-    }
-    
-    /* Optimize transitions for mobile */
-    * {
-        -webkit-transform: translateZ(0);
-        transform: translateZ(0);
     }
     
     /* Improve scroll performance */
