@@ -35,6 +35,7 @@
     
     <!-- Stylesheets -->
     <link rel="stylesheet" href="css/styles.css?v=2025012312">
+    <link rel="stylesheet" href="css/hero.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -132,125 +133,10 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
-        /* Hero Section with Image Shuffle */
-        .hero {
-            position: relative;
-            min-height: 100svh;
-            min-height: calc(100vh - 1px); /* Fallback for older browsers */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #0f0c29;
-        }
+        /* Hero styles now in css/hero.css */
 
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-image.active {
-            opacity: 1;
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(15, 12, 41, 0.4) 0%, rgba(48, 43, 99, 0.4) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .hero-container {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .hero-content {
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .hero-title .highlight {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .hero-features {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            flex-wrap: wrap;
-            margin-bottom: 2.5rem;
-        }
-
+        /* Additional hero feature styles specific to index.html */
         .hero-features .feature {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 1rem;
             padding: 0.8rem 1.2rem;
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
@@ -265,18 +151,7 @@
             box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .hero-features .feature i {
-            color: #667eea;
-            font-size: 1.2rem;
-        }
-
-        .hero-cta {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        /* Button styles for hero section */
         .btn {
             padding: 1rem 2rem;
             font-size: 1.05rem;

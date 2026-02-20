@@ -32,6 +32,7 @@
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css?v=2025012312">
+    <link rel="stylesheet" href="css/hero.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -92,43 +93,9 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
-        /* Hero Section with Image Shuffle */
-        .hero-seo {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: #0f0c29;
-        }
+        /* Hero styles now in css/hero.css */
 
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-image.active {
-            opacity: 1;
-        }
-
-        /* SEO Services Hero Images (5 slides) */
+        /* SEO Services Hero Images (5 slides) with actual images */
         .hero-image:nth-child(1) {
             background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%),
                         url('assets/images/heroes/hero-seo-1.png') center/cover no-repeat;
@@ -154,75 +121,7 @@
                         url('assets/images/heroes/hero-seo-5.png') center/cover no-repeat;
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(15, 12, 41, 0.4) 0%, rgba(48, 43, 99, 0.4) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .hero-container-seo {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        .hero-content-seo {
-            text-align: center;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-title-seo {
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle-seo {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2.5rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
+        /* SEO-specific stats styling */
         .hero-stats {
             display: flex;
             justify-content: center;
@@ -260,13 +159,7 @@
             font-size: 0.95rem;
         }
 
-        .hero-cta-seo {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        /* Button styles for SEO page */
         .btn {
             padding: 1rem 2rem;
             font-size: 1.05rem;
@@ -279,31 +172,6 @@
             gap: 0.5rem;
             position: relative;
             overflow: hidden;
-        }
-
-        .btn-hero-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-            border: none;
-        }
-
-        .btn-hero-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
-        .btn-hero-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-hero-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-3px);
         }
 
         /* SEO Benefits Section with Glassmorphism */

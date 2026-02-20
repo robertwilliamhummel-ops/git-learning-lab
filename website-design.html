@@ -31,6 +31,7 @@
     <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <!-- CSS -->
     <link rel="stylesheet" href="css/styles.css?v=2025012312">
+    <link rel="stylesheet" href="css/hero.css">
     
     
     <!-- Google Fonts -->
@@ -80,43 +81,9 @@
             100% { transform: rotate(360deg) scale(1); }
         }
 
-        /* Hero Section with Image Shuffle */
-        .hero-design {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: #0f0c29;
-        }
+        /* Hero styles now in css/hero.css */
 
-        .hero-background {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-        }
-
-        .hero-image {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 2s ease-in-out;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-image.active {
-            opacity: 1;
-        }
-
-        /* Placeholder for Canva AI Images */
+        /* Placeholder gradients for Canva AI Images */
         .hero-image:nth-child(1) {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
@@ -137,102 +104,7 @@
             background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
         }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, rgba(15, 12, 41, 0.4) 0%, rgba(48, 43, 99, 0.4) 100%);
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .hero-content-design {
-            position: relative;
-            z-index: 3;
-            text-align: center;
-            padding: 2rem;
-            max-width: 1200px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-title-design {
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 800;
-            color: #fff;
-            margin-bottom: 1.5rem;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            line-height: 1.2;
-        }
-
-        .hero-title-design .gradient-text {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 3s ease infinite;
-            background-size: 200% 200%;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-
-        .hero-subtitle-design {
-            font-size: clamp(1.1rem, 2vw, 1.5rem);
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 3rem;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-            line-height: 1.6;
-        }
-
-        .hero-cta-design {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-hero {
-            padding: 1.2rem 2.5rem;
-            font-size: 1.1rem;
-            font-weight: 600;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn-hero-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
-        }
-
-        .btn-hero-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
-        }
-
+        /* Additional button animation for design page */
         .btn-hero-primary::before {
             content: '';
             position: absolute;
@@ -246,19 +118,6 @@
 
         .btn-hero-primary:hover::before {
             left: 100%;
-        }
-
-        .btn-hero-secondary {
-            background: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-hero-secondary:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.5);
-            transform: translateY(-3px);
         }
 
         /* Animated Features Section */
