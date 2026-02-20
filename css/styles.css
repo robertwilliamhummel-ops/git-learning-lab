@@ -3692,10 +3692,10 @@ a:hover {
         --vh: 1vh;
     }
     
-    /* Improve touch scrolling */
+    /* Improve touch scrolling - Samsung safe */
     body {
-        -webkit-overflow-scrolling: touch;
-        overscroll-behavior: contain;
+        /* -webkit-overflow-scrolling: touch; */ /* REMOVED - Deprecated iOS hack, causes scroll conflicts on Samsung */
+        /* overscroll-behavior: contain; */ /* REMOVED - Blocks scroll on Samsung S24 Ultra when combined with fixed header */
     }
 }
 
