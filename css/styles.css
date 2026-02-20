@@ -9,6 +9,13 @@
     box-sizing: border-box;
 }
 
+/* ⚠️ TEMPORARY DIAGNOSTIC - REMOVE AFTER DEBUGGING ⚠️ */
+/* This reveals which element is blocking scroll on mobile */
+* {
+    outline: 1px solid red !important;
+}
+/* ⚠️ END DIAGNOSTIC ⚠️ */
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
