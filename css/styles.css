@@ -10,9 +10,10 @@
 }
 
 /* ⚠️ TEMPORARY DIAGNOSTIC - REMOVE AFTER DEBUGGING ⚠️ */
-/* This reveals transparent overlays blocking scroll on mobile */
-* {
-    background-color: rgba(255, 0, 0, 0.05) !important;
+/* This reveals transparent overlays AND pseudo-elements blocking scroll on mobile */
+*, *::before, *::after {
+    background-color: rgba(255, 0, 0, 0.1) !important;
+    outline: 1px solid red !important;
 }
 /* ⚠️ END DIAGNOSTIC ⚠️ */
 
