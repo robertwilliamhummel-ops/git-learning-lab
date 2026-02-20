@@ -113,6 +113,8 @@
 
 /* Website design page padding adjustment */
 .hero-content-design {
+    position: relative;
+    z-index: 3;
     padding: 2rem;
     max-width: 1200px;
 }
