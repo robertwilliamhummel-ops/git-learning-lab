@@ -135,7 +135,8 @@
         /* Hero Section with Image Shuffle */
         .hero {
             position: relative;
-            min-height: 100vh;
+            min-height: 100svh;
+            min-height: calc(100vh - 1px); /* Fallback for older browsers */
             display: flex;
             align-items: center;
             justify-content: center;
