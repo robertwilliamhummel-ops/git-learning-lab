@@ -1999,222 +1999,6 @@ a:hover {
     font-weight: 500;
 }
 
-/* Enhanced Service Calculator */
-.service-calculator-section {
-    padding: var(--spacing-2xl) 0;
-    background: var(--bg-secondary);
-}
-
-.service-calculator-section.enhanced {
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-dark) 100%);
-}
-
-.calculator-header {
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
-}
-
-.calculator-header h2 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: var(--spacing-sm);
-    font-size: 2.25rem;
-    margin-bottom: var(--spacing-md);
-    background: var(--bg-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.calculator-header p {
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.calculator-card {
-    background: var(--bg-dark);
-    border-radius: var(--radius-xl);
-    padding: var(--spacing-2xl);
-    box-shadow: var(--shadow-xl);
-    border: 1px solid var(--light-gray);
-    transition: var(--transition-normal);
-}
-
-.calculator-card:hover {
-    box-shadow: 0 25px 50px -12px rgba(88, 166, 255, 0.25);
-    border-color: var(--primary-blue);
-}
-
-.calculator-form {
-    display: grid;
-    gap: var(--spacing-xl);
-}
-
-.calculator-inputs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
-}
-
-.input-group label {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--spacing-xs);
-    font-size: 1rem;
-}
-
-.input-group label i {
-    color: var(--primary-blue);
-    font-size: 1.1rem;
-}
-
-.input-group select {
-    width: 100%;
-    padding: var(--spacing-md);
-    background: var(--bg-secondary);
-    border: 2px solid var(--light-gray);
-    border-radius: var(--radius-md);
-    color: #ffffff;
-    font-size: 1rem;
-    transition: var(--transition-normal);
-    cursor: pointer;
-}
-
-.input-group select option {
-    background: var(--bg-secondary);
-    color: #ffffff;
-    padding: 0.5rem;
-}
-
-.input-group select:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-    box-shadow: 0 0 0 3px rgba(88, 166, 255, 0.1);
-}
-
-.input-group select:hover {
-    border-color: var(--accent-blue);
-}
-
-/* Enhanced Result Display */
-.calculator-result {
-    background: var(--bg-primary);
-    border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
-    text-align: center;
-    border: 1px solid var(--light-gray);
-}
-
-.result-display {
-    margin-bottom: var(--spacing-lg);
-}
-
-.price-display {
-    margin-bottom: var(--spacing-md);
-}
-
-.price-label {
-    display: block;
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-xs);
-}
-
-.price-amount {
-    display: block;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-    transition: var(--transition-normal);
-}
-
-.input-group {
-    text-align: left;
-}
-
-.input-group label {
-    display: block;
-    font-weight: 500;
-    margin-bottom: var(--spacing-xs);
-    color: var(--text-primary);
-}
-
-.input-group select {
-    width: 100%;
-    padding: var(--spacing-sm);
-    border: 2px solid var(--light-gray);
-    border-radius: var(--radius-md);
-    font-size: 1rem;
-    background: var(--bg-secondary);
-    color: var(--text-primary);
-    transition: border-color var(--transition-fast);
-}
-
-.input-group select:focus {
-    border-color: var(--primary-blue);
-    outline: none;
-}
-
-.calculator-result {
-    background: var(--bg-primary);
-    padding: var(--spacing-lg) var(--spacing-xl) var(--spacing-xl) var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    text-align: center;
-}
-
-.price-display {
-    margin-bottom: var(--spacing-md);
-}
-
-.price-label {
-    display: block;
-    font-size: 1.125rem;
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-sm);
-    line-height: 1.4;
-}
-
-.price-amount {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-blue);
-}
-
-/* Professional styling for price estimate display */
-#price-estimate {
-    font-size: 2rem !important;
-    font-weight: 700 !important;
-    color: var(--primary-blue) !important;
-    background-color: var(--bg-dark) !important;
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    min-height: 1.2em !important;
-    line-height: 1.2 !important;
-    padding: 8px 12px !important;
-    margin: 4px 0 !important;
-    border: 2px solid var(--primary-blue) !important;
-    border-radius: 8px !important;
-    text-align: center !important;
-    position: relative !important;
-    z-index: 10 !important;
-    width: auto !important;
-    text-shadow: none !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3) !important;
-}
-
-.price-note {
-    font-size: 0.875rem;
-    color: var(--text-light);
-    margin-bottom: var(--spacing-md);
-}
-
 /* Service Sections */
 .service-section {
     padding: var(--spacing-xl) 0;
@@ -3305,8 +3089,6 @@ a:hover {
         gap: var(--spacing-lg);
     }
     
-    .calculator-content,
-    
     .emergency-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -3357,19 +3139,6 @@ a:hover {
     
     .service-title h2 {
         font-size: 2rem;
-    }
-    
-    .calculator-inputs {
-        grid-template-columns: 1fr;
-    }
-    
-    #price-estimate {
-        font-size: 2rem;
-        padding: 10px 12px;
-    }
-    
-    .calculator-result {
-        padding: var(--spacing-md);
     }
     
     .upgrade-item.featured {
@@ -7475,45 +7244,10 @@ a:hover {
         text-align: left;
     }
     
-    .calculator-header h2 {
-        font-size: 1.75rem;
-    }
-    
-    .calculator-header p {
-        font-size: 1rem;
-    }
-    
-    .calculator-inputs {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
-    }
-    
-    .calculator-card {
-        padding: var(--spacing-xl);
-        margin: 0 var(--spacing-md);
-    }
-    
-    .price-amount {
-        font-size: 2rem;
-    }
-    
 }
 
 @media (max-width: 480px) {
     .overview-content h2 {
-        font-size: 1.75rem;
-    }
-    
-    .calculator-header h2 {
-        font-size: 1.5rem;
-    }
-    
-    .calculator-card {
-        margin: 0 var(--spacing-sm);
-        padding: var(--spacing-lg);
-    }
-    
-    .price-amount {
         font-size: 1.75rem;
     }
     
