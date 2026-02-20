@@ -10,9 +10,9 @@
 }
 
 /* ⚠️ TEMPORARY DIAGNOSTIC - REMOVE AFTER DEBUGGING ⚠️ */
-/* This reveals which element is blocking scroll on mobile */
+/* This reveals transparent overlays blocking scroll on mobile */
 * {
-    outline: 1px solid red !important;
+    background-color: rgba(255, 0, 0, 0.05) !important;
 }
 /* ⚠️ END DIAGNOSTIC ⚠️ */
 
