@@ -102,6 +102,8 @@
 .hero-content,
 .hero-content-design,
 .hero-content-seo {
+    position: relative;
+    z-index: 3;
     text-align: center;
     animation: fadeInUp 1s ease-out;
 }
