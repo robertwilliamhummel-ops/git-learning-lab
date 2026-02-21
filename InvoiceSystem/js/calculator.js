@@ -11,6 +11,8 @@ class InvoiceCalculator {
             emergency: 110
         };
         this.taxRate = 0.13; // HST 13% for Ontario
+        this.discountPercent = 0; // Discount percentage (0-100)
+        this.discountAmount = 0; // Fixed discount amount
         this.lineItems = [];
         this.initializeEventListeners();
         this.updateAllTotals();
@@ -78,7 +80,9 @@ class InvoiceCalculator {
     calculateHourlyTotal() {
         const hours = parseFloat(document.getElementById('hours-worked').value) || 0;
         const rate = parseFloat(document.getElementById('hourly-rate').value) || 0;
-        const total = hours * rate;
+        
+        // Round to 2 decimal places to avoid floating point errors
+        const total = this.roundToTwo(hours * rate);
         
         document.getElementById('hourly-total').textContent = this.formatCurrency(total);
         this.updateAllTotals();
@@ -136,8 +140,12 @@ class InvoiceCalculator {
         lineItems.forEach(item => {
             const quantity = parseFloat(item.querySelector('[data-field="quantity"]').value) || 0;
             const price = parseFloat(item.querySelector('[data-field="price"]').value) || 0;
-            total += quantity * price;
+            // Round each line item to avoid floating point accumulation
+            total += this.roundToTwo(quantity * price);
         });
+        
+        // Final rounding
+        total = this.roundToTwo(total);
         
         document.getElementById('line-items-total').textContent = this.formatCurrency(total);
         this.updateAllTotals();
@@ -150,23 +158,87 @@ class InvoiceCalculator {
         const hourlyTotal = this.parseAmount(document.getElementById('hourly-total').textContent);
         const lineItemsTotal = this.parseAmount(document.getElementById('line-items-total').textContent);
         
-        const subtotal = hourlyTotal + lineItemsTotal;
-        const taxAmount = subtotal * this.taxRate;
-        const finalTotal = subtotal + taxAmount;
+        // Calculate subtotal
+        let subtotal = this.roundToTwo(hourlyTotal + lineItemsTotal);
         
+        // Apply discount if any
+        let discountAmount = 0;
+        if (this.discountPercent > 0) {
+            discountAmount = this.roundToTwo(subtotal * (this.discountPercent / 100));
+        } else if (this.discountAmount > 0) {
+            discountAmount = this.roundToTwo(this.discountAmount);
+        }
+        
+        // Subtotal after discount
+        const subtotalAfterDiscount = this.roundToTwo(subtotal - discountAmount);
+        
+        // Calculate tax on discounted amount
+        const taxAmount = this.roundToTwo(subtotalAfterDiscount * this.taxRate);
+        
+        // Final total
+        const finalTotal = this.roundToTwo(subtotalAfterDiscount + taxAmount);
+        
+        // Update display
         document.getElementById('subtotal').textContent = this.formatCurrency(subtotal);
         document.getElementById('tax-amount').textContent = this.formatCurrency(taxAmount);
         document.getElementById('final-total').textContent = this.formatCurrency(finalTotal);
+        
+        // Update discount display if it exists
+        const discountDisplay = document.getElementById('discount-amount');
+        if (discountDisplay && discountAmount > 0) {
+            discountDisplay.textContent = this.formatCurrency(discountAmount);
+            discountDisplay.parentElement.style.display = 'flex';
+        } else if (discountDisplay) {
+            discountDisplay.parentElement.style.display = 'none';
+        }
     }
 
     /**
      * Format number as currency
      */
     formatCurrency(amount) {
+        // Ensure we're working with a number and round to 2 decimals
+        const numAmount = typeof amount === 'number' ? amount : parseFloat(amount) || 0;
         return new Intl.NumberFormat('en-CA', {
             style: 'currency',
-            currency: 'CAD'
-        }).format(amount);
+            currency: 'CAD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(this.roundToTwo(numAmount));
+    }
+    
+    /**
+     * Round number to 2 decimal places (avoids floating point errors)
+     */
+    roundToTwo(num) {
+        return Math.round((num + Number.EPSILON) * 100) / 100;
+    }
+    
+    /**
+     * Set discount percentage (0-100)
+     */
+    setDiscountPercent(percent) {
+        this.discountPercent = Math.max(0, Math.min(100, percent));
+        this.discountAmount = 0; // Clear fixed discount
+        this.updateAllTotals();
+    }
+    
+    /**
+     * Set fixed discount amount
+     */
+    setDiscountAmount(amount) {
+        this.discountAmount = Math.max(0, amount);
+        this.discountPercent = 0; // Clear percentage discount
+        this.updateAllTotals();
+    }
+    
+    /**
+     * Clear discount
+     */
+    clearDiscount() {
+        this.discountPercent = 0;
+        this.discountAmount = 0;
+        this.updateAllTotals();
     }
 
     /**
@@ -233,11 +305,21 @@ class InvoiceCalculator {
         const taxAmount = this.parseAmount(document.getElementById('tax-amount').textContent);
         const finalTotal = this.parseAmount(document.getElementById('final-total').textContent);
         
+        // Calculate discount if any
+        let discountAmount = 0;
+        if (this.discountPercent > 0) {
+            discountAmount = this.roundToTwo(subtotal * (this.discountPercent / 100));
+        } else if (this.discountAmount > 0) {
+            discountAmount = this.roundToTwo(this.discountAmount);
+        }
+        
         return {
-            subtotal: subtotal,
-            taxAmount: taxAmount,
+            subtotal: this.roundToTwo(subtotal),
+            discount: this.roundToTwo(discountAmount),
+            subtotalAfterDiscount: this.roundToTwo(subtotal - discountAmount),
+            taxAmount: this.roundToTwo(taxAmount),
             taxRate: this.taxRate,
-            finalTotal: finalTotal
+            finalTotal: this.roundToTwo(finalTotal)
         };
     }
 
@@ -307,17 +389,66 @@ class InvoiceCalculator {
      */
     getServiceSuggestions() {
         return [
-            { description: 'PC Repair & Diagnostics', defaultHours: 2 },
-            { description: 'Virus & Malware Removal', defaultHours: 1.5 },
-            { description: 'Performance Optimization', defaultHours: 1 },
-            { description: 'Hardware Installation', defaultHours: 1.5 },
-            { description: 'Network Setup & Configuration', defaultHours: 2.5 },
-            { description: 'Data Recovery', defaultHours: 3 },
-            { description: 'Software Installation & Setup', defaultHours: 1 },
-            { description: 'System Maintenance', defaultHours: 1.5 },
-            { description: 'Custom PC Build', defaultHours: 4 },
-            { description: 'Remote Support Session', defaultHours: 1 }
+            { description: 'PC Repair & Diagnostics', defaultHours: 2, category: 'repair' },
+            { description: 'Virus & Malware Removal', defaultHours: 1.5, category: 'security' },
+            { description: 'Performance Optimization', defaultHours: 1, category: 'maintenance' },
+            { description: 'Hardware Installation', defaultHours: 1.5, category: 'hardware' },
+            { description: 'Network Setup & Configuration', defaultHours: 2.5, category: 'networking' },
+            { description: 'Data Recovery', defaultHours: 3, category: 'data' },
+            { description: 'Software Installation & Setup', defaultHours: 1, category: 'software' },
+            { description: 'System Maintenance', defaultHours: 1.5, category: 'maintenance' },
+            { description: 'Custom PC Build', defaultHours: 4, category: 'hardware' },
+            { description: 'Remote Support Session', defaultHours: 1, category: 'support' }
         ];
+    }
+    
+    /**
+     * Calculate estimated time based on service complexity
+     */
+    estimateServiceTime(serviceDescription) {
+        const suggestions = this.getServiceSuggestions();
+        const match = suggestions.find(s =>
+            s.description.toLowerCase().includes(serviceDescription.toLowerCase())
+        );
+        return match ? match.defaultHours : null;
+    }
+    
+    /**
+     * Apply bulk discount based on total hours
+     */
+    applyBulkDiscount(hours) {
+        if (hours >= 10) {
+            return 0.15; // 15% discount for 10+ hours
+        } else if (hours >= 5) {
+            return 0.10; // 10% discount for 5+ hours
+        } else if (hours >= 3) {
+            return 0.05; // 5% discount for 3+ hours
+        }
+        return 0;
+    }
+    
+    /**
+     * Get quick pricing estimate
+     */
+    getQuickEstimate(serviceType, hours) {
+        const rate = this.rates[serviceType] || 100;
+        const subtotal = this.roundToTwo(hours * rate);
+        const tax = this.roundToTwo(subtotal * this.taxRate);
+        const total = this.roundToTwo(subtotal + tax);
+        
+        return {
+            rate: rate,
+            hours: hours,
+            subtotal: subtotal,
+            tax: tax,
+            total: total,
+            formatted: {
+                rate: this.formatCurrency(rate),
+                subtotal: this.formatCurrency(subtotal),
+                tax: this.formatCurrency(tax),
+                total: this.formatCurrency(total)
+            }
+        };
     }
 
     /**

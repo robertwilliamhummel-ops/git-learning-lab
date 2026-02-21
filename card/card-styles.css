@@ -84,9 +84,15 @@ body {
 }
 
 .logo-icon {
-    font-size: 24px;
-    color: #007bff;
-    text-shadow: 0 0 10px rgba(0, 123, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.company-logo {
+    height: 40px;
+    width: auto;
+    filter: drop-shadow(0 0 8px rgba(0, 123, 255, 0.6));
 }
 
 .company-name h1 {
@@ -209,10 +215,10 @@ body {
     margin-bottom: 4px;
 }
 
-.back-logo i {
-    font-size: 18px;
-    color: #007bff;
-    text-shadow: 0 0 8px rgba(0, 123, 255, 0.8);
+.company-logo-back {
+    height: 32px;
+    width: auto;
+    filter: drop-shadow(0 0 6px rgba(0, 123, 255, 0.6));
 }
 
 .back-logo span {

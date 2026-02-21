@@ -224,14 +224,13 @@ class InvoiceGenerator {
         return `
             <div class="invoice-header">
                 <div class="invoice-logo">
-                    <i class="fas fa-microchip"></i>
-                    <span>TechFlow Solutions</span>
+                    <img src="../assets/images/TechFlow Solutions Logo- Cropped.png" alt="TechFlow Solutions Logo" class="invoice-logo-image">
                 </div>
                 <div class="business-info">
                     <strong>TechFlow Solutions</strong><br>
-                    Professional PC Repair & Networking<br>
+                    Website Design & IT Services<br>
                     Greater Toronto Area<br>
-                    Phone: (647) 572-8321<br>
+                    Phone: (647) 572-8341<br>
                     Email: rob@techflowsolutions.ca
                 </div>
             </div>
