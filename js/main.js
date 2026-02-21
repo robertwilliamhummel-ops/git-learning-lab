@@ -77,6 +77,14 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Core functionality
     initializeNavigation();
+    
+    // Accordion functionality (Digital Growth page) - Initialize early to avoid crashes from other functions
+    try {
+        AccordionHandler.init();
+    } catch (error) {
+        console.error('Accordion initialization error:', error);
+    }
+    
     initializeScrollEffects();
     initializeForms();
     initializeAnimations();
@@ -1093,6 +1101,51 @@ const PortfolioAnimations = {
         if (document.querySelector('.portfolio-hero')) {
             this.animateCounters();
         }
+    }
+};
+
+/**
+ * Accordion Functionality for Digital Growth Page
+ */
+const AccordionHandler = {
+    init: function() {
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        
+        if (accordionHeaders.length === 0) {
+            console.log('No accordions found on this page');
+            return;
+        }
+        
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', this.toggleAccordion.bind(this, header));
+        });
+        
+        console.log(`Accordion handler initialized with ${accordionHeaders.length} accordions`);
+    },
+    
+    toggleAccordion: function(header) {
+        const content = header.nextElementSibling;
+        const isActive = header.classList.contains('active');
+        
+        // Toggle active state
+        if (isActive) {
+            header.classList.remove('active');
+            content.classList.remove('active');
+        } else {
+            header.classList.add('active');
+            content.classList.add('active');
+        }
+        
+        // Optional: Close other accordions (uncomment for single-open behavior)
+        /*
+        const allHeaders = document.querySelectorAll('.accordion-header');
+        allHeaders.forEach(otherHeader => {
+            if (otherHeader !== header) {
+                otherHeader.classList.remove('active');
+                otherHeader.nextElementSibling.classList.remove('active');
+            }
+        });
+        */
     }
 };
 

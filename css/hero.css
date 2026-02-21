@@ -11,6 +11,7 @@
 /* Common hero container - applies to ALL hero variations */
 .hero,
 .hero-design,
+.hero-growth,
 .hero-it-services,
 .hero-remote,
 .hero-contact,
@@ -25,6 +26,7 @@
 }
 
 /* Special alignment for pages with top padding */
+.hero-growth,
 .hero-it-services,
 .hero-remote,
 .hero-contact,
@@ -94,6 +96,11 @@
 /* About page uses wider container */
 .hero-about .hero-container {
     max-width: 1400px;
+}
+
+/* Digital Growth page uses standard container */
+.hero-container-growth {
+    max-width: 1200px;
 }
 
 /* Standardized content wrapper */

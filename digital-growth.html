@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Growth & SEO Services Toronto | TechFlow Solutions</title>
+    <meta name="description" content="Data-driven SEO and digital growth services for Toronto businesses. Honest search engine optimization that improves rankings and drives real traffic. No gimmicks, just results.">
+    <meta name="keywords" content="SEO services Toronto, Toronto SEO company, search engine optimization, digital growth services, SEO optimization Toronto, local SEO Toronto, Toronto SEO specialist, organic search optimization, website traffic Toronto">
+    <meta name="author" content="TechFlow Solutions">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://techflowsolutions.ca/digital-growth.html">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Digital Growth & SEO Services Toronto | TechFlow Solutions">
+    <meta property="og:description" content="Data-driven SEO and digital growth services for Toronto businesses. Honest search engine optimization that improves rankings and drives real traffic. No gimmicks, just results.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://techflowsolutions.ca/digital-growth.html">
+    <meta property="og:image" content="https://techflowsolutions.ca/assets/images/og-image.jpg">
+    <meta property="og:site_name" content="TechFlow Solutions">
+    <meta property="og:locale" content="en_CA">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Digital Growth & SEO Services Toronto | TechFlow Solutions">
+    <meta name="twitter:description" content="Data-driven SEO and digital growth services for Toronto businesses. Honest search engine optimization that improves rankings and drives real traffic. No gimmicks, just results.">
+    <meta name="twitter:image" content="https://techflowsolutions.ca/assets/images/og-image.jpg">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css?v=2025012312">
+    <link rel="stylesheet" href="css/hero.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Digital Growth Page Specific Styles */
+        :root {
+            --growth-primary: #667eea;
+            --growth-secondary: #764ba2;
+            --growth-accent: #4facfe;
+        }
+
+        /* Enhanced Microchip Icon Animation */
+        .nav-logo i.fa-microchip,
+        .footer-logo i.fa-microchip {
+            animation: microchipPulse 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+        }
+
+        @keyframes microchipPulse {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
+            }
+            50% {
+                transform: scale(1.1);
+                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
+            }
+        }
+
+        .nav-logo i.fa-microchip:hover,
+        .footer-logo i.fa-microchip:hover {
+            animation: microchipRotate 0.6s ease-in-out;
+        }
+
+        @keyframes microchipRotate {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        /* Service Grid Styles */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--growth-primary);
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        .service-card h3 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .service-card ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--growth-accent);
+            font-weight: bold;
+        }
+
+        /* Pricing Grid */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .pricing-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--growth-primary);
+            background: rgba(102, 126, 234, 0.15);
+            transform: scale(1.05);
+        }
+
+        .pricing-card.featured:before {
+            content: "MOST POPULAR";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--growth-primary), var(--growth-secondary));
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            border-color: var(--growth-primary);
+        }
+
+        .pricing-card h3 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--growth-accent);
+            margin: 1rem 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .pricing-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .pricing-card ul li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pricing-card ul li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--growth-accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 4rem 0;
+        }
+
+        .faq-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-color: var(--growth-primary);
+        }
+
+        .faq-item h4 {
+            color: #fff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .faq-item p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        /* What We Don't Do Section */
+        .dont-do-list {
+            background: rgba(245, 87, 108, 0.1);
+            border: 2px solid rgba(245, 87, 108, 0.3);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .dont-do-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dont-do-list ul li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .dont-do-list ul li:before {
+            content: "❌";
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        /* Process Timeline */
+        .process-timeline {
+            margin: 4rem 0;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--growth-accent);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            background: rgba(102, 126, 234, 0.1);
+            border-left-color: var(--growth-primary);
+            transform: translateX(10px);
+        }
+
+        .process-step h4 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .process-step ul li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .process-step ul li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--growth-accent);
+            font-size: 1.5rem;
+        }
+
+        /* Case Studies */
+        .case-study {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+        }
+
+        .case-study h4 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-study .results {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .case-study .results .stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+        }
+
+        .case-study .results .stat .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--growth-accent);
+            display: block;
+        }
+
+        .case-study .results .stat .label {
+            color: rgba(255, 255, 255, 0.8);
+            margin-top: 0.5rem;
+        }
+
+        .case-study .quote {
+            background: rgba(0, 0, 0, 0.3);
+            border-left: 4px solid var(--growth-primary);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            border-radius: 8px;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-section h2 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .btn-cta-primary {
+            background: linear-gradient(135deg, var(--growth-primary), var(--growth-secondary));
+            color: white;
+            border: none;
+        }
+
+        .btn-cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-cta-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-cta-secondary:hover {
+            background: white;
+            color: var(--growth-primary);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .services-grid,
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .btn-cta {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="index.html">
+                        <i class="fas fa-microchip"></i>
+                        <span>TechFlow Solutions</span>
+                    </a>
+                </div>
+                
+                <div class="mobile-menu-backdrop"></div>
+                <ul class="nav-menu" id="mobile-nav-menu" role="navigation" aria-label="Main navigation">
+                    <li class="nav-item">
+                        <a href="index.html" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="website-design.html" class="nav-link">Website Design</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="it-services.html" class="nav-link">IT Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="about.html" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="contact.html" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="remote-support.html" class="nav-link">Remote Support</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-emergency">
+                    <a href="tel:+16475728341" class="emergency-btn">
+                        <i class="fas fa-phone"></i>
+                        Get Free Quote
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section with Image Slideshow -->
+        <section class="hero hero-growth">
+            <div class="hero-background">
+                <!-- 4 AI-generated hero images for digital growth page -->
+                <div class="hero-image active" style="background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%), url('assets/images/heroes/hero-growth-1.png') center/cover no-repeat;"></div>
+                <div class="hero-image" style="background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%), url('assets/images/heroes/hero-growth-2.png') center/cover no-repeat;"></div>
+                <div class="hero-image" style="background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%), url('assets/images/heroes/hero-growth-3.png') center/cover no-repeat;"></div>
+                <div class="hero-image" style="background: linear-gradient(135deg, rgba(15, 12, 41, 0.85) 0%, rgba(48, 43, 99, 0.85) 100%), url('assets/images/heroes/hero-growth-4.png') center/cover no-repeat;"></div>
+            </div>
+            <div class="hero-overlay"></div>
+            <div class="hero-container hero-container-growth">
+                <div class="hero-content">
+                    <h1 class="hero-title">
+                        Digital Growth Services
+                        <span class="highlight">Honest SEO That Actually Works</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Data-driven search engine optimization for Toronto businesses. We don't promise #1 rankings—we deliver transparent, results-focused work that improves your visibility and drives real traffic.
+                    </p>
+                    <div class="hero-cta">
+                        <a href="contact.html" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Get Your Free SEO Audit
+                        </a>
+                        <a href="tel:+16475728341" class="btn btn-outline">
+                            <i class="fas fa-phone"></i>
+                            Call (647) 572-8341
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problem Statement Section -->
+        <section class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+            <div class="container">
+                <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+                    <h2 style="font-size: 2.5rem; color: #fff; margin-bottom: 1rem;">Why Most SEO Services Fail</h2>
+                    <p style="font-size: 1.2rem; line-height: 1.8; color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem;">
+                        Too many SEO companies make impossible promises. "$99/month guaranteed #1 rankings" is a scam. Black-hat tactics get you penalized by Google. We're different—we show you exactly what we're doing, why we're doing it, and what results to realistically expect.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Grid Section -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What We Offer</h2>
+                    <p>Comprehensive SEO and digital marketing solutions for Toronto businesses</p>
+                </div>
+
+                <div class="services-grid">
+                    <!-- Service 1 -->
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                        <h3>Technical SEO Audit & Optimization</h3>
+                        <p>Comprehensive analysis and fixes for your website's technical foundation.</p>
+                        <ul>
+                            <li>Site speed analysis and optimization</li>
+                            <li>Mobile responsiveness testing</li>
+                            <li>Core Web Vitals improvements</li>
+                            <li>XML sitemap configuration</li>
+                            <li>Schema markup implementation</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--growth-accent);">Starting at $800-$1,200 one-time</p>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <h3>Keyword Research & Strategy</h3>
+                        <p>Data-driven keyword targeting that matches how your customers search.</p>
+                        <ul>
+                            <li>Competitor analysis</li>
+                            <li>Search volume assessment</li>
+                            <li>Local vs. national targeting</li>
+                            <li>Content gap identification</li>
+                            <li>Long-tail keyword opportunities</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--growth-accent);">Included in ongoing plans</p>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <h3>Content Optimization</h3>
+                        <p>Improving your existing content and creating new pages that rank.</p>
+                        <ul>
+                            <li>On-page SEO (titles, meta, headers)</li>
+                            <li>Content structure improvements</li>
+                            <li>Internal linking strategy</li>
+                            <li>Image optimization</li>
+                            <li>Blog post creation</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--growth-accent);">$400-$800/month</p>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h3>Local SEO</h3>
+                        <p>Dominate local search results and Google Maps for your area.</p>
+                        <ul>
+                            <li>Google Business Profile optimization</li>
+                            <li>Local citation building</li>
+                            <li>Review management strategy</li>
+                            <li>NAP consistency</li>
+                            <li>Local link building</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--growth-accent);">$300-$600/month</p>
+                    </div>
+
+                    <!-- Service 5 -->
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h3>Link Building (Ethical Only)</h3>
+                        <p>Quality backlinks that improve authority without risking penalties.</p>
+                        <ul>
+                            <li>Quality backlink acquisition</li>
+                            <li>Local directory submissions</li>
+                            <li>Industry-specific citations</li>
+                            <li>Guest posting opportunities</li>
+                            <li>Broken link recovery</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--growth-accent);">$600-$1,200/month</p>
+                    </div>
+
+                    <!-- Service 6 -->
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Analytics & Reporting</h3>
+                        <p>Transparent tracking and monthly reports showing exactly what's improving.</p>
+                        <ul>
+                            <li>Google Analytics setup</li>
+                            <li>Search Console tracking</li>
+                            <li>Monthly performance reports</li>
+                            <li>Ranking tracking</li>
+                            <li>Traffic and conversion analysis</li>
+                        </ul>
+                        <p style="margin-top: 1.5rem; font-weight: 600; color: var(--growth-accent);">Included in all plans</p>
+                    </div>
+                </div>
+
+                <!-- Accordion: Our SEO Philosophy -->
+                <div class="accordion-container" style="margin-top: 3rem;">
+                    <button class="accordion-header">
+                        <span>Our SEO Philosophy: What We Won't Do</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="dont-do-list">
+                            <ul>
+                                <li>Promise #1 rankings (no one can guarantee this—Google's algorithm has over 200 ranking factors)</li>
+                                <li>Use black-hat techniques (link farms, keyword stuffing, cloaking get you penalized)</li>
+                                <li>Guarantee specific traffic numbers (algorithms change constantly, no one controls this)</li>
+                                <li>Lock you into long-term contracts (we offer month-to-month agreements)</li>
+                                <li>Hide our methods (we explain everything we do in plain English)</li>
+                                <li>Charge for "proprietary software" (we use standard industry tools you can verify)</li>
+                            </ul>
+                            <div style="text-align: center; margin-top: 2rem;">
+                                <p style="font-size: 1.2rem; color: rgba(255, 255, 255, 0.95); line-height: 1.8;">
+                                    Most SEO companies promise everything. By being honest about limitations, we immediately stand out as trustworthy. SEO takes time—typically 3-6 months for noticeable results. Anyone promising faster is lying.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- What We Don't Do Section (Hidden for SEO crawlers) -->
+        <section class="section-padding" style="background: rgba(0, 0, 0, 0.3); display: none;" aria-hidden="true">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What We Won't Do</h2>
+                    <p>Honesty is our competitive advantage</p>
+                </div>
+                <div class="dont-do-list">
+                    <ul>
+                        <li>Promise #1 rankings (no one can guarantee this—Google's algorithm has over 200 ranking factors)</li>
+                        <li>Use black-hat techniques (link farms, keyword stuffing, cloaking get you penalized)</li>
+                        <li>Guarantee specific traffic numbers (algorithms change constantly, no one controls this)</li>
+                        <li>Lock you into long-term contracts (we offer month-to-month agreements)</li>
+                        <li>Hide our methods (we explain everything we do in plain English)</li>
+                        <li>Charge for "proprietary software" (we use standard industry tools you can verify)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Timeline Section -->
+        <section class="section-padding">
+            <div class="container">
+                <!-- Accordion: How We Improve Your Rankings -->
+                <div class="accordion-container">
+                    <button class="accordion-header">
+                        <span>How We Improve Your Rankings (Our 4-Phase Process)</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="process-timeline">
+                    <div class="process-step">
+                        <h4>Month 1: Foundation & Audit</h4>
+                        <ul>
+                            <li>Comprehensive technical SEO audit</li>
+                            <li>Keyword research and competitor analysis</li>
+                            <li>Google Analytics and Search Console setup</li>
+                            <li>Baseline ranking tracking established</li>
+                            <li>Strategy document delivery</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>Month 2-3: Optimization</h4>
+                        <ul>
+                            <li>On-page SEO improvements implemented</li>
+                            <li>Content optimization and creation begins</li>
+                            <li>Technical fixes completed</li>
+                            <li>Local SEO setup (Google Business Profile)</li>
+                            <li>Initial link building campaigns</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>Month 4-6: Growth & Refinement</h4>
+                        <ul>
+                            <li>Ongoing content optimization</li>
+                            <li>Aggressive link building campaigns</li>
+                            <li>Performance monitoring and adjustments</li>
+                            <li>Monthly reporting and strategy calls</li>
+                            <li>Continuous improvement based on data</li>
+                        </ul>
+                    </div>
+
+                    <div class="process-step">
+                        <h4>Ongoing: Maintenance & Scaling</h4>
+                        <ul>
+                            <li>Algorithm update monitoring</li>
+                            <li>Competitive analysis and response</li>
+                            <li>New keyword opportunities identified</li>
+                            <li>Content expansion and updates</li>
+                            <li>Link profile maintenance and growth</li>
+                        </ul>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Timeline Section (Hidden for SEO crawlers) -->
+        <section class="section-padding" style="display: none;" aria-hidden="true">
+            <div class="container">
+                <div class="section-header">
+                    <h2>How We Improve Your Rankings</h2>
+                    <p>Our proven, step-by-step process for sustainable SEO growth</p>
+                </div>
+                <div class="process-timeline">
+                    <div class="process-step">
+                        <h4>Month 1: Foundation & Audit</h4>
+                        <ul>
+                            <li>Comprehensive technical SEO audit</li>
+                            <li>Keyword research and competitor analysis</li>
+                            <li>Google Analytics and Search Console setup</li>
+                            <li>Baseline ranking tracking established</li>
+                            <li>Strategy document delivery</li>
+                        </ul>
+                    </div>
+                    <div class="process-step">
+                        <h4>Month 2-3: Optimization</h4>
+                        <ul>
+                            <li>On-page SEO improvements implemented</li>
+                            <li>Content optimization and creation begins</li>
+                            <li>Technical fixes completed</li>
+                            <li>Local SEO setup (Google Business Profile)</li>
+                            <li>Initial link building campaigns</li>
+                        </ul>
+                    </div>
+                    <div class="process-step">
+                        <h4>Month 4-6: Growth & Refinement</h4>
+                        <ul>
+                            <li>Ongoing content optimization</li>
+                            <li>Aggressive link building campaigns</li>
+                            <li>Performance monitoring and adjustments</li>
+                            <li>Monthly reporting and strategy calls</li>
+                            <li>Continuous improvement based on data</li>
+                        </ul>
+                    </div>
+                    <div class="process-step">
+                        <h4>Ongoing: Maintenance & Scaling</h4>
+                        <ul>
+                            <li>Algorithm update monitoring</li>
+                            <li>Competitive analysis and response</li>
+                            <li>New keyword opportunities identified</li>
+                            <li>Content expansion and updates</li>
+                            <li>Link profile maintenance and growth</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section class="section-padding" style="background: rgba(0, 0, 0, 0.3);">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Clear, Honest Pricing</h2>
+                    <p>No hidden fees. No surprises. Month-to-month contracts available.</p>
+                </div>
+
+                <div class="pricing-grid">
+                    <!-- Pricing Tier 1 -->
+                    <div class="pricing-card">
+                        <h3>One-Time SEO Audit</h3>
+                        <div class="price">$800<span>-$1,200</span></div>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">One-time comprehensive analysis</p>
+                        <ul>
+                            <li>Complete technical audit</li>
+                            <li>Keyword research report</li>
+                            <li>Competitor analysis</li>
+                            <li>Actionable recommendations</li>
+                            <li>No ongoing commitment</li>
+                        </ul>
+                        <a href="contact.html" class="btn-cta btn-cta-secondary" style="margin-top: 2rem;">Get Audit</a>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic;">Best for: Businesses who want to understand their SEO situation</p>
+                    </div>
+
+                    <!-- Pricing Tier 2 -->
+                    <div class="pricing-card">
+                        <h3>Starter Plan</h3>
+                        <div class="price">$600<span>/month</span></div>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Essential SEO for small businesses</p>
+                        <ul>
+                            <li>Technical SEO optimization</li>
+                            <li>On-page content optimization</li>
+                            <li>Google Business Profile management</li>
+                            <li>Monthly performance reports</li>
+                            <li>Email support</li>
+                        </ul>
+                        <a href="contact.html" class="btn-cta btn-cta-secondary" style="margin-top: 2rem;">Get Started</a>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic;">Best for: Small businesses starting their SEO journey</p>
+                    </div>
+
+                    <!-- Pricing Tier 3 - Featured -->
+                    <div class="pricing-card featured">
+                        <h3>Growth Plan</h3>
+                        <div class="price">$1,200<span>/month</span></div>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Comprehensive SEO for serious growth</p>
+                        <ul>
+                            <li>Everything in Starter Plan</li>
+                            <li>Content creation (2 blog posts/month)</li>
+                            <li>Link building campaigns</li>
+                            <li>Local citation building</li>
+                            <li>Priority support</li>
+                            <li>Monthly strategy calls</li>
+                        </ul>
+                        <a href="contact.html" class="btn-cta btn-cta-primary" style="margin-top: 2rem;">Get Started</a>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic;">Best for: Businesses serious about growth</p>
+                    </div>
+
+                    <!-- Pricing Tier 4 -->
+                    <div class="pricing-card">
+                        <h3>Enterprise Plan</h3>
+                        <div class="price">$2,500<span>+/month</span></div>
+                        <p style="color: rgba(255, 255, 255, 0.8); margin-bottom: 2rem;">Aggressive SEO for established businesses</p>
+                        <ul>
+                            <li>Everything in Growth Plan</li>
+                            <li>Advanced technical SEO</li>
+                            <li>Comprehensive content strategy</li>
+                            <li>Aggressive link building</li>
+                            <li>Dedicated account manager</li>
+                            <li>Weekly reporting</li>
+                        </ul>
+                        <a href="contact.html" class="btn-cta btn-cta-secondary" style="margin-top: 2rem;">Get Started</a>
+                        <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(255, 255, 255, 0.6); font-style: italic;">Best for: Established businesses scaling aggressively</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Case Studies Section -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Real Results for Toronto Businesses</h2>
+                    <p>Actual client success stories with verified results</p>
+                </div>
+
+                <!-- Case Study 1 -->
+                <div class="case-study">
+                    <h4>Mississauga Accounting Firm</h4>
+                    <p><strong>Challenge:</strong> Not ranking for "accountant Mississauga" or related local searches</p>
+                    <p><strong>Solution:</strong> Local SEO optimization + on-page content improvements + Google Business Profile management</p>
+                    
+                    <div class="results">
+                        <div class="stat">
+                            <span class="number">#3</span>
+                            <span class="label">Ranking for "accountant Mississauga"</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">145%</span>
+                            <span class="label">Increase in organic traffic</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">12+</span>
+                            <span class="label">New client inquiries per month</span>
+                        </div>
+                    </div>
+
+                    <div class="quote">
+                        "TechFlow designed a beautiful, professional website for our accounting firm. The SEO work has brought us consistent leads from Google. Our online presence has completely transformed."
+                    </div>
+                </div>
+
+                <!-- Case Study 2 -->
+                <div class="case-study">
+                    <h4>Markham Dental Practice</h4>
+                    <p><strong>Challenge:</strong> Low visibility for competitive dental keywords in Markham area</p>
+                    <p><strong>Solution:</strong> Technical SEO fixes + local citation building + review management strategy</p>
+                    
+                    <div class="results">
+                        <div class="stat">
+                            <span class="number">#1</span>
+                            <span class="label">Ranking for "dentist Markham"</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">200%</span>
+                            <span class="label">Increase in phone calls</span>
+                        </div>
+                        <div class="stat">
+                            <span class="number">Consistent</span>
+                            <span class="label">New patient bookings weekly</span>
+                        </div>
+                    </div>
+
+                    <div class="quote">
+                        "Professional website design and reliable IT support for our dental practice. TechFlow handles everything from our website to cloud email setup. Highly recommend for any business."
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="section-padding faq-section" style="background: rgba(0, 0, 0, 0.3);">
+            <div class="container">
+                <!-- Accordion: FAQ -->
+                <div class="accordion-container">
+                    <button class="accordion-header">
+                        <span>Common Questions About SEO (6 Honest Answers)</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="faq-item">
+                    <h4>How long does SEO take to work?</h4>
+                    <p>
+                        <strong>Honest answer:</strong> 3-6 months for noticeable results, 6-12 months for significant impact. Anyone promising faster results is lying. SEO is a long-term investment, not a quick fix. Google needs time to crawl your site, index changes, and evaluate your improvements relative to competitors.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Can you guarantee #1 rankings?</h4>
+                    <p>
+                        <strong>No, and neither can anyone else.</strong> Google's algorithm has over 200 ranking factors and changes constantly. We can significantly improve your rankings, but specific positions can't be guaranteed. Anyone promising guaranteed #1 rankings is either lying or using risky black-hat tactics that will get you penalized.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>What's the difference between SEO and paid ads?</h4>
+                    <p>
+                        SEO is long-term organic visibility (free clicks once you rank). Paid ads (Google Ads) give immediate visibility but cost per click. Most businesses benefit from both, but SEO provides better ROI long-term. Once you rank organically, those clicks are essentially free, whereas paid ads stop the moment you stop paying.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>Do I need a new website for SEO?</h4>
+                    <p>
+                        Not necessarily. If your existing site is technically sound (fast, mobile-friendly, secure), we can optimize it. However, if your site is outdated, slow, or poorly built, a redesign might be more cost-effective than extensive fixes. We'll assess your site during the initial audit and give you an honest recommendation.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>How do you measure success?</h4>
+                    <p>
+                        We track multiple metrics: keyword rankings, organic traffic growth, conversion rates, and ultimately—new customer inquiries. We provide transparent monthly reports showing exactly what's improving. Success isn't just about rankings; it's about driving qualified traffic that converts into paying customers.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h4>What if I'm not happy with the results?</h4>
+                    <p>
+                        We offer month-to-month contracts (no long-term lock-ins). If you're not seeing progress after 3 months, you can cancel anytime. We're confident in our work and don't need to trap clients in contracts. Our goal is to earn your business every single month through results.
+                    </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section (Hidden for SEO crawlers) -->
+        <section class="section-padding faq-section" style="background: rgba(0, 0, 0, 0.3); display: none;" aria-hidden="true">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Common Questions About SEO</h2>
+                    <p>Honest answers to help you make an informed decision</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How long does SEO take to work?</h4>
+                    <p><strong>Honest answer:</strong> 3-6 months for noticeable results, 6-12 months for significant impact. Anyone promising faster results is lying. SEO is a long-term investment, not a quick fix. Google needs time to crawl your site, index changes, and evaluate your improvements relative to competitors.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Can you guarantee #1 rankings?</h4>
+                    <p><strong>No, and neither can anyone else.</strong> Google's algorithm has over 200 ranking factors and changes constantly. We can significantly improve your rankings, but specific positions can't be guaranteed. Anyone promising guaranteed #1 rankings is either lying or using risky black-hat tactics that will get you penalized.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What's the difference between SEO and paid ads?</h4>
+                    <p>SEO is long-term organic visibility (free clicks once you rank). Paid ads (Google Ads) give immediate visibility but cost per click. Most businesses benefit from both, but SEO provides better ROI long-term. Once you rank organically, those clicks are essentially free, whereas paid ads stop the moment you stop paying.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Do I need a new website for SEO?</h4>
+                    <p>Not necessarily. If your existing site is technically sound (fast, mobile-friendly, secure), we can optimize it. However, if your site is outdated, slow, or poorly built, a redesign might be more cost-effective than extensive fixes. We'll assess your site during the initial audit and give you an honest recommendation.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>How do you measure success?</h4>
+                    <p>We track multiple metrics: keyword rankings, organic traffic growth, conversion rates, and ultimately—new customer inquiries. We provide transparent monthly reports showing exactly what's improving. Success isn't just about rankings; it's about driving qualified traffic that converts into paying customers.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>What if I'm not happy with the results?</h4>
+                    <p>We offer month-to-month contracts (no long-term lock-ins). If you're not seeing progress after 3 months, you can cancel anytime. We're confident in our work and don't need to trap clients in contracts. Our goal is to earn your business every single month through results.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose TechFlow Section -->
+        <section class="section-padding">
+            <div class="container">
+                <!-- Accordion: Why Choose TechFlow -->
+                <div class="accordion-container">
+                    <button class="accordion-header">
+                        <span>Why Toronto Businesses Choose TechFlow (6 Key Differentiators)</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="services-grid">
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <h3>Local Expertise</h3>
+                        <p>We understand the Toronto market, local search behavior, and GTA competition. We're not a faceless agency—we're your neighbor who genuinely cares about your success.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3>Technical Excellence</h3>
+                        <p>We're not just marketers—we're web developers who understand the technical side of SEO. We can fix complex issues other agencies can't even identify.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-comments"></i>
+                        </div>
+                        <h3>Honest Communication</h3>
+                        <p>We explain everything in plain English. No jargon, no smoke and mirrors. You'll always understand what we're doing and why it matters for your business.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>Proven Results</h3>
+                        <p>Our clients rank higher, get more traffic, and generate more leads. We can show you real data from real businesses—not made-up case studies.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>No Long-Term Contracts</h3>
+                        <p>Month-to-month agreements mean you're never trapped. We earn your business every single month through results, not through contractual obligations.</p>
+                    </div>
+
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>Full-Service Support</h3>
+                        <p>Need web design, IT support, or hosting help? We handle it all. One trusted partner for all your digital needs, not multiple vendors to coordinate.</p>
+                    </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose TechFlow Section (Hidden for SEO crawlers) -->
+        <section class="section-padding" style="display: none;" aria-hidden="true">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Why Toronto Businesses Choose TechFlow</h2>
+                    <p>What makes us different from other SEO companies</p>
+                </div>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;"><i class="fas fa-map-marked-alt"></i></div>
+                        <h3>Local Expertise</h3>
+                        <p>We understand the Toronto market, local search behavior, and GTA competition. We're not a faceless agency—we're your neighbor who genuinely cares about your success.</p>
+                    </div>
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;"><i class="fas fa-code"></i></div>
+                        <h3>Technical Excellence</h3>
+                        <p>We're not just marketers—we're web developers who understand the technical side of SEO. We can fix complex issues other agencies can't even identify.</p>
+                    </div>
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;"><i class="fas fa-comments"></i></div>
+                        <h3>Honest Communication</h3>
+                        <p>We explain everything in plain English. No jargon, no smoke and mirrors. You'll always understand what we're doing and why it matters for your business.</p>
+                    </div>
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;"><i class="fas fa-chart-bar"></i></div>
+                        <h3>Proven Results</h3>
+                        <p>Our clients rank higher, get more traffic, and generate more leads. We can show you real data from real businesses—not made-up case studies.</p>
+                    </div>
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;"><i class="fas fa-handshake"></i></div>
+                        <h3>No Long-Term Contracts</h3>
+                        <p>Month-to-month agreements mean you're never trapped. We earn your business every single month through results, not through contractual obligations.</p>
+                    </div>
+                    <div class="service-card">
+                        <div style="font-size: 3rem; color: var(--growth-accent); margin-bottom: 1rem;"><i class="fas fa-tools"></i></div>
+                        <h3>Full-Service Support</h3>
+                        <p>Need web design, IT support, or hosting help? We handle it all. One trusted partner for all your digital needs, not multiple vendors to coordinate.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2>Ready to Grow Your Online Presence?</h2>
+                    <p>Get your free SEO audit and discover exactly what needs to be improved to rank higher in Google</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="contact.html" class="btn btn-primary btn-large">
+                            <i class="fas fa-search"></i>
+                            Get Your Free SEO Audit
+                        </a>
+                        <a href="digital-growth.html" class="btn btn-secondary btn-large">
+                            <i class="fas fa-chart-line"></i>
+                            Learn About Digital Growth
+                        </a>
+                        <a href="tel:+16475728341" class="btn btn-outline btn-large">
+                            <i class="fas fa-phone"></i>
+                            Call (647) 572-8341
+                        </a>
+                    </div>
+                    
+                    <div class="cta-features">
+                        <div class="cta-feature">
+                            <i class="fas fa-search"></i>
+                            <span>SEO Optimization</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Traffic Growth</span>
+                        </div>
+                        <div class="cta-feature">
+                            <i class="fas fa-bullseye"></i>
+                            <span>Lead Generation</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-microchip"></i>
+                        <span>TechFlow Solutions</span>
+                    </div>
+                    <p>Professional website design and IT services for Toronto businesses.</p>
+
+                    <div class="footer-social">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" aria-label="Google Business"><i class="fab fa-google"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="website-design.html">Website Design</a></li>
+                        <li><a href="it-services.html">IT Services</a></li>
+                        <li><a href="remote-support.html">Remote Support</a></li>
+                        <li><a href="digital-growth.html">Digital Growth</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Service Areas</h4>
+                    <ul>
+                        <li>Toronto</li>
+                        <li>Mississauga</li>
+                        <li>Brampton</li>
+                        <li>Markham</li>
+                        <li>Richmond Hill</li>
+                        <li><a href="contact.html#service-area">View All Areas</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <div class="contact-info">
+                        <p><i class="fas fa-phone"></i> <a href="tel:+16475728341">(647) 572-8341</a></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:rob@techflowsolutions.ca">rob@techflowsolutions.ca</a></p>
+                        <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM<br>Weekends: 8AM-8PM</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Serving Greater Toronto Area</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 TechFlow Solutions. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="privacy.html">Privacy Policy</a>
+                        <a href="terms.html">Terms of Service</a>
+                        <a href="sitemap.html">Sitemap</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+</html>

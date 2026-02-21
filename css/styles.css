@@ -877,6 +877,10 @@ a:hover {
     gap: var(--spacing-xs);
     color: var(--primary-blue);
     font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    z-index: 10;
+    cursor: pointer;
     transition: all var(--transition-fast);
 }
 
@@ -7447,6 +7451,109 @@ a:hover {
     .service-cta .btn {
         width: 100%;
         min-width: auto;
+    }
+}
+
+/*
+   Accordion Styles for Digital Growth Page
+   ====== */
+
+.accordion-container {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.accordion-container:hover {
+    border-color: var(--primary-blue);
+    background: rgba(88, 166, 255, 0.05);
+}
+
+.accordion-header {
+    width: 100%;
+    padding: 1.5rem 2rem;
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+}
+
+.accordion-header:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary-blue);
+}
+
+.accordion-header:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: -2px;
+}
+
+.accordion-icon {
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    color: var(--primary-blue);
+}
+
+.accordion-header.active .accordion-icon {
+    transform: rotate(180deg);
+}
+
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    padding: 0 2rem;
+}
+
+.accordion-content.active {
+    max-height: 5000px;
+    padding: 1.5rem 2rem 2rem;
+    transition: max-height 0.6s ease-in, padding 0.4s ease-in;
+}
+
+/* Mobile Responsive for Accordions */
+@media (max-width: 768px) {
+    .accordion-header {
+        padding: 1.25rem 1.5rem;
+        font-size: 1.1rem;
+    }
+    
+    .accordion-content {
+        padding: 0 1.5rem;
+    }
+    
+    .accordion-content.active {
+        padding: 1.25rem 1.5rem 1.75rem;
+    }
+    
+    .accordion-icon {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-header {
+        padding: 1rem 1.25rem;
+        font-size: 1rem;
+    }
+    
+    .accordion-content {
+        padding: 0 1.25rem;
+    }
+    
+    .accordion-content.active {
+        padding: 1rem 1.25rem 1.5rem;
     }
 }
 
