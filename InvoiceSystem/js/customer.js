@@ -196,6 +196,8 @@ class CustomerManager {
      * Initialize event listeners
      */
     initializeEventListeners() {
+        console.log('🎯 Initializing event listeners for CustomerManager');
+        
         // Customer dropdown change
         document.addEventListener('change', (e) => {
             if (e.target.id === 'existing-customer') {
@@ -234,6 +236,7 @@ class CustomerManager {
             // Delete customer button - check if click is on button or any child element
             const deleteBtn = e.target.closest('#delete-customer-btn');
             if (deleteBtn) {
+                console.log('🗑️ Delete button clicked!', deleteBtn);
                 const dropdown = document.getElementById('existing-customer');
                 const selectedCustomerId = dropdown.value;
                 
