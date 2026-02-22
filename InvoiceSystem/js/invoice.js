@@ -196,17 +196,18 @@ class InvoiceGenerator {
         // Build services table rows
         let serviceRows = '';
         
-        // Add hourly service if present
-        if (services.hourly) {
-            const service = services.hourly;
-            serviceRows += `
-                <tr>
-                    <td>${service.description}</td>
-                    <td class="amount">${service.hours}</td>
-                    <td class="amount">${this.formatCurrency(service.rate)}</td>
-                    <td class="amount">${this.formatCurrency(service.total)}</td>
-                </tr>
-            `;
+        // Add hourly services if present
+        if (services.hourly && Array.isArray(services.hourly)) {
+            services.hourly.forEach(service => {
+                serviceRows += `
+                    <tr>
+                        <td>${service.description}</td>
+                        <td class="amount">${service.hours}</td>
+                        <td class="amount">${this.formatCurrency(service.rate)}</td>
+                        <td class="amount">${this.formatCurrency(service.total)}</td>
+                    </tr>
+                `;
+            });
         }
         
         // Add line items
@@ -223,15 +224,15 @@ class InvoiceGenerator {
         
         return `
             <div class="invoice-header">
+                <div class="business-info">
+                    <div class="company-name">TechFlow Solutions</div>
+                    <div>Website Design & IT Services</div>
+                    <div>Greater Toronto Area</div>
+                    <div>Phone: (647) 572-8341</div>
+                    <div>Email: info@techflowsolutions.ca</div>
+                </div>
                 <div class="invoice-logo">
                     <img src="../assets/images/TechFlow Solutions Logo- Cropped.png" alt="TechFlow Solutions Logo" class="invoice-logo-image">
-                </div>
-                <div class="business-info">
-                    <strong>TechFlow Solutions</strong><br>
-                    Website Design & IT Services<br>
-                    Greater Toronto Area<br>
-                    Phone: (647) 572-8341<br>
-                    Email: rob@techflowsolutions.ca
                 </div>
             </div>
             
@@ -281,10 +282,37 @@ class InvoiceGenerator {
                 </tr>
             </table>
             
-            <div style="margin-top: 2rem; padding-top: 1rem; border-top: 1px solid #ddd; font-size: 0.875rem; color: #666;">
-                <p><strong>Payment Terms:</strong> Payment is due within 30 days of invoice date.</p>
-                <p><strong>Thank you for choosing TechFlow Solutions!</strong></p>
-                <p>For questions about this invoice, please contact us at (647) 572-8321 or rob@techflowsolutions.ca</p>
+            <!-- Payment Options Section (Compact) -->
+            <div class="payment-section" style="margin: 25px 0; padding: 15px; background: #f8f9fa; border-radius: 8px; border: 1px solid #dee2e6;">
+                <h3 style="color: #667eea; margin: 0 0 12px 0; font-size: 18px; text-align: center;">Payment Options</h3>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+                    <!-- E-Transfer (First - Preferred) -->
+                    <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #28a745;">
+                        <div style="color: #28a745; font-weight: bold; font-size: 14px; margin-bottom: 8px;">📧 E-Transfer</div>
+                        <p style="margin: 4px 0; font-size: 13px; line-height: 1.3;">
+                            <strong>To:</strong> info@techflowsolutions.ca<br>
+                            <strong>Amount:</strong> <span style="color: #28a745; font-weight: bold;">${this.formatCurrency(totals.finalTotal)}</span>
+                        </p>
+                        <p style="font-size: 10px; color: #666; margin: 6px 0 0 0;">No fees • Auto-deposit enabled</p>
+                    </div>
+                    
+                    <!-- Credit Card (Second) -->
+                    <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #667eea;">
+                        <div style="color: #667eea; font-weight: bold; font-size: 14px; margin-bottom: 8px;">💳 Credit Card</div>
+                        <a href="https://buy.stripe.com/YOUR_STRIPE_LINK"
+                           target="_blank"
+                           style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
+                            Pay ${this.formatCurrency(totals.finalTotal)} →
+                        </a>
+                        <p style="font-size: 10px; color: #666; text-align: center; margin: 6px 0 0 0;">Visa, Mastercard, Amex accepted</p>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding-top: 10px; border-top: 1px solid #dee2e6; font-size: 11px; color: #6c757d;">
+                    <p style="margin: 3px 0;"><strong style="color: #495057;">Payment due within 15 days</strong> • Questions? (647) 572-8341</p>
+                    <p style="margin: 3px 0; font-style: italic;">Thank you for choosing TechFlow Solutions!</p>
+                </div>
             </div>
         `;
     }

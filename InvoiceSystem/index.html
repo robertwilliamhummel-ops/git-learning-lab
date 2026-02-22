@@ -100,6 +100,12 @@
                                 <label for="invoice-date">Date</label>
                                 <input type="date" id="invoice-date" class="form-control" required>
                             </div>
+                            <div class="form-group full-width">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="charge-hst" class="form-checkbox">
+                                    <span>Charge HST (13%) - Only check if HST registered</span>
+                                </label>
+                            </div>
                         </div>
                     </section>
 
@@ -110,80 +116,12 @@
                         <!-- Hourly Services -->
                         <div class="service-type-section">
                             <h4><i class="fas fa-clock"></i> Hourly Services</h4>
-                            <div class="form-grid">
-                                <div class="form-group">
-                                    <label for="service-type">Service Type</label>
-                                    <select id="service-type" class="form-control">
-                                        <option value="">Select service type</option>
-                                        <option value="website-design" data-rate="100">Website Design & Development - $100/hour</option>
-                                        <option value="seo-consulting" data-rate="100">Digital Growth & SEO - $100/hour</option>
-                                        <option value="it-remote" data-rate="90">Remote IT Support - $90/hour</option>
-                                        <option value="it-onsite" data-rate="100">On-Site IT Support - $100/hour</option>
-                                        <option value="it-priority" data-rate="175">Business-Critical Support - $175/hour</option>
-                                        <option value="emergency" data-rate="120">Emergency/Rush Service - $120/hour</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="service-description">Service Description</label>
-                                    <select id="service-description" class="form-control">
-                                        <option value="">Select service description</option>
-                                        <optgroup label="Website Design & Development">
-                                            <option value="Custom Website Design">Custom Website Design</option>
-                                            <option value="Website Development">Website Development</option>
-                                            <option value="Website Redesign">Website Redesign</option>
-                                            <option value="E-commerce Website Development">E-commerce Website Development</option>
-                                            <option value="Website Maintenance">Website Maintenance</option>
-                                            <option value="Content Management & Updates">Content Management & Updates</option>
-                                            <option value="Custom Features & Functionality">Custom Features & Functionality</option>
-                                            <option value="Website Performance Optimization">Website Performance Optimization</option>
-                                            <option value="Website Security Hardening">Website Security Hardening</option>
-                                            <option value="Domain & Hosting Setup">Domain & Hosting Setup</option>
-                                            <option value="Website Migration">Website Migration</option>
-                                            <option value="Landing Page Design">Landing Page Design</option>
-                                        </optgroup>
-                                        <optgroup label="Digital Growth & SEO">
-                                            <option value="SEO Audit & Analysis">SEO Audit & Analysis</option>
-                                            <option value="Technical SEO Optimization">Technical SEO Optimization</option>
-                                            <option value="Keyword Research & Strategy">Keyword Research & Strategy</option>
-                                            <option value="On-Page SEO Optimization">On-Page SEO Optimization</option>
-                                            <option value="Content Optimization">Content Optimization</option>
-                                            <option value="Local SEO Setup & Management">Local SEO Setup & Management</option>
-                                            <option value="Google My Business Optimization">Google My Business Optimization</option>
-                                            <option value="Link Building Strategy">Link Building Strategy</option>
-                                            <option value="SEO Performance Monitoring">SEO Performance Monitoring</option>
-                                            <option value="Competitor Analysis">Competitor Analysis</option>
-                                            <option value="SEO Consulting">SEO Consulting</option>
-                                            <option value="Search Engine Marketing (SEM)">Search Engine Marketing (SEM)</option>
-                                        </optgroup>
-                                        <optgroup label="Business IT Services">
-                                            <option value="Remote IT Support">Remote IT Support</option>
-                                            <option value="On-Site IT Support">On-Site IT Support</option>
-                                            <option value="Network Setup & Configuration">Network Setup & Configuration</option>
-                                            <option value="Server Administration">Server Administration</option>
-                                            <option value="Cloud Migration & Setup">Cloud Migration & Setup</option>
-                                            <option value="Email System Setup">Email System Setup (Microsoft 365, Google Workspace)</option>
-                                            <option value="Cybersecurity Assessment">Cybersecurity Assessment</option>
-                                            <option value="Data Backup & Recovery">Data Backup & Recovery</option>
-                                            <option value="IT Consulting & Strategy">IT Consulting & Strategy</option>
-                                            <option value="System Monitoring & Maintenance">System Monitoring & Maintenance</option>
-                                            <option value="Software Installation & Configuration">Software Installation & Configuration</option>
-                                            <option value="Hardware Procurement & Setup">Hardware Procurement & Setup</option>
-                                        </optgroup>
-                                    </select>
-                                </div>
-                                <div class="form-group full-width">
-                                    <label for="service-notes">Additional Details (optional)</label>
-                                    <textarea id="service-notes" class="form-control" rows="2" placeholder="Add specific details about this service (e.g., migrated 50GB data, configured 5 security groups)"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="hours-worked">Hours Worked</label>
-                                    <input type="number" id="hours-worked" class="form-control" min="0" step="0.25" placeholder="0.00">
-                                </div>
-                                <div class="form-group">
-                                    <label for="hourly-rate">Rate per Hour</label>
-                                    <input type="number" id="hourly-rate" class="form-control" min="0" step="1" placeholder="Auto-filled or type custom rate">
-                                </div>
+                            <div id="hourly-services-container">
+                                <!-- Hourly service entries will be added dynamically -->
                             </div>
+                            <button type="button" id="add-hourly-service-btn" class="btn btn-secondary">
+                                <i class="fas fa-plus"></i> Add Hourly Service
+                            </button>
                             <div class="hourly-total">
                                 <span class="total-label">Hourly Services Total:</span>
                                 <span id="hourly-total" class="total-amount">$0.00</span>

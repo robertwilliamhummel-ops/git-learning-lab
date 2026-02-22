@@ -10,30 +10,25 @@ class InvoiceCalculator {
             onsite: 100,
             emergency: 110
         };
-        this.taxRate = 0.13; // HST 13% for Ontario
+        this.taxRate = 0; // No HST - Not registered yet (set to 0.13 when registered)
         this.discountPercent = 0; // Discount percentage (0-100)
         this.discountAmount = 0; // Fixed discount amount
         this.lineItems = [];
+        this.hourlyServices = [];
         this.initializeEventListeners();
         this.updateAllTotals();
+        // Add first hourly service by default
+        setTimeout(() => this.addHourlyService(), 0);
     }
 
     /**
      * Initialize event listeners for calculator functionality
      */
     initializeEventListeners() {
-        // Service type change
-        document.addEventListener('change', (e) => {
-            if (e.target.id === 'service-type') {
-                this.updateHourlyRate();
-                this.calculateHourlyTotal();
-            }
-        });
-
-        // Hours worked change
-        document.addEventListener('input', (e) => {
-            if (e.target.id === 'hours-worked') {
-                this.calculateHourlyTotal();
+        // Add hourly service button
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'add-hourly-service-btn' || e.target.closest('#add-hourly-service-btn')) {
+                this.addHourlyService();
             }
         });
 
@@ -41,6 +36,35 @@ class InvoiceCalculator {
         document.addEventListener('click', (e) => {
             if (e.target.id === 'add-line-item-btn') {
                 this.addLineItem();
+            }
+        });
+
+        // HST checkbox toggle
+        document.addEventListener('change', (e) => {
+            if (e.target.id === 'charge-hst') {
+                this.taxRate = e.target.checked ? 0.13 : 0;
+                this.updateAllTotals();
+            }
+        });
+
+        // Hourly service changes (using event delegation)
+        document.addEventListener('change', (e) => {
+            if (e.target.classList.contains('hourly-service-type')) {
+                this.updateHourlyServiceRate(e.target);
+                this.calculateHourlyTotal();
+            }
+        });
+
+        document.addEventListener('input', (e) => {
+            if (e.target.classList.contains('hourly-service-input')) {
+                this.calculateHourlyTotal();
+            }
+        });
+
+        // Remove hourly service (using event delegation)
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-hourly-service') || e.target.closest('.remove-hourly-service')) {
+                this.removeHourlyService(e.target.closest('.remove-hourly-service'));
             }
         });
 
@@ -60,17 +84,121 @@ class InvoiceCalculator {
     }
 
     /**
+     * Add a new hourly service entry
+     */
+    addHourlyService() {
+        const container = document.getElementById('hourly-services-container');
+        const serviceId = 'hourly-service-' + Date.now();
+        
+        const serviceHtml = `
+            <div class="hourly-service" data-id="${serviceId}">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Service Type</label>
+                        <select class="form-control hourly-service-type hourly-service-input">
+                            <option value="">Select service type</option>
+                            <option value="website-design" data-rate="100">Website Design & Development - $100/hour</option>
+                            <option value="seo-consulting" data-rate="100">Digital Growth & SEO - $100/hour</option>
+                            <option value="it-remote" data-rate="90">Remote IT Support - $90/hour</option>
+                            <option value="it-onsite" data-rate="100">On-Site IT Support - $100/hour</option>
+                            <option value="it-priority" data-rate="175">Business-Critical Support - $175/hour</option>
+                            <option value="emergency" data-rate="120">Emergency/Rush Service - $120/hour</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Service Description</label>
+                        <select class="form-control hourly-service-description hourly-service-input">
+                            <option value="">Select service description</option>
+                            <optgroup label="Website Design & Development">
+                                <option value="Custom Website Design">Custom Website Design</option>
+                                <option value="Website Development">Website Development</option>
+                                <option value="Website Redesign">Website Redesign</option>
+                                <option value="E-commerce Website Development">E-commerce Website Development</option>
+                                <option value="Website Maintenance">Website Maintenance</option>
+                                <option value="Content Management & Updates">Content Management & Updates</option>
+                                <option value="Custom Features & Functionality">Custom Features & Functionality</option>
+                                <option value="Website Performance Optimization">Website Performance Optimization</option>
+                                <option value="Website Security Hardening">Website Security Hardening</option>
+                                <option value="Domain & Hosting Setup">Domain & Hosting Setup</option>
+                                <option value="Website Migration">Website Migration</option>
+                                <option value="Landing Page Design">Landing Page Design</option>
+                            </optgroup>
+                            <optgroup label="Digital Growth & SEO">
+                                <option value="SEO Audit & Analysis">SEO Audit & Analysis</option>
+                                <option value="Technical SEO Optimization">Technical SEO Optimization</option>
+                                <option value="Keyword Research & Strategy">Keyword Research & Strategy</option>
+                                <option value="On-Page SEO Optimization">On-Page SEO Optimization</option>
+                                <option value="Content Optimization">Content Optimization</option>
+                                <option value="Local SEO Setup & Management">Local SEO Setup & Management</option>
+                                <option value="Google My Business Optimization">Google My Business Optimization</option>
+                                <option value="Link Building Strategy">Link Building Strategy</option>
+                                <option value="SEO Performance Monitoring">SEO Performance Monitoring</option>
+                                <option value="Competitor Analysis">Competitor Analysis</option>
+                                <option value="SEO Consulting">SEO Consulting</option>
+                                <option value="Search Engine Marketing (SEM)">Search Engine Marketing (SEM)</option>
+                            </optgroup>
+                            <optgroup label="Business IT Services">
+                                <option value="Remote IT Support">Remote IT Support</option>
+                                <option value="On-Site IT Support">On-Site IT Support</option>
+                                <option value="Network Setup & Configuration">Network Setup & Configuration</option>
+                                <option value="Server Administration">Server Administration</option>
+                                <option value="Cloud Migration & Setup">Cloud Migration & Setup</option>
+                                <option value="Email System Setup">Email System Setup (Microsoft 365, Google Workspace)</option>
+                                <option value="Cybersecurity Assessment">Cybersecurity Assessment</option>
+                                <option value="Data Backup & Recovery">Data Backup & Recovery</option>
+                                <option value="IT Consulting & Strategy">IT Consulting & Strategy</option>
+                                <option value="System Monitoring & Maintenance">System Monitoring & Maintenance</option>
+                                <option value="Software Installation & Configuration">Software Installation & Configuration</option>
+                                <option value="Hardware Procurement & Setup">Hardware Procurement & Setup</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="form-group full-width">
+                        <label>Additional Details (optional)</label>
+                        <textarea class="form-control hourly-service-notes hourly-service-input" rows="2" placeholder="Add specific details about this service (e.g., migrated 50GB data, configured 5 security groups)"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Hours Worked</label>
+                        <input type="number" class="form-control hourly-service-hours hourly-service-input" min="0" step="0.25" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label>Rate per Hour</label>
+                        <input type="number" class="form-control hourly-service-rate hourly-service-input" min="0" step="1" placeholder="Auto-filled or type custom rate">
+                    </div>
+                </div>
+                <button type="button" class="remove-hourly-service" title="Remove service">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        
+        container.insertAdjacentHTML('beforeend', serviceHtml);
+        this.calculateHourlyTotal();
+    }
+
+    /**
      * Update hourly rate based on selected service type
      */
-    updateHourlyRate() {
-        const serviceType = document.getElementById('service-type');
-        const hourlyRateInput = document.getElementById('hourly-rate');
+    updateHourlyServiceRate(selectElement) {
+        const serviceDiv = selectElement.closest('.hourly-service');
+        const rateInput = serviceDiv.querySelector('.hourly-service-rate');
         
-        if (serviceType.value && serviceType.selectedOptions[0]) {
-            const rate = serviceType.selectedOptions[0].dataset.rate;
-            hourlyRateInput.value = rate || 0;
+        if (selectElement.value && selectElement.selectedOptions[0]) {
+            const rate = selectElement.selectedOptions[0].dataset.rate;
+            rateInput.value = rate || 0;
         } else {
-            hourlyRateInput.value = 0;
+            rateInput.value = 0;
+        }
+    }
+
+    /**
+     * Remove an hourly service
+     */
+    removeHourlyService(button) {
+        const service = button.closest('.hourly-service');
+        if (service) {
+            service.remove();
+            this.calculateHourlyTotal();
         }
     }
 
@@ -78,12 +206,16 @@ class InvoiceCalculator {
      * Calculate hourly services total
      */
     calculateHourlyTotal() {
-        const hours = parseFloat(document.getElementById('hours-worked').value) || 0;
-        const rate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+        const services = document.querySelectorAll('.hourly-service');
+        let total = 0;
         
-        // Round to 2 decimal places to avoid floating point errors
-        const total = this.roundToTwo(hours * rate);
+        services.forEach(service => {
+            const hours = parseFloat(service.querySelector('.hourly-service-hours').value) || 0;
+            const rate = parseFloat(service.querySelector('.hourly-service-rate').value) || 0;
+            total += this.roundToTwo(hours * rate);
+        });
         
+        total = this.roundToTwo(total);
         document.getElementById('hourly-total').textContent = this.formatCurrency(total);
         this.updateAllTotals();
     }
@@ -252,23 +384,37 @@ class InvoiceCalculator {
      * Get hourly service data
      */
     getHourlyServiceData() {
-        const serviceType = document.getElementById('service-type');
-        const serviceDescription = document.getElementById('service-description');
-        const hours = parseFloat(document.getElementById('hours-worked').value) || 0;
-        const rate = parseFloat(document.getElementById('hourly-rate').value) || 0;
+        const services = document.querySelectorAll('.hourly-service');
+        const hourlyServices = [];
         
-        if (!serviceType.value || hours === 0) {
-            return null;
-        }
+        services.forEach(service => {
+            const serviceType = service.querySelector('.hourly-service-type');
+            const serviceDescription = service.querySelector('.hourly-service-description');
+            const serviceNotes = service.querySelector('.hourly-service-notes');
+            const hours = parseFloat(service.querySelector('.hourly-service-hours').value) || 0;
+            const rate = parseFloat(service.querySelector('.hourly-service-rate').value) || 0;
+            
+            if (serviceType.value && hours > 0) {
+                let description = serviceDescription.value || serviceType.options[serviceType.selectedIndex].text;
+                const notes = serviceNotes.value.trim();
+                
+                // Append notes to description if present
+                if (notes) {
+                    description += ` - ${notes}`;
+                }
+                
+                hourlyServices.push({
+                    type: 'hourly',
+                    serviceType: serviceType.options[serviceType.selectedIndex].text,
+                    description: description,
+                    hours: hours,
+                    rate: rate,
+                    total: this.roundToTwo(hours * rate)
+                });
+            }
+        });
         
-        return {
-            type: 'hourly',
-            serviceType: serviceType.options[serviceType.selectedIndex].text,
-            description: serviceDescription.value || serviceType.options[serviceType.selectedIndex].text,
-            hours: hours,
-            rate: rate,
-            total: hours * rate
-        };
+        return hourlyServices.length > 0 ? hourlyServices : null;
     }
 
     /**
@@ -327,11 +473,8 @@ class InvoiceCalculator {
      * Clear all calculations
      */
     clearCalculations() {
-        // Clear hourly service
-        document.getElementById('service-type').value = '';
-        document.getElementById('service-description').value = '';
-        document.getElementById('hours-worked').value = '';
-        document.getElementById('hourly-rate').value = '';
+        // Clear hourly services
+        document.getElementById('hourly-services-container').innerHTML = '';
         
         // Clear line items
         document.getElementById('line-items-container').innerHTML = '';
@@ -342,6 +485,9 @@ class InvoiceCalculator {
         document.getElementById('subtotal').textContent = '$0.00';
         document.getElementById('tax-amount').textContent = '$0.00';
         document.getElementById('final-total').textContent = '$0.00';
+        
+        // Add first hourly service
+        this.addHourlyService();
     }
 
     /**
@@ -351,21 +497,23 @@ class InvoiceCalculator {
         const errors = [];
         
         // Check if there's at least one service or line item
-        const hourlyService = this.getHourlyServiceData();
+        const hourlyServices = this.getHourlyServiceData();
         const lineItems = this.getLineItemsData();
         
-        if (!hourlyService && lineItems.length === 0) {
+        if ((!hourlyServices || hourlyServices.length === 0) && lineItems.length === 0) {
             errors.push('Please add at least one service or line item');
         }
         
-        // Validate hourly service if present
-        if (hourlyService) {
-            if (hourlyService.hours <= 0) {
-                errors.push('Hours worked must be greater than 0');
-            }
-            if (hourlyService.rate <= 0) {
-                errors.push('Hourly rate must be greater than 0');
-            }
+        // Validate hourly services if present
+        if (hourlyServices && hourlyServices.length > 0) {
+            hourlyServices.forEach((service, index) => {
+                if (service.hours <= 0) {
+                    errors.push(`Hourly service ${index + 1}: Hours worked must be greater than 0`);
+                }
+                if (service.rate <= 0) {
+                    errors.push(`Hourly service ${index + 1}: Hourly rate must be greater than 0`);
+                }
+            });
         }
         
         // Validate line items
@@ -466,15 +614,15 @@ class InvoiceCalculator {
      * Get pricing summary for display
      */
     getPricingSummary() {
-        const hourlyService = this.getHourlyServiceData();
+        const hourlyServices = this.getHourlyServiceData();
         const lineItems = this.getLineItemsData();
         const totals = this.getInvoiceTotals();
         
         return {
-            hourlyService: hourlyService,
+            hourlyServices: hourlyServices,
             lineItems: lineItems,
             totals: totals,
-            itemCount: (hourlyService ? 1 : 0) + lineItems.length
+            itemCount: (hourlyServices ? hourlyServices.length : 0) + lineItems.length
         };
     }
 
