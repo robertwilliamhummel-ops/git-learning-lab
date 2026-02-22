@@ -230,6 +230,44 @@ class CustomerManager {
                 button.disabled = false;
                 button.innerHTML = originalText;
             }
+            
+            // Delete customer button
+            if (e.target.id === 'delete-customer-btn' || e.target.closest('#delete-customer-btn')) {
+                const dropdown = document.getElementById('existing-customer');
+                const selectedCustomerId = dropdown.value;
+                
+                if (!selectedCustomerId) {
+                    this.showNotification('Please select a customer to delete', 'warning');
+                    return;
+                }
+                
+                const customer = this.getCustomer(selectedCustomerId);
+                if (!customer) {
+                    this.showNotification('Customer not found', 'error');
+                    return;
+                }
+                
+                // Confirm deletion
+                if (confirm(`Are you sure you want to delete "${customer.name}"?\n\nThis action cannot be undone.`)) {
+                    const button = e.target.closest('#delete-customer-btn');
+                    const originalText = button.innerHTML;
+                    
+                    // Disable button and show loading state
+                    button.disabled = true;
+                    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+                    
+                    const success = await this.deleteCustomer(selectedCustomerId);
+                    
+                    if (success) {
+                        // Clear the form after successful deletion
+                        this.clearCustomerForm();
+                    }
+                    
+                    // Re-enable button
+                    button.disabled = false;
+                    button.innerHTML = originalText;
+                }
+            }
         });
     }
 
