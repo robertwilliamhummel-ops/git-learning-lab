@@ -300,12 +300,11 @@ class InvoiceGenerator {
                     <!-- Credit Card (Second) -->
                     <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #667eea;">
                         <div style="color: #667eea; font-weight: bold; font-size: 14px; margin-bottom: 8px;">💳 Credit Card</div>
-                        <a href="https://buy.stripe.com/YOUR_STRIPE_LINK"
-                           target="_blank"
-                           style="display: block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px; text-align: center; text-decoration: none; border-radius: 4px; font-weight: bold; font-size: 14px;">
+                        <button onclick="window.payWithStripe(${totals.finalTotal}, '${invoiceData.number}', '${customer.email || ''}', '${customer.name}')"
+                           style="display: block; width: 100%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 10px; text-align: center; border: none; border-radius: 4px; font-weight: bold; font-size: 14px; cursor: pointer;">
                             Pay ${this.formatCurrency(totals.finalTotal)} →
-                        </a>
-                        <p style="font-size: 10px; color: #666; text-align: center; margin: 6px 0 0 0;">Visa, Mastercard, Amex accepted</p>
+                        </button>
+                        <p style="font-size: 10px; color: #666; text-align: center; margin: 6px 0 0 0;">Secure payment powered by Stripe</p>
                     </div>
                 </div>
                 

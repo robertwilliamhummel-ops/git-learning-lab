@@ -239,5 +239,64 @@
     <script type="module" src="js/customer.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/invoice.js"></script>
+    
+    <!-- Stripe Payment Integration -->
+    <script type="module">
+        import { getFunctions, httpsCallable } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-functions.js';
+        import { getApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        
+        // Payment function
+        window.payWithStripe = async function(amount, invoiceNumber, customerEmail, customerName) {
+            try {
+                // Show loading state
+                const button = event.target;
+                const originalHTML = button.innerHTML;
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+                
+                // Get Firebase Functions
+                const functions = getFunctions(getApp());
+                
+                // Call Cloud Function to create checkout session
+                const createCheckoutSession = httpsCallable(functions, 'createCheckoutSession');
+                const result = await createCheckoutSession({
+                    amount: amount,
+                    invoiceNumber: invoiceNumber,
+                    customerEmail: customerEmail,
+                    customerName: customerName,
+                    returnUrl: window.location.origin + window.location.pathname
+                });
+                
+                // Redirect to Stripe Checkout
+                window.location.href = result.data.url;
+                
+            } catch (error) {
+                console.error('Payment error:', error);
+                alert('Unable to process payment: ' + error.message);
+                
+                // Reset button
+                if (button) {
+                    button.disabled = false;
+                    button.innerHTML = originalHTML;
+                }
+            }
+        };
+        
+        // Check for payment success/cancellation on page load
+        window.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const payment = urlParams.get('payment');
+            
+            if (payment === 'success') {
+                alert('✅ Payment successful! Thank you for your payment.');
+                // Clear URL parameters
+                window.history.replaceState({}, document.title, window.location.pathname);
+            } else if (payment === 'cancelled') {
+                alert('❌ Payment cancelled. You can try again or use E-Transfer.');
+                // Clear URL parameters
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        });
+    </script>
 </body>
 </html>
