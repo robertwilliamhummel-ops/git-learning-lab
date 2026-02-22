@@ -103,6 +103,143 @@ ONGOING REVENUE: $480-720/year per client
 
 ---
 
+## 📁 Files That Need Customization
+
+### **Complete File List (8 files to edit)**
+
+#### **1. Firebase Configuration - 3 Files**
+
+**File: `InvoiceSystem/js/firebase-config.js`**
+- **Lines 7-14:** Firebase config object
+```javascript
+const firebaseConfig = {
+    apiKey: "CLIENT_API_KEY",
+    authDomain: "CLIENT_PROJECT.firebaseapp.com",
+    projectId: "CLIENT_PROJECT",
+    storageBucket: "CLIENT_PROJECT.firebasestorage.app",
+    messagingSenderId: "CLIENT_SENDER_ID",
+    appId: "CLIENT_APP_ID"
+};
+```
+
+**File: `InvoiceSystem/login.html`**
+- **Lines 212-219:** Firebase config (duplicate of above)
+
+**File: `InvoiceSystem/index.html`**
+- **Lines 36-43:** Firebase config (duplicate of above)
+- **Line 81:** Company logo path
+- **Line 83:** Company name in header
+
+#### **2. Company Branding - 2 Files**
+
+**File: `InvoiceSystem/js/invoice.js`**
+- **Lines 50-60:** Company name and tagline in invoice
+- **Lines 61-66:** Company contact information (address, phone, email, website)
+- **Lines 150-180:** Payment terms and footer text
+
+**File: `InvoiceSystem/css/invoice.css`** (Optional)
+- Search for `#667eea` - Primary brand color (purple/blue gradient)
+- Search for `#764ba2` - Secondary brand color
+- Replace with client's brand colors
+
+#### **3. Service Configuration - 1 File**
+
+**File: `InvoiceSystem/index.html`**
+- **Lines 119-122:** Service types and hourly rates
+```html
+<option value="remote" data-rate="80">Remote Support - $80/hour</option>
+<option value="onsite" data-rate="100">On-site Standard - $100/hour</option>
+<option value="emergency" data-rate="110">Emergency/Same-day - $110/hour</option>
+```
+- **Lines 127-138:** Service descriptions dropdown
+```html
+<option value="PC Repair">PC Repair & Diagnostics</option>
+<!-- Add client's services here -->
+```
+
+#### **4. Tax Rate - 1 File**
+
+**File: `InvoiceSystem/js/calculator.js`**
+- **Line 8:** Tax rate constant
+```javascript
+const TAX_RATE = 0.13; // 13% HST for Ontario
+// Change to: 0.07 for 7%, 0.05 for 5%, etc.
+```
+
+#### **5. Invoice Numbering - 1 File**
+
+**File: `InvoiceSystem/js/firestore-manager.js`**
+- **Line 165:** Invoice prefix filter
+```javascript
+return invNumber.startsWith(`TFS-${currentYear}`);
+// Change "TFS" to client prefix (e.g., "ABC", "XYZ")
+```
+- **Line 179:** Invoice number format
+```javascript
+return `TFS-${currentYear}-${nextNumber}`;
+// Change "TFS" to client prefix
+```
+
+#### **6. Stripe Configuration - 1 File** (If using payments)
+
+**File: `functions/index.js`**
+- **Lines 50-55:** Company name in Stripe checkout
+```javascript
+name: 'TechFlow Solutions',
+description: 'Invoice Payment',
+// Change to client's company name
+```
+- **Lines 64-68:** Success/cancel redirect URLs
+```javascript
+success_url: 'https://techflowsolutions.ca/InvoiceSystem/...',
+cancel_url: 'https://techflowsolutions.ca/InvoiceSystem/...',
+// Change to client's domain
+```
+
+#### **7. Project Configuration - 1 File**
+
+**File: `.firebaserc`**
+- **Line 3:** Firebase project ID
+```json
+{
+  "projects": {
+    "default": "techflow-website-2026"
+  }
+}
+// Change to client's project ID
+```
+
+#### **8. Assets - 2 Files**
+
+**Files to replace:**
+- `assets/images/CLIENT_LOGO.png` - Company logo
+- `assets/favicon.ico` - Browser favicon (optional)
+
+---
+
+### **Quick Summary**
+
+**Must Edit (8 files):**
+1. ✅ `InvoiceSystem/js/firebase-config.js` - Firebase config
+2. ✅ `InvoiceSystem/login.html` - Firebase config
+3. ✅ `InvoiceSystem/index.html` - Firebase config, logo, services
+4. ✅ `InvoiceSystem/js/invoice.js` - Company info
+5. ✅ `InvoiceSystem/js/calculator.js` - Tax rate
+6. ✅ `InvoiceSystem/js/firestore-manager.js` - Invoice prefix
+7. ✅ `functions/index.js` - Stripe config (if using payments)
+8. ✅ `.firebaserc` - Project ID
+
+**Optional Edit (1 file):**
+- `InvoiceSystem/css/invoice.css` - Brand colors
+
+**Assets (2 files):**
+- Company logo image
+- Favicon
+
+**Everything else stays the same!** No other code changes needed.
+
+---
+
 ## 🚀 Quick Deployment Checklist
 
 ### **For Each New Client (30-45 minutes):**
