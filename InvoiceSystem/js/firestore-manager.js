@@ -45,8 +45,8 @@ class FirestoreManager {
         try {
             const q = query(
                 collection(db, this.customersCollection),
-                where('userId', '==', this.getUserId()),
-                orderBy('createdAt', 'desc')
+                where('userId', '==', this.getUserId())
+                // orderBy removed temporarily - will sort in JavaScript instead
             );
             const querySnapshot = await getDocs(q);
             const customers = [];
@@ -109,8 +109,8 @@ class FirestoreManager {
         try {
             const q = query(
                 collection(db, this.invoicesCollection),
-                where('userId', '==', this.getUserId()),
-                orderBy('createdAt', 'desc')
+                where('userId', '==', this.getUserId())
+                // orderBy removed - will sort in JavaScript instead
             );
             const querySnapshot = await getDocs(q);
             const invoices = [];
