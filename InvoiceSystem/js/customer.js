@@ -1,79 +1,92 @@
 /**
  * TechFlow Solutions - Customer Management System
- * Handles customer data storage and retrieval using localStorage
+ * Handles customer data storage and retrieval using Firebase Firestore
  */
+
+import firestoreManager from './firestore-manager.js';
 
 class CustomerManager {
     constructor() {
-        this.storageKey = 'techflow_customers';
-        this.customers = this.loadCustomers();
+        this.customers = [];
+        this.isLoading = false;
         this.initializeEventListeners();
-        this.populateCustomerDropdown();
+        this.loadCustomersFromFirestore();
     }
 
     /**
-     * Load customers from localStorage
+     * Load customers from Firestore
      */
-    loadCustomers() {
+    async loadCustomersFromFirestore() {
+        if (this.isLoading) return;
+        
+        this.isLoading = true;
         try {
-            const stored = localStorage.getItem(this.storageKey);
-            return stored ? JSON.parse(stored) : [];
+            this.customers = await firestoreManager.getCustomers();
+            this.populateCustomerDropdown();
+            console.log(`✅ Loaded ${this.customers.length} customers from Firestore`);
         } catch (error) {
-            console.error('Error loading customers:', error);
-            return [];
-        }
-    }
-
-    /**
-     * Save customers to localStorage
-     */
-    saveCustomers() {
-        try {
-            localStorage.setItem(this.storageKey, JSON.stringify(this.customers));
-            return true;
-        } catch (error) {
-            console.error('Error saving customers:', error);
-            this.showNotification('Error saving customer data', 'error');
-            return false;
+            console.error('❌ Error loading customers:', error);
+            this.showNotification('Error loading customer data', 'error');
+        } finally {
+            this.isLoading = false;
         }
     }
 
     /**
      * Add or update a customer
      */
-    saveCustomer(customerData) {
+    async saveCustomer(customerData) {
         // Validate required fields
         if (!customerData.name || !customerData.phone) {
             this.showNotification('Customer name and phone are required', 'error');
             return false;
         }
 
-        // Check if customer already exists (by phone number)
-        const existingIndex = this.customers.findIndex(c => c.phone === customerData.phone);
-        
-        if (existingIndex !== -1) {
-            // Update existing customer
-            this.customers[existingIndex] = {
-                ...this.customers[existingIndex],
-                ...customerData,
-                updatedAt: new Date().toISOString()
-            };
-            this.showNotification('Customer updated successfully', 'success');
-        } else {
-            // Add new customer
-            const newCustomer = {
-                id: this.generateCustomerId(),
-                ...customerData,
-                createdAt: new Date().toISOString(),
-                updatedAt: new Date().toISOString()
-            };
-            this.customers.push(newCustomer);
-            this.showNotification('Customer saved successfully', 'success');
+        try {
+            // Check if customer already exists (by phone number)
+            const existingCustomer = this.customers.find(c => c.phone === customerData.phone);
+            
+            if (existingCustomer) {
+                // Update existing customer in Firestore
+                const result = await firestoreManager.updateCustomer(existingCustomer.id, customerData);
+                
+                if (result.success) {
+                    // Update local cache
+                    const index = this.customers.findIndex(c => c.id === existingCustomer.id);
+                    if (index !== -1) {
+                        this.customers[index] = {
+                            ...this.customers[index],
+                            ...customerData
+                        };
+                    }
+                    this.showNotification('Customer updated successfully', 'success');
+                    this.populateCustomerDropdown();
+                    return true;
+                } else {
+                    throw new Error(result.error);
+                }
+            } else {
+                // Add new customer to Firestore
+                const result = await firestoreManager.saveCustomer(customerData);
+                
+                if (result.success) {
+                    // Add to local cache
+                    this.customers.push({
+                        id: result.id,
+                        ...customerData
+                    });
+                    this.showNotification('Customer saved successfully', 'success');
+                    this.populateCustomerDropdown();
+                    return true;
+                } else {
+                    throw new Error(result.error);
+                }
+            }
+        } catch (error) {
+            console.error('❌ Error saving customer:', error);
+            this.showNotification('Error saving customer: ' + error.message, 'error');
+            return false;
         }
-
-        this.saveCustomers();
-        this.populateCustomerDropdown();
-        return true;
     }
 
     /**
@@ -93,23 +106,27 @@ class CustomerManager {
     /**
      * Delete customer
      */
-    deleteCustomer(id) {
-        const index = this.customers.findIndex(c => c.id === id);
-        if (index !== -1) {
-            this.customers.splice(index, 1);
-            this.saveCustomers();
-            this.populateCustomerDropdown();
-            this.showNotification('Customer deleted successfully', 'success');
-            return true;
+    async deleteCustomer(id) {
+        try {
+            const result = await firestoreManager.deleteCustomer(id);
+            
+            if (result.success) {
+                // Remove from local cache
+                const index = this.customers.findIndex(c => c.id === id);
+                if (index !== -1) {
+                    this.customers.splice(index, 1);
+                }
+                this.populateCustomerDropdown();
+                this.showNotification('Customer deleted successfully', 'success');
+                return true;
+            } else {
+                throw new Error(result.error);
+            }
+        } catch (error) {
+            console.error('❌ Error deleting customer:', error);
+            this.showNotification('Error deleting customer: ' + error.message, 'error');
+            return false;
         }
-        return false;
-    }
-
-    /**
-     * Generate unique customer ID
-     */
-    generateCustomerId() {
-        return 'CUST_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
     }
 
     /**
@@ -197,10 +214,21 @@ class CustomerManager {
         });
 
         // Save customer button
-        document.addEventListener('click', (e) => {
+        document.addEventListener('click', async (e) => {
             if (e.target.id === 'save-customer-btn') {
+                const button = e.target;
+                const originalText = button.innerHTML;
+                
+                // Disable button and show loading state
+                button.disabled = true;
+                button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
+                
                 const customerData = this.getCustomerDataFromForm();
-                this.saveCustomer(customerData);
+                await this.saveCustomer(customerData);
+                
+                // Re-enable button
+                button.disabled = false;
+                button.innerHTML = originalText;
             }
         });
     }
@@ -310,55 +338,11 @@ class CustomerManager {
     }
 
     /**
-     * Export customers data (for backup)
+     * Refresh customers from Firestore
      */
-    exportCustomers() {
-        const dataStr = JSON.stringify(this.customers, null, 2);
-        const dataBlob = new Blob([dataStr], { type: 'application/json' });
-        const url = URL.createObjectURL(dataBlob);
-        
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = `techflow_customers_${new Date().toISOString().split('T')[0]}.json`;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(url);
-        
-        this.showNotification('Customer data exported successfully', 'success');
-    }
-
-    /**
-     * Import customers data
-     */
-    importCustomers(file) {
-        const reader = new FileReader();
-        reader.onload = (e) => {
-            try {
-                const importedCustomers = JSON.parse(e.target.result);
-                if (Array.isArray(importedCustomers)) {
-                    // Merge with existing customers (avoid duplicates by phone)
-                    importedCustomers.forEach(customer => {
-                        if (!this.getCustomerByPhone(customer.phone)) {
-                            this.customers.push({
-                                ...customer,
-                                id: this.generateCustomerId(),
-                                importedAt: new Date().toISOString()
-                            });
-                        }
-                    });
-                    this.saveCustomers();
-                    this.populateCustomerDropdown();
-                    this.showNotification(`Imported ${importedCustomers.length} customers successfully`, 'success');
-                } else {
-                    throw new Error('Invalid file format');
-                }
-            } catch (error) {
-                console.error('Import error:', error);
-                this.showNotification('Error importing customer data', 'error');
-            }
-        };
-        reader.readAsText(file);
+    async refreshCustomers() {
+        await this.loadCustomersFromFirestore();
+        this.showNotification('Customer list refreshed', 'success');
     }
 
     /**
@@ -368,18 +352,22 @@ class CustomerManager {
         return {
             total: this.customers.length,
             withEmail: this.customers.filter(c => c.email).length,
-            withCompany: this.customers.filter(c => c.company).length,
-            recentlyAdded: this.customers.filter(c => {
-                const createdDate = new Date(c.createdAt);
-                const thirtyDaysAgo = new Date();
-                thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
-                return createdDate > thirtyDaysAgo;
-            }).length
+            withCompany: this.customers.filter(c => c.company).length
         };
     }
 }
 
 // Initialize customer manager when DOM is loaded
+// Wait for auth to be ready before initializing
+let customerManagerInstance = null;
+
 document.addEventListener('DOMContentLoaded', () => {
-    window.customerManager = new CustomerManager();
+    // Wait a bit for Firebase auth to initialize
+    setTimeout(() => {
+        customerManagerInstance = new CustomerManager();
+        window.customerManager = customerManagerInstance;
+        console.log('✅ Customer Manager initialized with Firestore');
+    }, 1000);
 });
+
+export default CustomerManager;

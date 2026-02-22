@@ -26,6 +26,51 @@
     
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase Auth Check -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { getAuth, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js';
+
+        // Your Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAXjjNSClbsrtmMAbB_KuOEX8EnOn5N_0k",
+            authDomain: "techflow-website-2026.firebaseapp.com",
+            projectId: "techflow-website-2026",
+            storageBucket: "techflow-website-2026.firebasestorage.app",
+            messagingSenderId: "904705508663",
+            appId: "1:904705508663:web:f1847a3d6d86abaa5e46b2"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // Check if user is logged in
+        onAuthStateChanged(auth, (user) => {
+            if (!user) {
+                // Not logged in - redirect to login page
+                window.location.href = 'login.html';
+            } else {
+                // User is logged in - show email in header
+                const userEmailElement = document.getElementById('user-email');
+                if (userEmailElement) {
+                    userEmailElement.textContent = user.email;
+                }
+            }
+        });
+
+        // Add logout button functionality
+        window.logout = () => {
+            if (confirm('Are you sure you want to logout?')) {
+                signOut(auth).then(() => {
+                    window.location.href = 'login.html';
+                }).catch((error) => {
+                    console.error('Logout error:', error);
+                    alert('Error logging out. Please try again.');
+                });
+            }
+        };
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -36,6 +81,12 @@
                     <img src="../assets/images/TechFlow Solutions Logo- Cropped.png" alt="TechFlow Solutions Logo" class="logo-image">
                 </div>
                 <h1>Invoice Generator</h1>
+                <div class="user-info">
+                    <span id="user-email" style="margin-right: 15px; color: #ecf0f1; font-size: 0.9rem;"></span>
+                    <button onclick="logout()" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.9rem;">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
             </div>
         </div>
     </header>
@@ -185,7 +236,7 @@
     </main>
 
     <!-- Scripts -->
-    <script src="js/customer.js"></script>
+    <script type="module" src="js/customer.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/invoice.js"></script>
 </body>
