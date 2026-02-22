@@ -231,8 +231,9 @@ class CustomerManager {
                 button.innerHTML = originalText;
             }
             
-            // Delete customer button
-            if (e.target.id === 'delete-customer-btn' || e.target.closest('#delete-customer-btn')) {
+            // Delete customer button - check if click is on button or any child element
+            const deleteBtn = e.target.closest('#delete-customer-btn');
+            if (deleteBtn) {
                 const dropdown = document.getElementById('existing-customer');
                 const selectedCustomerId = dropdown.value;
                 
@@ -249,12 +250,11 @@ class CustomerManager {
                 
                 // Confirm deletion
                 if (confirm(`Are you sure you want to delete "${customer.name}"?\n\nThis action cannot be undone.`)) {
-                    const button = e.target.closest('#delete-customer-btn');
-                    const originalText = button.innerHTML;
+                    const originalText = deleteBtn.innerHTML;
                     
                     // Disable button and show loading state
-                    button.disabled = true;
-                    button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+                    deleteBtn.disabled = true;
+                    deleteBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
                     
                     const success = await this.deleteCustomer(selectedCustomerId);
                     
@@ -264,8 +264,8 @@ class CustomerManager {
                     }
                     
                     // Re-enable button
-                    button.disabled = false;
-                    button.innerHTML = originalText;
+                    deleteBtn.disabled = false;
+                    deleteBtn.innerHTML = originalText;
                 }
             }
         });
