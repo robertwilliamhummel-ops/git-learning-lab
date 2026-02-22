@@ -362,12 +362,20 @@ class CustomerManager {
 let customerManagerInstance = null;
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Wait a bit for Firebase auth to initialize
-    setTimeout(() => {
-        customerManagerInstance = new CustomerManager();
-        window.customerManager = customerManagerInstance;
-        console.log('✅ Customer Manager initialized with Firestore');
-    }, 1000);
+    // Import auth from firebase-config to wait for authentication
+    import('./firebase-config.js').then(({ auth }) => {
+        // Wait for auth state to be determined
+        auth.onAuthStateChanged((user) => {
+            if (user && !customerManagerInstance) {
+                // User is logged in, initialize customer manager
+                customerManagerInstance = new CustomerManager();
+                window.customerManager = customerManagerInstance;
+                console.log('✅ Customer Manager initialized with Firestore for user:', user.email);
+            } else if (!user) {
+                console.log('⚠️ User not logged in - Customer Manager not initialized');
+            }
+        });
+    });
 });
 
 export default CustomerManager;
