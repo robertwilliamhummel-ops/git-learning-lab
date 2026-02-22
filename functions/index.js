@@ -19,11 +19,6 @@ exports.createCheckoutSession = onCall(
       // Initialize Stripe with secret
       const stripe = require("stripe")(stripeSecretKey.value());
 
-      // Verify user is authenticated
-      if (!request.auth) {
-        throw new Error("User must be authenticated to create payment session");
-      }
-
       try {
         const {amount, invoiceNumber, customerEmail} = request.data;
 
