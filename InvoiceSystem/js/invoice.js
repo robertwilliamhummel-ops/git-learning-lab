@@ -388,17 +388,18 @@ class InvoiceGenerator {
             // Send email via Firebase Function (use original invoiceData, not saveResult)
             await this.sendInvoiceEmail(invoiceData);
             
-            // Increment counter
+            // Increment counter and generate next invoice number
             this.incrementInvoiceCounter();
+            this.generateInvoiceNumber();
             
             // Show success
             this.showNotification(
-                `Invoice ${invoiceData.number} sent successfully!`,
+                `Invoice ${invoiceData.number} sent successfully! Next invoice number ready.`,
                 'success'
             );
             
-            // Clear form for next invoice
-            this.clearForm();
+            // Note: Form is NOT cleared automatically so you can review what was sent
+            // User can manually click "Clear Form" button when ready for next invoice
             
         } catch (error) {
             console.error('Error sending invoice:', error);
