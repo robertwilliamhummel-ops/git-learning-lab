@@ -242,8 +242,12 @@
     </main>
 
     <!-- Scripts -->
-    <script type="module" src="js/firebase-config.js"></script>
-    <script type="module" src="js/firestore-manager.js"></script>
+    <script type="module">
+        // Import and make firestoreManager globally available
+        import firestoreManager from './js/firestore-manager.js';
+        window.firestoreManager = firestoreManager;
+        console.log('✅ Firestore Manager loaded:', window.firestoreManager);
+    </script>
     <script type="module" src="js/customer.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/invoice.js"></script>
