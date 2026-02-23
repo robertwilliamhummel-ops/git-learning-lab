@@ -427,8 +427,8 @@ class InvoiceGenerator {
         // Format items for email
         const items = [];
         
-        // Add hourly services
-        if (invoiceData.services.hourly && Array.isArray(invoiceData.services.hourly)) {
+        // Add hourly services (with safety checks)
+        if (invoiceData.services && invoiceData.services.hourly && Array.isArray(invoiceData.services.hourly)) {
             invoiceData.services.hourly.forEach(service => {
                 items.push({
                     description: service.description,
@@ -439,20 +439,22 @@ class InvoiceGenerator {
             });
         }
         
-        // Add line items
-        invoiceData.services.lineItems.forEach(item => {
-            items.push({
-                description: item.description,
-                quantity: item.quantity,
-                rate: item.price,
-                amount: item.total
+        // Add line items (with safety checks)
+        if (invoiceData.services && invoiceData.services.lineItems && Array.isArray(invoiceData.services.lineItems)) {
+            invoiceData.services.lineItems.forEach(item => {
+                items.push({
+                    description: item.description,
+                    quantity: item.quantity,
+                    rate: item.price,
+                    amount: item.total
+                });
             });
-        });
+        }
         
         const result = await sendEmail({
             customerEmail: invoiceData.customer.email,
             customerName: invoiceData.customer.name,
-            invoiceNumber: invoiceData.invoiceNumber,
+            invoiceNumber: invoiceData.invoiceNumber || invoiceData.number,
             invoiceDate: this.formatDate(invoiceData.date),
             items: items,
             subtotal: invoiceData.totals.subtotal.toFixed(2),
