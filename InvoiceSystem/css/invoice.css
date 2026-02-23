@@ -584,6 +584,31 @@ textarea.form-control {
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
 }
 
+.btn-success {
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 15px rgba(40, 167, 69, 0.4);
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838 0%, #1aa179 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(40, 167, 69, 0.5);
+}
+
+.btn-success:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.btn-success:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
 .btn-outline {
     background: transparent;
     color: var(--text-secondary);

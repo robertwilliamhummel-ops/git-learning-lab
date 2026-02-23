@@ -186,7 +186,8 @@ exports.stripeWebhook = onRequest(
 /**
  * Send Invoice Email
  * Called from frontend when user clicks "Send Invoice"
- * Sends professional email from invoices@techflowsolutions.ca with invoice details
+ * Sends professional email from invoices@techflowsolutions.ca
+ * with invoice details
  */
 exports.sendInvoiceEmail = onCall(
     {secrets: [zohoEmailPassword]},
@@ -205,7 +206,9 @@ exports.sendInvoiceEmail = onCall(
 
         // Validate input
         if (!customerEmail || !invoiceNumber) {
-          throw new Error("Customer email and invoice number are required");
+          throw new Error(
+              "Customer email and invoice number are required",
+          );
         }
 
         // Create email transporter using Zoho Mail
@@ -227,10 +230,12 @@ exports.sendInvoiceEmail = onCall(
               <td style="padding: 10px; border-bottom: 1px solid #eee;">
                 ${item.description}
               </td>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">
+              <td style="padding: 10px; border-bottom: 1px solid #eee;
+                text-align: right;">
                 ${item.quantity} × $${item.rate}
               </td>
-              <td style="padding: 10px; border-bottom: 1px solid #eee; text-align: right;">
+              <td style="padding: 10px; border-bottom: 1px solid #eee;
+                text-align: right;">
                 $${item.amount}
               </td>
             </tr>
@@ -245,17 +250,24 @@ exports.sendInvoiceEmail = onCall(
   <meta charset="utf-8">
   <title>Invoice ${invoiceNumber}</title>
 </head>
-<body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+<body style="font-family: Arial, sans-serif; line-height: 1.6;
+  color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   
   <!-- Header -->
-  <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #667eea;">
-    <h1 style="color: #667eea; margin: 0; font-size: 28px;">TechFlow Solutions</h1>
+  <div style="text-align: center; margin-bottom: 30px;
+    padding-bottom: 20px; border-bottom: 3px solid #667eea;">
+    <h1 style="color: #667eea; margin: 0; font-size: 28px;">
+      TechFlow Solutions
+    </h1>
     <p style="color: #666; margin: 5px 0;">Website Design & IT Services</p>
   </div>
 
   <!-- Invoice Info -->
-  <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 30px;">
-    <h2 style="color: #333; margin: 0 0 15px 0; font-size: 24px;">Invoice ${invoiceNumber}</h2>
+  <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;
+    margin-bottom: 30px;">
+    <h2 style="color: #333; margin: 0 0 15px 0; font-size: 24px;">
+      Invoice ${invoiceNumber}
+    </h2>
     <p style="margin: 5px 0;"><strong>Date:</strong> ${invoiceDate}</p>
     <p style="margin: 5px 0;"><strong>Bill To:</strong> ${customerName}</p>
   </div>
@@ -276,13 +288,20 @@ exports.sendInvoiceEmail = onCall(
 
   <!-- Totals -->
   <div style="text-align: right; margin-bottom: 30px;">
-    <p style="margin: 10px 0; font-size: 16px;"><strong>Subtotal:</strong> $${subtotal}</p>
-    <p style="margin: 10px 0; font-size: 16px;"><strong>HST (13%):</strong> $${tax}</p>
-    <p style="margin: 10px 0; font-size: 20px; color: #667eea;"><strong>Total:</strong> $${total}</p>
+    <p style="margin: 10px 0; font-size: 16px;">
+      <strong>Subtotal:</strong> $${subtotal}
+    </p>
+    <p style="margin: 10px 0; font-size: 16px;">
+      <strong>HST (13%):</strong> $${tax}
+    </p>
+    <p style="margin: 10px 0; font-size: 20px; color: #667eea;">
+      <strong>Total:</strong> $${total}
+    </p>
   </div>
 
   <!-- Payment Info -->
-  <div style="background: #fff3cd; padding: 20px; border-radius: 8px; border-left: 4px solid #ffc107; margin-bottom: 30px;">
+  <div style="background: #fff3cd; padding: 20px; border-radius: 8px;
+    border-left: 4px solid #ffc107; margin-bottom: 30px;">
     <h3 style="margin: 0 0 10px 0; color: #856404;">Payment Information</h3>
     <p style="margin: 5px 0;">This invoice can be paid via:</p>
     <ul style="margin: 10px 0; padding-left: 20px;">
@@ -293,10 +312,13 @@ exports.sendInvoiceEmail = onCall(
   </div>
 
   <!-- Footer -->
-  <div style="text-align: center; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 14px;">
+  <div style="text-align: center; padding-top: 20px;
+    border-top: 1px solid #ddd; color: #666; font-size: 14px;">
     <p style="margin: 5px 0;"><strong>TechFlow Solutions</strong></p>
     <p style="margin: 5px 0;">Greater Toronto Area</p>
-    <p style="margin: 5px 0;">📞 (647) 572-8321 | 📧 invoices@techflowsolutions.ca</p>
+    <p style="margin: 5px 0;">
+      📞 (647) 572-8321 | 📧 invoices@techflowsolutions.ca
+    </p>
     <p style="margin: 15px 0 5px 0;">Thank you for your business!</p>
   </div>
 

@@ -29,6 +29,13 @@ class InvoiceGenerator {
             }
         });
 
+        // Send invoice button
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'send-invoice-btn') {
+                this.sendInvoice();
+            }
+        });
+
         // Clear form button
         document.addEventListener('click', (e) => {
             if (e.target.id === 'clear-form-btn') {
@@ -341,6 +348,119 @@ class InvoiceGenerator {
         
         // Generate new invoice number for next invoice
         this.generateInvoiceNumber();
+    }
+
+    /**
+     * Send invoice via email and save to Firestore
+     */
+    async sendInvoice() {
+        // Validate invoice first
+        const errors = this.validateInvoice();
+        if (errors.length > 0) {
+            this.showValidationErrors(errors);
+            return;
+        }
+
+        // Check if customer has email
+        const customer = this.getCustomerData();
+        if (!customer.email) {
+            alert('Customer email is required to send invoice');
+            return;
+        }
+
+        try {
+            // Show loading state
+            const btn = document.getElementById('send-invoice-btn');
+            const originalHTML = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+
+            // Get invoice data
+            const invoiceData = this.getInvoiceData();
+            
+            // Save to Firestore
+            const savedInvoice = await window.firestoreManager.saveInvoice(invoiceData);
+            
+            // Send email via Firebase Function
+            await this.sendInvoiceEmail(savedInvoice);
+            
+            // Increment counter
+            this.incrementInvoiceCounter();
+            
+            // Show success
+            this.showNotification(
+                `Invoice ${savedInvoice.invoiceNumber} sent successfully!`,
+                'success'
+            );
+            
+            // Clear form for next invoice
+            this.clearForm();
+            
+        } catch (error) {
+            console.error('Error sending invoice:', error);
+            this.showNotification(
+                `Error sending invoice: ${error.message}`,
+                'error'
+            );
+        } finally {
+            // Restore button
+            const btn = document.getElementById('send-invoice-btn');
+            if (btn) {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-envelope"></i> Send Invoice';
+            }
+        }
+    }
+
+    /**
+     * Send invoice email via Firebase Function
+     */
+    async sendInvoiceEmail(invoiceData) {
+        const { getFunctions, httpsCallable } = await import(
+            'https://www.gstatic.com/firebasejs/10.8.0/firebase-functions.js'
+        );
+        const functions = getFunctions();
+        
+        // Call the email function
+        const sendEmail = httpsCallable(functions, 'sendInvoiceEmail');
+        
+        // Format items for email
+        const items = [];
+        
+        // Add hourly services
+        if (invoiceData.services.hourly && Array.isArray(invoiceData.services.hourly)) {
+            invoiceData.services.hourly.forEach(service => {
+                items.push({
+                    description: service.description,
+                    quantity: service.hours,
+                    rate: service.rate,
+                    amount: service.total
+                });
+            });
+        }
+        
+        // Add line items
+        invoiceData.services.lineItems.forEach(item => {
+            items.push({
+                description: item.description,
+                quantity: item.quantity,
+                rate: item.price,
+                amount: item.total
+            });
+        });
+        
+        const result = await sendEmail({
+            customerEmail: invoiceData.customer.email,
+            customerName: invoiceData.customer.name,
+            invoiceNumber: invoiceData.invoiceNumber,
+            invoiceDate: this.formatDate(invoiceData.date),
+            items: items,
+            subtotal: invoiceData.totals.subtotal.toFixed(2),
+            tax: invoiceData.totals.taxAmount.toFixed(2),
+            total: invoiceData.totals.finalTotal.toFixed(2)
+        });
+        
+        return result.data;
     }
 
     /**
