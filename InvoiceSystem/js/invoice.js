@@ -420,6 +420,9 @@ class InvoiceGenerator {
      * Send invoice email via Firebase Function
      */
     async sendInvoiceEmail(invoiceData) {
+        console.log('📧 sendInvoiceEmail called with:', invoiceData);
+        console.log('📧 Customer data:', invoiceData.customer);
+        
         const { getFunctions, httpsCallable } = await import(
             'https://www.gstatic.com/firebasejs/10.8.0/firebase-functions.js'
         );
