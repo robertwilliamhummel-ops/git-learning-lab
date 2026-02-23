@@ -466,7 +466,9 @@ class InvoiceGenerator {
             items: items,
             subtotal: invoiceData.totals.subtotal.toFixed(2),
             tax: invoiceData.totals.taxAmount.toFixed(2),
-            total: invoiceData.totals.finalTotal.toFixed(2)
+            total: invoiceData.totals.finalTotal.toFixed(2),
+            // Add amount for Stripe payment link generation
+            amount: invoiceData.totals.finalTotal
         });
         
         return result.data;

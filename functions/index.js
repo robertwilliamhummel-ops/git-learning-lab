@@ -190,7 +190,7 @@ exports.stripeWebhook = onRequest(
  * with invoice details
  */
 exports.sendInvoiceEmail = onCall(
-    {secrets: [zohoEmailPassword]},
+    {secrets: [zohoEmailPassword, stripeSecretKey]},
     async (request) => {
       try {
         const {
@@ -202,6 +202,7 @@ exports.sendInvoiceEmail = onCall(
           subtotal,
           tax,
           total,
+          amount,
         } = request.data;
 
         // Validate input
@@ -211,13 +212,52 @@ exports.sendInvoiceEmail = onCall(
           );
         }
 
-        // Create email transporter using Zoho Mail
+        // Initialize Stripe and create payment link
+        const stripe = require("stripe")(stripeSecretKey.value());
+        let stripePaymentUrl = "";
+        
+        try {
+          const amountInCents = Math.round(amount * 100);
+          const session = await stripe.checkout.sessions.create({
+            payment_method_types: ["card"],
+            line_items: [
+              {
+                price_data: {
+                  currency: "cad",
+                  product_data: {
+                    name: `Invoice ${invoiceNumber}`,
+                    description: "TechFlow Solutions - Website Design & IT Services",
+                  },
+                  unit_amount: amountInCents,
+                },
+                quantity: 1,
+              },
+            ],
+            mode: "payment",
+            success_url: "https://techflowsolutions.ca/InvoiceSystem/?payment=success",
+            cancel_url: "https://techflowsolutions.ca/InvoiceSystem/?payment=cancelled",
+            customer_email: customerEmail,
+            metadata: {
+              invoiceNumber: invoiceNumber,
+              userId: request.auth.uid,
+            },
+          });
+          
+          stripePaymentUrl = session.url;
+          console.log("✅ Stripe payment link created:", stripePaymentUrl);
+        } catch (stripeError) {
+          console.error("⚠️ Stripe link creation failed:", stripeError);
+          // Continue with email even if Stripe fails
+        }
+
+        // Create email transporter using Zoho Mail (Canadian servers)
+        // Must authenticate with PRIMARY account (info@) to use alias
         const transporter = nodemailer.createTransport({
-          host: "smtp.zoho.com",
+          host: "smtp.zohocloud.ca",
           port: 465,
           secure: true,
           auth: {
-            user: "invoices@techflowsolutions.ca",
+            user: "info@techflowsolutions.ca",
             pass: zohoEmailPassword.value(),
           },
         });
@@ -305,10 +345,22 @@ exports.sendInvoiceEmail = onCall(
     <h3 style="margin: 0 0 10px 0; color: #856404;">Payment Information</h3>
     <p style="margin: 5px 0;">This invoice can be paid via:</p>
     <ul style="margin: 10px 0; padding-left: 20px;">
-      <li>Credit Card (Stripe payment link in invoice)</li>
-      <li>E-Transfer to: invoices@techflowsolutions.ca</li>
-      <li>Cash or Cheque (in person)</li>
+      ${stripePaymentUrl ? `
+      <li><strong>💳 Credit Card:</strong>
+        <a href="${stripePaymentUrl}"
+           style="display: inline-block; margin-top: 8px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                  color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-weight: bold;">
+          Pay $${total} with Card →
+        </a>
+        <br><span style="font-size: 12px; color: #666;">Secure payment powered by Stripe</span>
+      </li>
+      ` : '<li>Credit Card (payment link unavailable)</li>'}
+      <li><strong>📧 E-Transfer:</strong> info@techflowsolutions.ca</li>
+      <li><strong>💵 Cash or Cheque:</strong> (in person)</li>
     </ul>
+    <p style="margin: 10px 0 0 0; font-size: 13px; color: #856404;">
+      <strong>Payment due within 15 days</strong>
+    </p>
   </div>
 
   <!-- Footer -->
