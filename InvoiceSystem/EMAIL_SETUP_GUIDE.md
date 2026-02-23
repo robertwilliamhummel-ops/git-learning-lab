@@ -5,7 +5,7 @@
 This guide shows how to add professional email functionality to your invoice system using Firebase Cloud Functions + Nodemailer with your existing Zoho Mail.
 
 **Benefits:**
-- ✅ Sends from your real email: rob@techflowsolutions.ca
+- ✅ Sends from professional email: invoices@techflowsolutions.ca
 - ✅ Secure (password stored in Firebase secrets)
 - ✅ Professional HTML emails
 - ✅ FREE (uses your existing Zoho Mail)
@@ -30,7 +30,7 @@ npm install nodemailer
 firebase functions:secrets:set ZOHO_EMAIL_PASSWORD
 ```
 
-When prompted, enter your Zoho Mail password for rob@techflowsolutions.ca
+When prompted, enter your Zoho Mail password for invoices@techflowsolutions.ca
 
 **Note:** This stores it securely in Firebase, not in your code!
 
@@ -56,7 +56,7 @@ const zohoEmailPassword = defineSecret("ZOHO_EMAIL_PASSWORD");
 /**
  * Send Invoice Email
  * Called from frontend when user clicks "Send Invoice"
- * Sends professional email from rob@techflowsolutions.ca with invoice details
+ * Sends professional email from invoices@techflowsolutions.ca with invoice details
  */
 exports.sendInvoiceEmail = onCall(
     {secrets: [zohoEmailPassword]},
@@ -84,7 +84,7 @@ exports.sendInvoiceEmail = onCall(
           port: 465,
           secure: true,
           auth: {
-            user: "rob@techflowsolutions.ca",
+            user: "invoices@techflowsolutions.ca",
             pass: zohoEmailPassword.value(),
           },
         });
@@ -157,7 +157,7 @@ exports.sendInvoiceEmail = onCall(
     <p style="margin: 5px 0;">This invoice can be paid via:</p>
     <ul style="margin: 10px 0; padding-left: 20px;">
       <li>Credit Card (Stripe payment link in invoice)</li>
-      <li>E-Transfer to: rob@techflowsolutions.ca</li>
+      <li>E-Transfer to: invoices@techflowsolutions.ca</li>
       <li>Cash or Cheque (in person)</li>
     </ul>
   </div>
@@ -166,7 +166,7 @@ exports.sendInvoiceEmail = onCall(
   <div style="text-align: center; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 14px;">
     <p style="margin: 5px 0;"><strong>TechFlow Solutions</strong></p>
     <p style="margin: 5px 0;">Greater Toronto Area</p>
-    <p style="margin: 5px 0;">📞 (647) 572-8321 | 📧 rob@techflowsolutions.ca</p>
+    <p style="margin: 5px 0;">📞 (647) 572-8321 | 📧 invoices@techflowsolutions.ca</p>
     <p style="margin: 15px 0 5px 0;">Thank you for your business!</p>
   </div>
 
@@ -176,7 +176,7 @@ exports.sendInvoiceEmail = onCall(
 
         // Send email
         const info = await transporter.sendMail({
-          from: "TechFlow Solutions <rob@techflowsolutions.ca>",
+          from: "TechFlow Solutions Invoices <invoices@techflowsolutions.ca>",
           to: customerEmail,
           subject: `Invoice ${invoiceNumber} from TechFlow Solutions`,
           html: emailHTML,
@@ -299,7 +299,7 @@ document.getElementById('send-invoice-btn').addEventListener('click', async () =
 
 ### "Authentication failed"
 - Check Zoho password in Firebase secrets
-- Make sure you're using correct email: rob@techflowsolutions.ca
+- Make sure you're using correct email: invoices@techflowsolutions.ca
 
 ### "Email not received"
 - Check spam folder
@@ -345,7 +345,7 @@ document.getElementById('send-invoice-btn').addEventListener('click', async () =
 | Feature | EmailJS | Firebase + Nodemailer |
 |---------|---------|----------------------|
 | **Security** | ❌ API keys in browser | ✅ Server-side, hidden |
-| **Sender** | ❌ emailjs.com | ✅ rob@techflowsolutions.ca |
+| **Sender** | ❌ emailjs.com | ✅ invoices@techflowsolutions.ca |
 | **Monthly Limit** | ❌ 200 emails | ✅ Unlimited |
 | **PDF Attachments** | ❌ No | ✅ Yes |
 | **Spam Risk** | ⚠️ Medium | ✅ Low |
