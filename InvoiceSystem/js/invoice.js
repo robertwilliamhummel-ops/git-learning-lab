@@ -298,7 +298,7 @@ class InvoiceGenerator {
                     <div style="background: white; padding: 12px; border-radius: 6px; border: 1px solid #28a745;">
                         <div style="color: #28a745; font-weight: bold; font-size: 14px; margin-bottom: 8px;">📧 E-Transfer</div>
                         <p style="margin: 4px 0; font-size: 13px; line-height: 1.3;">
-                            <strong>To:</strong> info@techflowsolutions.ca<br>
+                            <strong>To:</strong> invoices@techflowsolutions.ca<br>
                             <strong>Amount:</strong> <span style="color: #28a745; font-weight: bold;">${this.formatCurrency(totals.finalTotal)}</span>
                         </p>
                         <p style="font-size: 10px; color: #666; margin: 6px 0 0 0;">No fees • Auto-deposit enabled</p>

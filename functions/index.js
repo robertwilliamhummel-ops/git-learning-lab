@@ -340,9 +340,9 @@ exports.sendInvoiceEmail = onCall(
   </div>
 
   <!-- Payment Info -->
-  <div style="background: #fff3cd; padding: 20px; border-radius: 8px;
-    border-left: 4px solid #ffc107; margin-bottom: 30px;">
-    <h3 style="margin: 0 0 10px 0; color: #856404;">Payment Information</h3>
+  <div style="background: #f8f9fa; padding: 20px; border-radius: 8px;
+    border-left: 4px solid #667eea; margin-bottom: 30px;">
+    <h3 style="margin: 0 0 10px 0; color: #333;">Payment Information</h3>
     <p style="margin: 5px 0;">This invoice can be paid via:</p>
     <ul style="margin: 10px 0; padding-left: 20px;">
       ${stripePaymentUrl ? `
@@ -355,10 +355,10 @@ exports.sendInvoiceEmail = onCall(
         <br><span style="font-size: 12px; color: #666;">Secure payment powered by Stripe</span>
       </li>
       ` : '<li>Credit Card (payment link unavailable)</li>'}
-      <li><strong>📧 E-Transfer:</strong> info@techflowsolutions.ca</li>
+      <li><strong>📧 E-Transfer:</strong> invoices@techflowsolutions.ca</li>
       <li><strong>💵 Cash or Cheque:</strong> (in person)</li>
     </ul>
-    <p style="margin: 10px 0 0 0; font-size: 13px; color: #856404;">
+    <p style="margin: 10px 0 0 0; font-size: 13px; color: #666;">
       <strong>Payment due within 15 days</strong>
     </p>
   </div>
