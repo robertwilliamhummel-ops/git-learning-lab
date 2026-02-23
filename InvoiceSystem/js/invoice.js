@@ -379,17 +379,21 @@ class InvoiceGenerator {
             const invoiceData = this.getInvoiceData();
             
             // Save to Firestore
-            const savedInvoice = await window.firestoreManager.saveInvoice(invoiceData);
+            const saveResult = await window.firestoreManager.saveInvoice(invoiceData);
             
-            // Send email via Firebase Function
-            await this.sendInvoiceEmail(savedInvoice);
+            if (!saveResult.success) {
+                throw new Error('Failed to save invoice to database');
+            }
+            
+            // Send email via Firebase Function (use original invoiceData, not saveResult)
+            await this.sendInvoiceEmail(invoiceData);
             
             // Increment counter
             this.incrementInvoiceCounter();
             
             // Show success
             this.showNotification(
-                `Invoice ${savedInvoice.invoiceNumber} sent successfully!`,
+                `Invoice ${invoiceData.number} sent successfully!`,
                 'success'
             );
             
