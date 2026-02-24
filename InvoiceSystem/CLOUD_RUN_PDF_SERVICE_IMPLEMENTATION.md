@@ -158,6 +158,7 @@ app.post("/pdf", async (req, res) => {
     // Launch Puppeteer
     const browser = await puppeteer.launch({
       headless: "new",
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
       args: [
         "--no-sandbox",
         "--disable-setuid-sandbox",
@@ -218,8 +219,50 @@ app.listen(PORT, () => {
 Create `pdf-service/Dockerfile`:
 
 ```dockerfile
-# Use official Puppeteer image (includes Chrome)
-FROM ghcr.io/puppeteer/puppeteer:latest
+# Use Node.js 20 base image
+FROM node:20-slim
+
+# Install necessary packages for Puppeteer
+RUN apt-get update && apt-get install -y \
+    wget \
+    gnupg \
+    ca-certificates \
+    fonts-liberation \
+    libasound2 \
+    libatk-bridge2.0-0 \
+    libatk1.0-0 \
+    libc6 \
+    libcairo2 \
+    libcups2 \
+    libdbus-1-3 \
+    libexpat1 \
+    libfontconfig1 \
+    libgbm1 \
+    libgcc1 \
+    libglib2.0-0 \
+    libgtk-3-0 \
+    libnspr4 \
+    libnss3 \
+    libpango-1.0-0 \
+    libpangocairo-1.0-0 \
+    libstdc++6 \
+    libx11-6 \
+    libx11-xcb1 \
+    libxcb1 \
+    libxcomposite1 \
+    libxcursor1 \
+    libxdamage1 \
+    libxext6 \
+    libxfixes3 \
+    libxi6 \
+    libxrandr2 \
+    libxrender1 \
+    libxss1 \
+    libxtst6 \
+    lsb-release \
+    xdg-utils \
+    --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 # Set working directory
 WORKDIR /app
@@ -228,7 +271,13 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install dependencies
+# Skip Chromium download, Puppeteer will use system Chrome
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN npm install --production
+
+# Install Chromium
+RUN apt-get update && apt-get install -y chromium \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy application code
 COPY . .
@@ -236,12 +285,15 @@ COPY . .
 # Expose port
 EXPOSE 8080
 
-# Set environment variable
+# Set environment variables
 ENV PORT=8080
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 
 # Start the service
 CMD ["node", "index.js"]
 ```
+
+**Note:** This Dockerfile uses Node.js base image instead of the Puppeteer image to avoid permission issues during build.
 
 ---
 
@@ -264,6 +316,12 @@ README.md
 
 From the `pdf-service` directory, run:
 
+**For Windows PowerShell (single line - recommended):**
+```powershell
+gcloud run deploy pdf-service --source . --platform managed --region us-central1 --allow-unauthenticated --memory 1Gi --cpu 1 --timeout 60 --max-instances 10
+```
+
+**For Linux/Mac (multi-line):**
 ```bash
 gcloud run deploy pdf-service \
   --source . \
@@ -275,6 +333,8 @@ gcloud run deploy pdf-service \
   --timeout 60 \
   --max-instances 10
 ```
+
+**Note:** Windows CMD doesn't support `\` for line continuation. Use the single-line PowerShell command above, or use the [`deploy.ps1`](../pdf-service/deploy.ps1) script.
 
 **What this does:**
 - Builds Docker image from Dockerfile
