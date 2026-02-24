@@ -12,6 +12,40 @@ const zohoEmailPassword = defineSecret("ZOHO_EMAIL_PASSWORD");
 admin.initializeApp();
 
 /**
+ * Generate PDF using Cloud Run service
+ */
+async function generatePDFViaCloudRun(invoiceHTML, invoiceNumber) {
+  const CLOUD_RUN_URL = "https://pdf-service-904705508663.us-central1.run.app/pdf";
+  
+  try {
+    console.log("📄 Calling Cloud Run PDF service...");
+    
+    const response = await fetch(CLOUD_RUN_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        html: invoiceHTML,
+        filename: `Invoice-${invoiceNumber}.pdf`,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Cloud Run returned ${response.status}`);
+    }
+
+    const pdfBuffer = Buffer.from(await response.arrayBuffer());
+    console.log("✅ PDF received from Cloud Run");
+    
+    return pdfBuffer;
+  } catch (error) {
+    console.error("❌ Cloud Run PDF generation failed:", error);
+    throw error;
+  }
+}
+
+/**
  * Create Stripe Checkout Session
  * Called from frontend when customer clicks "Pay" button
  */
@@ -378,19 +412,51 @@ exports.sendInvoiceEmail = onCall(
 </html>
         `;
 
-        // Send email
-        const info = await transporter.sendMail({
+        // Create PDF-optimized HTML (same content, optimized for printing)
+        const pdfHTML = emailHTML;
+
+        // Try to generate PDF using Cloud Run
+        let pdfBuffer = null;
+        try {
+          console.log("📄 Attempting to generate PDF via Cloud Run...");
+          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber);
+          console.log("✅ PDF generated successfully");
+        } catch (pdfError) {
+          console.error("⚠️ PDF generation failed, will send email without PDF:", pdfError);
+          // Continue with email even if PDF fails
+        }
+
+        // Send email with or without PDF attachment
+        const mailOptions = {
           from: "TechFlow Solutions Invoices <invoices@techflowsolutions.ca>",
           to: customerEmail,
           subject: `Invoice ${invoiceNumber} from TechFlow Solutions`,
           html: emailHTML,
-        });
+        };
 
-        console.log(`Invoice email sent: ${info.messageId}`);
+        // Add PDF attachment if generation succeeded
+        if (pdfBuffer) {
+          mailOptions.attachments = [
+            {
+              filename: `Invoice-${invoiceNumber}.pdf`,
+              content: pdfBuffer,
+              contentType: "application/pdf",
+            },
+          ];
+        }
+
+        const info = await transporter.sendMail(mailOptions);
+
+        if (pdfBuffer) {
+          console.log(`✅ Invoice email sent with PDF attachment: ${info.messageId}`);
+        } else {
+          console.log(`✅ Invoice email sent (without PDF): ${info.messageId}`);
+        }
 
         return {
           success: true,
           messageId: info.messageId,
+          pdfAttached: !!pdfBuffer,
         };
       } catch (error) {
         console.error("Error sending invoice email:", error);
