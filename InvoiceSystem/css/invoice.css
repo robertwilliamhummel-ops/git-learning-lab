@@ -648,15 +648,6 @@ textarea.form-control {
     margin: 0 auto;
 }
 
-@media print {
-    .invoice-document {
-        padding: 0 !important;
-        box-shadow: none !important;
-        border-radius: 0 !important;
-        max-width: 100% !important;
-    }
-}
-
 /* Print Styles */
 @media print {
     /* Hide browser print headers/footers */

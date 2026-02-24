@@ -218,6 +218,126 @@ exports.stripeWebhook = onRequest(
 );
 
 /**
+ * Generate PDF HTML (matches preview layout exactly)
+ * This creates a standalone HTML document with inline styles for PDF generation
+ */
+function generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtotal, tax, total) {
+  // Format items for table
+  let itemsHTML = "";
+  if (items && items.length > 0) {
+    itemsHTML = items.map((item) => `
+      <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">${item.description}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">${item.quantity}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">$${item.rate}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; text-align: right;">$${item.amount}</td>
+      </tr>
+    `).join("");
+  }
+
+  return `
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Invoice ${invoiceNumber}</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      color: #2d3748;
+      margin: 0;
+      padding: 20px;
+    }
+    .invoice-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: white;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="invoice-container">
+    <!-- Header -->
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #667eea;">
+      <div>
+        <div style="font-size: 24px; font-weight: bold; color: #667eea; margin-bottom: 5px;">TechFlow Solutions</div>
+        <div style="font-size: 14px; color: #718096;">Website Design & IT Services</div>
+        <div style="font-size: 14px; color: #718096;">Greater Toronto Area</div>
+        <div style="font-size: 14px; color: #718096;">Phone: (647) 572-8341</div>
+        <div style="font-size: 14px; color: #718096;">Email: info@techflowsolutions.ca</div>
+      </div>
+      <div style="text-align: right;">
+        <img src="https://techflowsolutions.ca/assets/images/TechFlow%20Solutions%20Logo-%20Cropped.png" alt="TechFlow Solutions" style="max-width: 150px; height: auto;">
+      </div>
+    </div>
+
+    <!-- Invoice Details -->
+    <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
+      <div style="flex: 1;">
+        <h3 style="color: #2d3748; margin: 0 0 10px 0; font-size: 16px;">Bill To:</h3>
+        <strong>${customerName}</strong>
+      </div>
+      <div style="flex: 1; text-align: right;">
+        <h3 style="color: #2d3748; margin: 0 0 10px 0; font-size: 16px;">Invoice Details:</h3>
+        <strong>Invoice #:</strong> ${invoiceNumber}<br>
+        <strong>Date:</strong> ${invoiceDate}
+      </div>
+    </div>
+
+    <!-- Services Table -->
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 30px;">
+      <thead>
+        <tr style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+          <th style="padding: 12px; text-align: left; font-weight: 600;">Description</th>
+          <th style="padding: 12px; text-align: right; font-weight: 600;">Qty/Hours</th>
+          <th style="padding: 12px; text-align: right; font-weight: 600;">Rate/Price</th>
+          <th style="padding: 12px; text-align: right; font-weight: 600;">Amount</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${itemsHTML}
+      </tbody>
+    </table>
+
+    <!-- Totals Table -->
+    <table style="width: 100%; max-width: 300px; margin-left: auto; margin-bottom: 30px;">
+      <tr>
+        <td style="padding: 8px 0; text-align: right;">Subtotal:</td>
+        <td style="padding: 8px 0; text-align: right; padding-left: 20px;">$${subtotal}</td>
+      </tr>
+      <tr>
+        <td style="padding: 8px 0; text-align: right;">HST (13%):</td>
+        <td style="padding: 8px 0; text-align: right; padding-left: 20px;">$${tax}</td>
+      </tr>
+      <tr style="border-top: 2px solid #667eea;">
+        <td style="padding: 12px 0; text-align: right; font-weight: bold; font-size: 18px;">Total:</td>
+        <td style="padding: 12px 0; text-align: right; padding-left: 20px; font-weight: bold; font-size: 18px; color: #667eea;">$${total}</td>
+      </tr>
+    </table>
+
+    <!-- Payment Information (Compact - matches preview) -->
+    <div style="margin: 20px 0; padding: 12px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #667eea;">
+      <h3 style="color: #667eea; margin: 0 0 10px 0; font-size: 16px;">Payment Information</h3>
+      
+      <p style="margin: 8px 0; font-size: 13px; line-height: 1.5;">
+        <strong>E-Transfer (Preferred):</strong> invoices@techflowsolutions.ca<br>
+        <strong>Credit Card:</strong> Secure payment link available upon request<br>
+        <strong>Cash/Cheque:</strong> Accepted in person
+      </p>
+      
+      <p style="margin: 10px 0 0 0; font-size: 12px; color: #6c757d; border-top: 1px solid #dee2e6; padding-top: 8px;">
+        <strong>Payment due within 15 days</strong> • Questions? (647) 572-8341
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+  `;
+}
+
+/**
  * Send Invoice Email
  * Called from frontend when user clicks "Send Invoice"
  * Sends professional email from invoices@techflowsolutions.ca
@@ -412,8 +532,8 @@ exports.sendInvoiceEmail = onCall(
 </html>
         `;
 
-        // Create PDF-optimized HTML (same content, optimized for printing)
-        const pdfHTML = emailHTML;
+        // Create PDF-optimized HTML (matches preview layout exactly)
+        const pdfHTML = generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtotal, tax, total);
 
         // Try to generate PDF using Cloud Run
         let pdfBuffer = null;

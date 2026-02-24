@@ -289,34 +289,19 @@ class InvoiceGenerator {
                 </tr>
             </table>
             
-            <!-- Payment Options Section (Print-Friendly) -->
-            <div class="payment-section" style="margin: 25px 0; padding: 20px; background: #f8f9fa; border-radius: 8px; border: 2px solid #28a745;">
-                <h3 style="color: #28a745; margin: 0 0 15px 0; font-size: 20px; text-align: center;">💰 Payment Information</h3>
+            <!-- Payment Information (Compact) -->
+            <div class="payment-section" style="margin: 20px 0; padding: 12px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #667eea;">
+                <h3 style="color: #667eea; margin: 0 0 10px 0; font-size: 16px;">Payment Information</h3>
                 
-                <!-- E-Transfer (Primary - Preferred) -->
-                <div style="background: white; padding: 15px; border-radius: 6px; border: 2px solid #28a745; margin-bottom: 15px;">
-                    <div style="color: #28a745; font-weight: bold; font-size: 16px; margin-bottom: 10px;">📧 E-Transfer (Preferred - No Fees)</div>
-                    <p style="margin: 6px 0; font-size: 14px; line-height: 1.5;">
-                        <strong>Send to:</strong> <span style="color: #28a745; font-weight: bold;">invoices@techflowsolutions.ca</span><br>
-                        <strong>Amount:</strong> <span style="color: #28a745; font-weight: bold; font-size: 16px;">${this.formatCurrency(totals.finalTotal)}</span><br>
-                        <strong>Auto-deposit:</strong> Enabled (no password required)
-                    </p>
-                </div>
+                <p style="margin: 8px 0; font-size: 13px; line-height: 1.5;">
+                    <strong>E-Transfer (Preferred):</strong> invoices@techflowsolutions.ca<br>
+                    <strong>Credit Card:</strong> Secure payment link available upon request<br>
+                    <strong>Cash/Cheque:</strong> Accepted in person
+                </p>
                 
-                <!-- Other Payment Options -->
-                <div style="background: white; padding: 15px; border-radius: 6px; border: 1px solid #dee2e6;">
-                    <div style="font-weight: bold; font-size: 14px; margin-bottom: 8px; color: #495057;">Other Payment Methods:</div>
-                    <p style="margin: 4px 0; font-size: 13px; line-height: 1.6; color: #6c757d;">
-                        💳 <strong>Credit Card:</strong> Secure Stripe payment link available upon request<br>
-                        💵 <strong>Cash or Cheque:</strong> Accepted in person
-                    </p>
-                </div>
-                
-                <div style="text-align: center; padding-top: 15px; margin-top: 15px; border-top: 2px solid #dee2e6;">
-                    <p style="margin: 5px 0; font-size: 13px; color: #495057;"><strong>Payment due within 15 days</strong></p>
-                    <p style="margin: 5px 0; font-size: 12px; color: #6c757d;">Questions? Call (647) 572-8341 or email info@techflowsolutions.ca</p>
-                    <p style="margin: 8px 0 0 0; font-size: 13px; font-style: italic; color: #667eea;">Thank you for choosing TechFlow Solutions!</p>
-                </div>
+                <p style="margin: 10px 0 0 0; font-size: 12px; color: #6c757d; border-top: 1px solid #dee2e6; padding-top: 8px;">
+                    <strong>Payment due within 15 days</strong> • Questions? (647) 572-8341
+                </p>
             </div>
         `;
     }
