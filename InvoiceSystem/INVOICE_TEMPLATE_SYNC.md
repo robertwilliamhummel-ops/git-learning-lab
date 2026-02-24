@@ -21,6 +21,37 @@ The TechFlow invoice system generates invoices in multiple formats (Preview, PDF
 
 ---
 
+## How PDF Generation Works (Technical Note)
+
+**Question:** How do we convert CSS to PDF?
+**Answer:** We don't!
+
+Puppeteer is a **headless Chrome browser** that renders HTML/CSS exactly like a real browser, then "prints" the rendered page to PDF. There's no CSS-to-PDF conversion happening.
+
+### Why Two Different Approaches?
+
+| Preview | PDF |
+|---------|-----|
+| Uses external CSS file (`invoice.css`) | Uses inline styles |
+| Example: `<div class="payment-section">` | Example: `<div style="margin: 20px 0;">` |
+| CSS classes reference stylesheet | Styles embedded in HTML |
+
+### Why Inline Styles for PDF?
+
+The PDF service receives only HTML (no external CSS files), so we embed styles directly in the HTML. Puppeteer's Chrome engine renders these inline styles perfectly, then captures that rendering as a PDF.
+
+### The Process:
+
+1. **Firebase Function** generates HTML with inline styles
+2. **Cloud Run PDF Service** (Puppeteer) loads that HTML
+3. **Chrome rendering engine** displays it (with all styles working)
+4. **PDF capture** takes a "picture" of that rendered page
+5. **Result:** Perfect PDF that looks identical to browser preview
+
+This is why the PDF looks exactly like the preview - both use the same rendering engine (Chromium), just with different style delivery methods (external CSS vs inline styles).
+
+---
+
 ## ⚠️ IMPORTANT: Making Changes
 
 **ANY change to invoice content MUST be made in BOTH places:**

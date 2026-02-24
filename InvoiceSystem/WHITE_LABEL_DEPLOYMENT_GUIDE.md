@@ -258,16 +258,35 @@ cancel_url: 'https://techflowsolutions.ca/InvoiceSystem/...',
 - [ ] Customize services & pricing in HTML
 - [ ] Optional: Change color scheme in CSS
 
-#### **Phase 3: Testing (5 minutes)**
+#### **Phase 3: Stripe API Setup (5 minutes)** *(If using credit card payments)*
+- [ ] Create Stripe account or use existing
+- [ ] Get API keys (Publishable & Secret)
+- [ ] Add Stripe Secret Key to Firebase Functions secrets
+- [ ] Update Stripe config in `functions/index.js`
+- [ ] Test payment link generation
+
+#### **Phase 4: Cloud Run PDF Service Setup (10 minutes)**
+- [ ] Ensure Docker is installed locally
+- [ ] Build PDF service Docker image: `docker build -t pdf-service ./pdf-service`
+- [ ] Test locally: `docker run -p 8080:8080 pdf-service`
+- [ ] Deploy to Google Cloud Run
+- [ ] Update PDF service URL in `functions/index.js`
+- [ ] Test PDF generation
+
+#### **Phase 5: Testing (5 minutes)**
 - [ ] Test login functionality
 - [ ] Test customer save
 - [ ] Test invoice creation
-- [ ] Test print preview
+- [ ] Test invoice preview (matches PDF)
+- [ ] Test PDF email attachment
 - [ ] Verify calculations
+- [ ] Test Stripe payment link (if enabled)
 
-#### **Phase 4: Deployment (10 minutes)**
+#### **Phase 6: Deployment (10 minutes)**
+- [ ] Deploy Firebase Functions: `firebase deploy --only functions`
 - [ ] Deploy to Firebase Hosting OR GitHub Pages
 - [ ] Test live URL
+- [ ] Send test invoice to verify PDF attachment
 - [ ] Send credentials to client
 - [ ] Schedule training session
 
