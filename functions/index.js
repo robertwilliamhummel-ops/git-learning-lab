@@ -323,7 +323,7 @@ function generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtot
       
       <p style="margin: 8px 0; font-size: 13px; line-height: 1.5;">
         <strong>E-Transfer (Preferred):</strong> invoices@techflowsolutions.ca<br>
-        <strong>Credit Card:</strong> Secure payment link available upon request<br>
+        <strong>Credit Card:</strong> See email for secure payment link<br>
         <strong>Cash/Cheque:</strong> Accepted in person
       </p>
       
@@ -499,6 +499,7 @@ exports.sendInvoiceEmail = onCall(
     <h3 style="margin: 0 0 10px 0; color: #333;">Payment Information</h3>
     <p style="margin: 5px 0;">This invoice can be paid via:</p>
     <ul style="margin: 10px 0; padding-left: 20px;">
+      <li><strong>📧 E-Transfer (Preferred):</strong> invoices@techflowsolutions.ca</li>
       ${stripePaymentUrl ? `
       <li><strong>💳 Credit Card:</strong>
         <a href="${stripePaymentUrl}"
@@ -509,7 +510,6 @@ exports.sendInvoiceEmail = onCall(
         <br><span style="font-size: 12px; color: #666;">Secure payment powered by Stripe</span>
       </li>
       ` : '<li>Credit Card (payment link unavailable)</li>'}
-      <li><strong>📧 E-Transfer:</strong> invoices@techflowsolutions.ca</li>
       <li><strong>💵 Cash or Cheque:</strong> (in person)</li>
     </ul>
     <p style="margin: 10px 0 0 0; font-size: 13px; color: #666;">
@@ -550,7 +550,6 @@ exports.sendInvoiceEmail = onCall(
         const mailOptions = {
           from: "TechFlow Solutions Invoices <invoices@techflowsolutions.ca>",
           to: customerEmail,
-          bcc: "invoices@techflowsolutions.ca", // BCC yourself for printing
           subject: `Invoice ${invoiceNumber} from TechFlow Solutions`,
           html: emailHTML,
         };

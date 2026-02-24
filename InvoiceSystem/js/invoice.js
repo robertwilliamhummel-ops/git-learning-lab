@@ -288,7 +288,7 @@ class InvoiceGenerator {
                 
                 <p style="margin: 8px 0; font-size: 13px; line-height: 1.5;">
                     <strong>E-Transfer (Preferred):</strong> invoices@techflowsolutions.ca<br>
-                    <strong>Credit Card:</strong> Secure payment link available upon request<br>
+                    <strong>Credit Card:</strong> See email for secure payment link<br>
                     <strong>Cash/Cheque:</strong> Accepted in person
                 </p>
                 
