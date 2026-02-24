@@ -22,13 +22,6 @@ class InvoiceGenerator {
             }
         });
 
-        // Print invoice button
-        document.addEventListener('click', (e) => {
-            if (e.target.id === 'print-invoice-btn') {
-                this.printInvoice();
-            }
-        });
-
         // Send invoice button
         document.addEventListener('click', (e) => {
             if (e.target.id === 'send-invoice-btn') {
@@ -304,33 +297,6 @@ class InvoiceGenerator {
                 </p>
             </div>
         `;
-    }
-
-    /**
-     * Print invoice
-     */
-    printInvoice() {
-        if (!this.currentInvoice) {
-            this.previewInvoice();
-            if (!this.currentInvoice) {
-                return;
-            }
-        }
-        
-        // Increment invoice counter when printing (finalizing invoice)
-        this.incrementInvoiceCounter();
-        
-        // Save invoice to localStorage for records
-        this.saveInvoiceRecord(this.currentInvoice);
-        
-        // Print the invoice
-        window.print();
-        
-        // Show success message
-        this.showNotification('Invoice sent to printer successfully', 'success');
-        
-        // Generate new invoice number for next invoice
-        this.generateInvoiceNumber();
     }
 
     /**

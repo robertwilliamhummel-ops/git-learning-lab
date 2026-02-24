@@ -550,6 +550,7 @@ exports.sendInvoiceEmail = onCall(
         const mailOptions = {
           from: "TechFlow Solutions Invoices <invoices@techflowsolutions.ca>",
           to: customerEmail,
+          bcc: "invoices@techflowsolutions.ca", // BCC yourself for printing
           subject: `Invoice ${invoiceNumber} from TechFlow Solutions`,
           html: emailHTML,
         };
