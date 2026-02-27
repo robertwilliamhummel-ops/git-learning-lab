@@ -1,51 +1,28 @@
-# Robots.txt for TechFlow Solutions – Web Design and Business IT Support
-# Last updated: 2026-02-16
+# Robots.txt for TechFlow Solutions
+# Purpose: Allow public site, block internal tools, docs, and legacy pages
 
 User-agent: *
 Allow: /
 
-# Main business pages
-Allow: /index.html
-Allow: /website-design.html
-Allow: /it-services.html
-Allow: /contact.html
-Allow: /about.html
-Allow: /remote-support.html
-
-# Assets
-Allow: /css/
-Allow: /js/
-Allow: /assets/
-
-# Block internal tools and test pages
-Disallow: /TechFlowRemoteSupport/
+# Block internal applications and tools
 Disallow: /InvoiceSystem/
+Disallow: /TechFlowRemoteSupport/
 Disallow: /card/
-Disallow: /mobile-menu-debug.html
-Disallow: /mobile-menu-test*.html
-Disallow: /mobile-test.html
-Disallow: /chevron-test.html
-Disallow: /*.md
 Disallow: /plans/
-Disallow: /*IMPLEMENTATION*
-Disallow: /*_GUIDE*
-Disallow: /*_SUMMARY*
+Disallow: /pdf-service/
 
-# Block GitHub Pages config
+# Block backend / hosting artifacts
+Disallow: /.firebase/
+Disallow: /functions/
+Disallow: /public/
+Disallow: /firebase.json
 Disallow: /CNAME
 
-# Block aggressive crawlers
-User-agent: AhrefsBot
-Disallow: /
+# Block documentation and internal markdown files
+Disallow: /*.md$
 
-User-agent: MJ12bot
-Disallow: /
-
-User-agent: DotBot
-Disallow: /
-
-# Crawl delay
-Crawl-delay: 1
+# Block legacy / deprecated pages
+Disallow: /seo-services.html
 
 # Sitemap
 Sitemap: https://techflowsolutions.ca/sitemap.xml
