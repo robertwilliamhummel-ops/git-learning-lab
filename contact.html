@@ -576,8 +576,9 @@
 
         /* FAQ Section */
         .contact-faq {
-            padding: 6rem 2rem;
+            padding: 4rem 2rem 4rem 2rem;
             background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            margin-bottom: 0;
         }
 
         .faq-grid {
@@ -634,7 +635,7 @@
         }
 
         .faq-item.active .faq-answer {
-            max-height: 800px;
+            max-height: 500px;
             padding: 0 2rem 1.5rem;
         }
 
@@ -1466,22 +1467,8 @@
                 });
             }
 
-            document.querySelectorAll('.faq-question').forEach(question => {
-                question.addEventListener('click', () => {
-                    const faqItem = question.parentElement;
-                    const isActive = faqItem.classList.contains('active');
-                    
-                    // Close all FAQs
-                    document.querySelectorAll('.faq-item').forEach(item => {
-                        item.classList.remove('active');
-                    });
-                    
-                    // Open clicked FAQ if it wasn't active
-                    if (!isActive) {
-                        faqItem.classList.add('active');
-                    }
-                });
-            });
+            // FAQ accordion is handled by main.js initializeFAQ() function
+            // No need for duplicate code here
         });
     </script>
 </body>
