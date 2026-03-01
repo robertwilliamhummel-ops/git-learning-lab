@@ -575,26 +575,14 @@ a:hover {
     
     /* High contrast mode support */
     @media (prefers-contrast: high) {
-        .nav-menu {
-            background: var(--bg-primary);
-            border-left: 2px solid var(--text-primary);
-        }
-        
         .nav-link {
             border: 1px solid transparent;
         }
         
         .nav-link:hover,
         .nav-link:focus {
-            border-color: var(--primary-blue);
-            background: var(--bg-secondary);
-        }
-    }
-    
-    /* Dark mode adjustments */
-    @media (prefers-color-scheme: dark) {
-        .mobile-menu-backdrop {
-            background: rgba(0, 0, 0, 0.9);
+            border-color: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.2);
         }
     }
 }
