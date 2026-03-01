@@ -3460,17 +3460,6 @@ a:hover {
         gap: 20px;
     }
     
-    .pricing-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .pricing-card.featured {
-        transform: none;
-    }
-    
-    .pricing-card.featured:hover {
-        transform: translateY(-5px);
-    }
 }
 
 @media (max-width: 480px) {
@@ -3503,9 +3492,6 @@ a:hover {
         padding: 24px;
     }
     
-    .pricing-card {
-        padding: 32px 24px;
-    }
 }
 
 
