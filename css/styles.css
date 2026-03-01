@@ -3873,7 +3873,7 @@ a:hover {
     }
 }
 
-/* Responsive Design for Enhanced Calculator */
+/* Responsive Design for Service Overview Section */
 @media (max-width: 768px) {
     .service-overview-summary {
         padding: var(--spacing-xl) 0;
