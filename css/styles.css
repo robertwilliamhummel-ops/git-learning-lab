@@ -2448,9 +2448,6 @@ a:hover {
         gap: var(--spacing-lg);
     }
     
-    .upgrade-item.featured {
-        grid-template-columns: auto 1fr;
-    }
 }
 
 @media (max-width: 768px) {
@@ -2475,9 +2472,6 @@ a:hover {
         gap: var(--spacing-sm);
     }
     
-    .upgrade-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
 }
 
 @media (max-width: 767px) {
@@ -2496,20 +2490,6 @@ a:hover {
         font-size: 2rem;
     }
     
-    .upgrade-item.featured {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-    
-    .upgrade-benefits {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
-    
-    .upgrade-pricing {
-        flex-direction: column;
-        gap: var(--spacing-sm);
-    }
     
     .plans-grid {
         grid-template-columns: 1fr;
