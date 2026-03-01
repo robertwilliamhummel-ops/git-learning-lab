@@ -2412,52 +2412,6 @@ a:hover {
     font-size: 0.875rem;
 }
 
-.emergency-contact {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-xl);
-}
-
-.emergency-card {
-    background: var(--bg-dark);
-    padding: var(--spacing-2xl);
-    border-radius: var(--radius-xl);
-    text-align: center;
-    box-shadow: var(--shadow-lg);
-}
-
-.emergency-guarantees {
-    background: var(--bg-secondary);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--light-gray);
-}
-
-.emergency-guarantees h4 {
-    margin-bottom: var(--spacing-md);
-    color: var(--text-primary);
-    text-align: center;
-}
-
-.guarantee-list {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-}
-
-.guarantee-item {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    color: var(--text-secondary);
-}
-
-.guarantee-item i {
-    color: var(--primary-blue);
-    font-size: 1rem;
-    flex-shrink: 0;
-}
-
 
 /* Service Content Layout Classes */
 .service-content-single {
@@ -2492,10 +2446,6 @@ a:hover {
         max-width: 100%;
         margin: 0 auto;
         gap: var(--spacing-lg);
-    }
-    
-    .emergency-content {
-        grid-template-columns: 1fr 1fr;
     }
     
     .upgrade-item.featured {
