@@ -2323,17 +2323,6 @@ a:hover {
     }
     
     
-    .plans-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .plan-card.featured {
-        transform: none;
-    }
-    
-    .plan-card.featured:hover {
-        transform: translateY(-5px);
-    }
 }
 
 /* 
