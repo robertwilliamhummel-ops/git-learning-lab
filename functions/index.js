@@ -255,6 +255,42 @@ function generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtot
       background: white;
       padding: 30px;
     }
+    
+    /* Repeating header on every page for multi-page PDFs */
+    @media print {
+      @page {
+        margin-top: 150px;
+        margin-bottom: 0.5in;
+        margin-left: 0.5in;
+        margin-right: 0.5in;
+      }
+      
+      body {
+        margin: 0;
+        padding: 0;
+      }
+      
+      .invoice-container {
+        padding: 0;
+      }
+      
+      /* Make header stick to top of every page */
+      .invoice-container > div:first-child {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding: 20px 0.5in;
+        background: white;
+        z-index: 9999;
+        border-bottom: 3px solid #667eea;
+      }
+      
+      /* Prevent table rows from breaking across pages */
+      table tbody tr {
+        page-break-inside: avoid;
+      }
+    }
   </style>
 </head>
 <body>
