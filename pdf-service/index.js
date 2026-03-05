@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
 // PDF generation endpoint
 app.post("/pdf", async (req, res) => {
   try {
-    const { html, filename } = req.body;
+    const { html, filename, headerTemplate } = req.body;
 
     if (!html) {
       return res.status(400).json({ error: "HTML content is required" });
@@ -43,22 +43,32 @@ app.post("/pdf", async (req, res) => {
     const page = await browser.newPage();
     
     // Set content and wait for it to load
-    await page.setContent(html, { 
+    await page.setContent(html, {
       waitUntil: "networkidle0",
-      timeout: 30000 
+      timeout: 30000
     });
 
-    // Generate PDF
-    const pdf = await page.pdf({
+    // Generate PDF with optional header template
+    // PDF generation options
+    // Note: headerTemplate has strict Puppeteer rules:
+    // - No <html>, <head>, or <body> tags
+    // - CSS must be inline
+    // - Special classes .pageNumber/.totalPages only work in header/footer context
+    const pdfOptions = {
       format: "Letter",
       printBackground: true,
       margin: {
-        top: "0.5in",
+        top: headerTemplate ? "2in" : "0.5in",  // Must be >= header visual height (including padding + border)
         right: "0.5in",
         bottom: "0.5in",
-        left: "0.5in"
-      }
-    });
+        left: "0.5in",
+      },
+      displayHeaderFooter: !!headerTemplate,
+      headerTemplate: headerTemplate || "<div></div>",
+      footerTemplate: "<div></div>",  // Always empty to prevent default footer
+    };
+
+    const pdf = await page.pdf(pdfOptions);
 
     await browser.close();
 
@@ -72,9 +82,9 @@ app.post("/pdf", async (req, res) => {
 
   } catch (error) {
     console.error("❌ PDF generation failed:", error);
-    res.status(500).json({ 
+    res.status(500).json({
       error: "PDF generation failed",
-      message: error.message 
+      message: error.message
     });
   }
 });

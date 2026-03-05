@@ -12,9 +12,36 @@ const zohoEmailPassword = defineSecret("ZOHO_EMAIL_PASSWORD");
 admin.initializeApp();
 
 /**
+ * Generate Puppeteer header template for repeating headers
+ */
+function generateHeaderTemplate(invoiceNumber) {
+  return `
+    <div style="width:100%; box-sizing:border-box; padding: 16px 40px 0 40px;
+                font-family: Arial, sans-serif; -webkit-print-color-adjust: exact;">
+      <table style="width:100%; border-collapse:collapse;">
+        <tr>
+          <td style="vertical-align:top;">
+            <div style="font-size:18px; font-weight:bold; color:#667eea; margin-bottom:3px;">
+              TechFlow Solutions
+            </div>
+            <div style="font-size:11px; color:#718096;">Website Design &amp; IT Services</div>
+            <div style="font-size:11px; color:#718096;">Greater Toronto Area</div>
+          </td>
+          <td style="vertical-align:top; text-align:right;">
+            <img src="https://techflowsolutions.ca/assets/images/TechFlow%20Solutions%20Logo-%20Cropped.png"
+                 style="height:50px; width:auto;" />
+          </td>
+        </tr>
+      </table>
+      <div style="border-bottom:3px solid #667eea; margin-top:10px;"></div>
+    </div>
+  `;
+}
+
+/**
  * Generate PDF using Cloud Run service
  */
-async function generatePDFViaCloudRun(invoiceHTML, invoiceNumber) {
+async function generatePDFViaCloudRun(invoiceHTML, invoiceNumber, headerTemplate) {
   const CLOUD_RUN_URL = "https://pdf-service-904705508663.us-central1.run.app/pdf";
   
   try {
@@ -28,6 +55,7 @@ async function generatePDFViaCloudRun(invoiceHTML, invoiceNumber) {
       body: JSON.stringify({
         html: invoiceHTML,
         filename: `Invoice-${invoiceNumber}.pdf`,
+        headerTemplate: headerTemplate,
       }),
     });
 
@@ -254,42 +282,6 @@ function generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtot
       margin: 0 auto;
       background: white;
       padding: 30px;
-    }
-    
-    /* Repeating header on every page for multi-page PDFs */
-    @media print {
-      @page {
-        margin-top: 150px;
-        margin-bottom: 0.5in;
-        margin-left: 0.5in;
-        margin-right: 0.5in;
-      }
-      
-      body {
-        margin: 0;
-        padding: 0;
-      }
-      
-      .invoice-container {
-        padding: 0;
-      }
-      
-      /* Make header stick to top of every page */
-      .invoice-container > div:first-child {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 20px 0.5in;
-        background: white;
-        z-index: 9999;
-        border-bottom: 3px solid #667eea;
-      }
-      
-      /* Prevent table rows from breaking across pages */
-      table tbody tr {
-        page-break-inside: avoid;
-      }
     }
   </style>
 </head>
@@ -559,7 +551,7 @@ exports.sendInvoiceEmail = onCall(
     <p style="margin: 5px 0;"><strong>TechFlow Solutions</strong></p>
     <p style="margin: 5px 0;">Greater Toronto Area</p>
     <p style="margin: 5px 0;">
-      📞 (647) 572-8321 | 📧 invoices@techflowsolutions.ca
+      📞 (647) 572-8341 | 📧 invoices@techflowsolutions.ca
     </p>
     <p style="margin: 15px 0 5px 0;">Thank you for your business!</p>
   </div>
@@ -575,7 +567,7 @@ exports.sendInvoiceEmail = onCall(
         let pdfBuffer = null;
         try {
           console.log("📄 Attempting to generate PDF via Cloud Run...");
-          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber);
+          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber, generateHeaderTemplate(invoiceNumber));
           console.log("✅ PDF generated successfully");
         } catch (pdfError) {
           console.error("⚠️ PDF generation failed, will send email without PDF:", pdfError);
