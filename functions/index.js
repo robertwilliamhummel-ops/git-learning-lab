@@ -14,26 +14,28 @@ admin.initializeApp();
 /**
  * Generate Puppeteer header template for repeating headers
  */
-function generateHeaderTemplate(invoiceNumber) {
+function generateHeaderTemplate() {
   return `
-    <div style="width:100%; box-sizing:border-box; padding: 16px 40px 0 40px;
+    <div style="width:100%; box-sizing:border-box; padding: 18px 40px 0 40px;
                 font-family: Arial, sans-serif; -webkit-print-color-adjust: exact;">
       <table style="width:100%; border-collapse:collapse;">
         <tr>
           <td style="vertical-align:top;">
-            <div style="font-size:18px; font-weight:bold; color:#667eea; margin-bottom:3px;">
+            <div style="font-size:24px; font-weight:bold; color:#667eea; margin-bottom:5px;">
               TechFlow Solutions
             </div>
-            <div style="font-size:11px; color:#718096;">Website Design &amp; IT Services</div>
-            <div style="font-size:11px; color:#718096;">Greater Toronto Area</div>
+            <div style="font-size:14px; color:#718096;">Website Design &amp; IT Services</div>
+            <div style="font-size:14px; color:#718096;">Greater Toronto Area</div>
+            <div style="font-size:14px; color:#718096;">Phone: (647) 572-8341</div>
+            <div style="font-size:14px; color:#718096;">Email: info@techflowsolutions.ca</div>
           </td>
           <td style="vertical-align:top; text-align:right;">
             <img src="https://techflowsolutions.ca/assets/images/TechFlow%20Solutions%20Logo-%20Cropped.png"
-                 style="height:50px; width:auto;" />
+                 style="height:60px; width:auto;" />
           </td>
         </tr>
       </table>
-      <div style="border-bottom:3px solid #667eea; margin-top:10px;"></div>
+      <div style="border-bottom:3px solid #667eea; margin-top:12px;"></div>
     </div>
   `;
 }
@@ -275,7 +277,7 @@ function generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtot
       line-height: 1.6;
       color: #2d3748;
       margin: 0;
-      padding: 20px;
+      padding: 0;
     }
     .invoice-container {
       max-width: 800px;
@@ -287,20 +289,6 @@ function generatePDFHTML(items, customerName, invoiceNumber, invoiceDate, subtot
 </head>
 <body>
   <div class="invoice-container">
-    <!-- Header -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 3px solid #667eea;">
-      <div>
-        <div style="font-size: 24px; font-weight: bold; color: #667eea; margin-bottom: 5px;">TechFlow Solutions</div>
-        <div style="font-size: 14px; color: #718096;">Website Design & IT Services</div>
-        <div style="font-size: 14px; color: #718096;">Greater Toronto Area</div>
-        <div style="font-size: 14px; color: #718096;">Phone: (647) 572-8341</div>
-        <div style="font-size: 14px; color: #718096;">Email: info@techflowsolutions.ca</div>
-      </div>
-      <div style="text-align: right;">
-        <img src="https://techflowsolutions.ca/assets/images/TechFlow%20Solutions%20Logo-%20Cropped.png" alt="TechFlow Solutions" style="max-width: 150px; height: auto;">
-      </div>
-    </div>
-
     <!-- Invoice Details -->
     <div style="display: flex; justify-content: space-between; margin-bottom: 30px;">
       <div style="flex: 1;">
@@ -567,7 +555,7 @@ exports.sendInvoiceEmail = onCall(
         let pdfBuffer = null;
         try {
           console.log("📄 Attempting to generate PDF via Cloud Run...");
-          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber, generateHeaderTemplate(invoiceNumber));
+          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber, generateHeaderTemplate());
           console.log("✅ PDF generated successfully");
         } catch (pdfError) {
           console.error("⚠️ PDF generation failed, will send email without PDF:", pdfError);
