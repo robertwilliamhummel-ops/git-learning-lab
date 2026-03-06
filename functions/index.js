@@ -11,10 +11,34 @@ const zohoEmailPassword = defineSecret("ZOHO_EMAIL_PASSWORD");
 
 admin.initializeApp();
 
+// Cache logo as base64 data URL for reliable Puppeteer header rendering
+let cachedLogoDataUrl = null;
+
+async function getLogoDataUrl() {
+  if (cachedLogoDataUrl) return cachedLogoDataUrl;
+
+  const logoUrl = "https://techflowsolutions.ca/assets/images/TechFlow%20Solutions%20Logo-%20Cropped.png";
+  const res = await fetch(logoUrl);
+
+  if (!res.ok) {
+    throw new Error(`Logo fetch failed: ${res.status}`);
+  }
+
+  const contentType = res.headers.get("content-type") || "image/png";
+  const arrayBuf = await res.arrayBuffer();
+  const base64 = Buffer.from(arrayBuf).toString("base64");
+
+  cachedLogoDataUrl = `data:${contentType};base64,${base64}`;
+  return cachedLogoDataUrl;
+}
+
 /**
  * Generate Puppeteer header template for repeating headers
+ * Uses base64-embedded logo for reliable rendering
  */
-function generateHeaderTemplate() {
+async function generateHeaderTemplate() {
+  const logoSrc = await getLogoDataUrl();
+
   return `
     <div style="width:100%; box-sizing:border-box; padding: 18px 40px 0 40px;
                 font-family: Arial, sans-serif; -webkit-print-color-adjust: exact;">
@@ -30,7 +54,7 @@ function generateHeaderTemplate() {
             <div style="font-size:14px; color:#718096;">Email: info@techflowsolutions.ca</div>
           </td>
           <td style="vertical-align:top; text-align:right;">
-            <img src="https://techflowsolutions.ca/assets/images/TechFlow%20Solutions%20Logo-%20Cropped.png"
+            <img src="${logoSrc}"
                  style="height:60px; width:auto;" />
           </td>
         </tr>
@@ -555,7 +579,8 @@ exports.sendInvoiceEmail = onCall(
         let pdfBuffer = null;
         try {
           console.log("📄 Attempting to generate PDF via Cloud Run...");
-          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber, generateHeaderTemplate());
+          const headerTemplate = await generateHeaderTemplate();
+          pdfBuffer = await generatePDFViaCloudRun(pdfHTML, invoiceNumber, headerTemplate);
           console.log("✅ PDF generated successfully");
         } catch (pdfError) {
           console.error("⚠️ PDF generation failed, will send email without PDF:", pdfError);
