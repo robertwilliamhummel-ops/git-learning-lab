@@ -685,7 +685,7 @@ a:hover {
 }
 
 .hero-title {
-    font-size: 3rem;
+    font-size: clamp(2rem, 5vw, 4.5rem);
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: var(--spacing-md);
@@ -701,7 +701,9 @@ a:hover {
     font-size: 1.25rem;
     color: var(--text-secondary);
     margin-bottom: var(--spacing-xl);
-    max-width: 600px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .hero-features {
