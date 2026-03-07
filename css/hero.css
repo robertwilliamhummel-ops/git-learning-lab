@@ -119,6 +119,8 @@
     z-index: 3;
     text-align: center;
     animation: fadeInUp 1s ease-out;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 /* About page content centering */
