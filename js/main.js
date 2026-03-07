@@ -157,13 +157,11 @@ function initializeNavigation() {
             // Update ARIA attributes
             hamburger.setAttribute('aria-expanded', isMenuOpen);
             
-            // Prevent body scroll when menu is open, but allow menu scroll
+            // Prevent body scroll when menu is open
             if (isMenuOpen) {
                 document.body.style.overflow = 'hidden';
-                navMenu.style.overflowY = 'auto';
             } else {
                 document.body.style.overflow = '';
-                navMenu.style.overflowY = '';
             }
             
             // Focus management
@@ -193,7 +191,6 @@ function initializeNavigation() {
                 backdrop.classList.remove('active');
                 hamburger.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
-                navMenu.style.overflowY = '';
                 
                 console.log('✅ MENU CLOSED:', {
                     newState: isMenuOpen,
