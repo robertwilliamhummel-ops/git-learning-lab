@@ -17,7 +17,7 @@ class InvoiceGenerator {
     initializeEventListeners() {
         // Preview invoice button
         document.addEventListener('click', (e) => {
-            if (e.target.id === 'preview-invoice-btn') {
+            if (e.target.id === 'preview-invoice-btn' || e.target.closest('#preview-invoice-btn')) {
                 this.previewInvoice().catch(err => console.error('Preview error:', err));
             }
         });
@@ -36,14 +36,14 @@ class InvoiceGenerator {
 
         // Send invoice button
         document.addEventListener('click', (e) => {
-            if (e.target.id === 'send-invoice-btn') {
+            if (e.target.id === 'send-invoice-btn' || e.target.closest('#send-invoice-btn')) {
                 this.sendInvoice();
             }
         });
 
         // Clear form button
         document.addEventListener('click', (e) => {
-            if (e.target.id === 'clear-form-btn') {
+            if (e.target.id === 'clear-form-btn' || e.target.closest('#clear-form-btn')) {
                 this.clearForm();
             }
         });
