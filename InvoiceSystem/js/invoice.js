@@ -18,7 +18,19 @@ class InvoiceGenerator {
         // Preview invoice button
         document.addEventListener('click', (e) => {
             if (e.target.id === 'preview-invoice-btn') {
-                this.previewInvoice();
+                this.previewInvoice().catch(err => console.error('Preview error:', err));
+            }
+        });
+
+        // Close preview button
+        document.addEventListener('click', (e) => {
+            if (e.target.id === 'close-preview-btn' || e.target.closest('#close-preview-btn')) {
+                document.getElementById('invoice-preview').style.display = 'none';
+                const iframe = document.getElementById('pdf-preview-iframe');
+                if (iframe.src) {
+                    URL.revokeObjectURL(iframe.src); // Free memory
+                    iframe.src = '';
+                }
             }
         });
 
@@ -160,142 +172,105 @@ class InvoiceGenerator {
     }
 
     /**
-     * Preview invoice
+     * Preview invoice - generates real Puppeteer PDF
      */
-    previewInvoice() {
+    async previewInvoice() {
         const errors = this.validateInvoice();
-        
+
         if (errors.length > 0) {
             this.showValidationErrors(errors);
             return;
         }
-        
-        const invoiceData = this.getInvoiceData();
-        this.currentInvoice = invoiceData;
-        
-        const previewHtml = this.generateInvoiceHTML(invoiceData);
-        const previewSection = document.getElementById('invoice-preview');
-        const previewDocument = previewSection.querySelector('.invoice-document');
-        
-        previewDocument.innerHTML = previewHtml;
-        previewSection.style.display = 'block';
-        
-        // Scroll to preview
-        previewSection.scrollIntoView({ behavior: 'smooth' });
-        
-        // Show success message
-        this.showNotification('Invoice preview generated successfully', 'success');
-    }
 
-    /**
-     * Generate invoice HTML
-     */
-    generateInvoiceHTML(invoiceData) {
-        const { customer, services, totals } = invoiceData;
-        
-        // Build services table rows
-        let serviceRows = '';
-        
-        // Add hourly services if present
-        if (services.hourly && Array.isArray(services.hourly)) {
-            services.hourly.forEach(service => {
-                serviceRows += `
-                    <tr>
-                        <td>${service.description}</td>
-                        <td class="amount">${service.hours}</td>
-                        <td class="amount">${this.formatCurrency(service.rate)}</td>
-                        <td class="amount">${this.formatCurrency(service.total)}</td>
-                    </tr>
-                `;
+        // Show preview section with loading state
+        const previewSection = document.getElementById('invoice-preview');
+        const loadingDiv = document.getElementById('preview-loading');
+        const iframe = document.getElementById('pdf-preview-iframe');
+
+        previewSection.style.display = 'block';
+        loadingDiv.style.display = 'block';
+        iframe.style.display = 'none';
+        previewSection.scrollIntoView({ behavior: 'smooth' });
+
+        // Disable preview button during generation
+        const previewBtn = document.getElementById('preview-invoice-btn');
+        const originalHTML = previewBtn.innerHTML;
+        previewBtn.disabled = true;
+        previewBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating...';
+
+        try {
+            const invoiceData = this.getInvoiceData();
+            this.currentInvoice = invoiceData;
+
+            // Build items array for Firebase function (same format as sendInvoice)
+            const items = [];
+            if (invoiceData.services?.hourly && Array.isArray(invoiceData.services.hourly)) {
+                invoiceData.services.hourly.forEach(service => {
+                    items.push({
+                        description: service.description,
+                        quantity: service.hours,
+                        rate: service.rate,
+                        amount: service.total
+                    });
+                });
+            }
+            if (invoiceData.services?.lineItems && Array.isArray(invoiceData.services.lineItems)) {
+                invoiceData.services.lineItems.forEach(item => {
+                    items.push({
+                        description: item.description,
+                        quantity: item.quantity,
+                        rate: item.price,
+                        amount: item.total
+                    });
+                });
+            }
+
+            // Call Firebase function to generate real Puppeteer PDF
+            const { getFunctions, httpsCallable } = await import(
+                'https://www.gstatic.com/firebasejs/10.8.0/firebase-functions.js'
+            );
+            const functions = getFunctions();
+            const previewPDF = httpsCallable(functions, 'previewInvoicePDF');
+
+            const result = await previewPDF({
+                items: items,
+                customerName: invoiceData.customer.name,
+                invoiceNumber: invoiceData.number,
+                invoiceDate: this.formatDate(invoiceData.date),
+                subtotal: invoiceData.totals.subtotal.toFixed(2),
+                tax: invoiceData.totals.taxAmount.toFixed(2),
+                total: invoiceData.totals.finalTotal.toFixed(2),
             });
+
+            if (!result.data.success || !result.data.pdfBase64) {
+                throw new Error('Preview generation returned no PDF data');
+            }
+
+            // Convert base64 to blob URL and display in iframe
+            const binaryString = atob(result.data.pdfBase64);
+            const bytes = new Uint8Array(binaryString.length);
+            for (let i = 0; i < binaryString.length; i++) {
+                bytes[i] = binaryString.charCodeAt(i);
+            }
+            const pdfBlob = new Blob([bytes], { type: 'application/pdf' });
+            const blobUrl = URL.createObjectURL(pdfBlob);
+
+            // Show PDF in iframe
+            iframe.src = blobUrl;
+            loadingDiv.style.display = 'none';
+            iframe.style.display = 'block';
+
+            this.showNotification('PDF preview generated — this is exactly what your client will receive', 'success');
+
+        } catch (error) {
+            console.error('❌ Preview generation failed:', error);
+            loadingDiv.style.display = 'none';
+            previewSection.style.display = 'none';
+            this.showNotification(`Preview failed: ${error.message}`, 'error');
+        } finally {
+            previewBtn.disabled = false;
+            previewBtn.innerHTML = originalHTML;
         }
-        
-        // Add line items
-        services.lineItems.forEach(item => {
-            serviceRows += `
-                <tr>
-                    <td>${item.description}</td>
-                    <td class="amount">${item.quantity}</td>
-                    <td class="amount">${this.formatCurrency(item.price)}</td>
-                    <td class="amount">${this.formatCurrency(item.total)}</td>
-                </tr>
-            `;
-        });
-        
-        return `
-            <div class="invoice-header">
-                <div class="business-info">
-                    <div class="company-name">TechFlow Solutions</div>
-                    <div>IT Services & Business Automation in Toronto</div>
-                    <div>Phone: (647) 572-8341</div>
-                    <div>Email: info@techflowsolutions.ca</div>
-                </div>
-                <div class="invoice-logo">
-                    <img src="../assets/images/TechFlow Solutions Logo- Cropped.png" alt="TechFlow Solutions Logo" class="invoice-logo-image">
-                </div>
-            </div>
-            
-            <div class="invoice-details">
-                <div class="customer-details">
-                    <h3>Bill To:</h3>
-                    <strong>${customer.name}</strong><br>
-                    ${customer.company ? `${customer.company}<br>` : ''}
-                    ${customer.phone ? `Phone: ${customer.phone}<br>` : ''}
-                    ${customer.email ? `Email: ${customer.email}<br>` : ''}
-                    ${customer.address ? `${customer.address.replace(/\n/g, '<br>')}` : ''}
-                </div>
-                <div class="invoice-info">
-                    <h3>Invoice Details:</h3>
-                    <strong>Invoice #:</strong> ${invoiceData.number}<br>
-                    <strong>Date:</strong> ${this.formatDate(invoiceData.date)}<br>
-                    <strong>Due Date:</strong> ${this.formatDate(invoiceData.date, 30)}
-                </div>
-            </div>
-            
-            <table class="services-table">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Qty/Hours</th>
-                        <th>Rate/Price</th>
-                        <th>Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${serviceRows}
-                </tbody>
-            </table>
-            
-            <table class="invoice-totals-table">
-                <tr>
-                    <td>Subtotal:</td>
-                    <td class="amount">${this.formatCurrency(totals.subtotal)}</td>
-                </tr>
-                <tr>
-                    <td>HST (13%):</td>
-                    <td class="amount">${this.formatCurrency(totals.taxAmount)}</td>
-                </tr>
-                <tr class="total-row">
-                    <td><strong>Total:</strong></td>
-                    <td class="amount"><strong>${this.formatCurrency(totals.finalTotal)}</strong></td>
-                </tr>
-            </table>
-            
-            <!-- Payment Information (Compact) -->
-            <div class="payment-section" style="margin: 20px 0; padding: 12px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #667eea;">
-                <h3 style="color: #667eea; margin: 0 0 10px 0; font-size: 16px;">Payment Information</h3>
-                
-                <p style="margin: 8px 0; font-size: 13px; line-height: 1.5;">
-                    <strong>E-Transfer (Preferred):</strong> invoices@techflowsolutions.ca<br>
-                    <strong>Credit Card:</strong> See email for secure payment link<br>
-                    <strong>Cash/Cheque:</strong> Accepted in person
-                </p>
-                
-                <p style="margin: 10px 0 0 0; font-size: 12px; color: #6c757d; border-top: 1px solid #dee2e6; padding-top: 8px;">
-                    <strong>Payment due within 15 days</strong> • Questions? (647) 572-8341
-                </p>
-            </div>
-        `;
     }
 
     /**
@@ -474,8 +449,13 @@ class InvoiceGenerator {
             document.getElementById('invoice-date').value = today;
             this.generateInvoiceNumber();
             
-            // Hide preview
+            // Hide preview and clean up iframe memory
             document.getElementById('invoice-preview').style.display = 'none';
+            const iframe = document.getElementById('pdf-preview-iframe');
+            if (iframe && iframe.src) {
+                URL.revokeObjectURL(iframe.src);
+                iframe.src = '';
+            }
             
             // Clear current invoice
             this.currentInvoice = null;

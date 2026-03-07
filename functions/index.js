@@ -99,6 +99,66 @@ async function generatePDFViaCloudRun(invoiceHTML, invoiceNumber, headerTemplate
 }
 
 /**
+ * Preview Invoice PDF
+ * Generates real Puppeteer PDF for preview in frontend
+ */
+exports.previewInvoicePDF = onCall(
+  { timeoutSeconds: 60 },
+  async (request) => {
+    try {
+      const {
+        items,
+        customerName,
+        invoiceNumber,
+        invoiceDate,
+        subtotal,
+        tax,
+        total,
+      } = request.data;
+
+      if (!invoiceNumber || !customerName) {
+        throw new Error("Invoice number and customer name are required for preview");
+      }
+
+      // Generate PDF HTML using existing function (single source of truth)
+      const pdfHTML = generatePDFHTML(
+        items,
+        customerName,
+        invoiceNumber,
+        invoiceDate,
+        subtotal,
+        tax,
+        total
+      );
+
+      // Generate header with base64 logo using existing function
+      const headerTemplate = await generateHeaderTemplate();
+
+      // Generate PDF via Cloud Run using existing function
+      const pdfBuffer = await generatePDFViaCloudRun(
+        pdfHTML,
+        invoiceNumber,
+        headerTemplate
+      );
+
+      // Return as base64 string so frontend can create blob URL
+      const base64PDF = pdfBuffer.toString("base64");
+
+      console.log(`✅ Preview PDF generated for invoice ${invoiceNumber}`);
+
+      return {
+        success: true,
+        pdfBase64: base64PDF,
+        invoiceNumber: invoiceNumber,
+      };
+    } catch (error) {
+      console.error("❌ Preview PDF generation failed:", error);
+      throw new Error(`Preview generation failed: ${error.message}`);
+    }
+  }
+);
+
+/**
  * Create Stripe Checkout Session
  * Called from frontend when customer clicks "Pay" button
  */
