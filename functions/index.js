@@ -55,7 +55,7 @@ async function generateHeaderTemplate() {
           </td>
           <td style="vertical-align:top; text-align:right;">
             <img src="${logoSrc}"
-                 style="height:60px; width:auto;" />
+                 style="height:90px; width:auto;" />
           </td>
         </tr>
       </table>
