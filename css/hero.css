@@ -29,9 +29,14 @@
 .hero-growth,
 .hero-it-services,
 .hero-remote,
-.hero-contact,
-.hero-about {
+.hero-contact {
     align-items: flex-start;
+    padding-top: 140px;
+}
+
+/* About page centers content */
+.hero-about {
+    align-items: center;
     padding-top: 140px;
 }
 
@@ -190,6 +195,7 @@
     background-clip: text;
     animation: gradientShift 3s ease infinite;
     background-size: 200% 200%;
+    display: inline;
 }
 
 /* Hero subtitles - standardized sizing */

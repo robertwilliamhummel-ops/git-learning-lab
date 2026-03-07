@@ -664,85 +664,6 @@ a:hover {
     }
 }
 
-/* Hero Section */
-.hero {
-    position: relative;
-    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-    padding: calc(80px + var(--spacing-2xl)) 0 var(--spacing-2xl);
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
-.hero-container {
-    max-width: var(--container-2xl);
-    margin: 0 auto;
-    padding: 0 var(--spacing-sm);
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: var(--spacing-2xl);
-    align-items: center;
-}
-
-.hero-title {
-    font-size: clamp(2rem, 5vw, 4.5rem);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: var(--spacing-md);
-    color: var(--text-primary);
-}
-
-.hero-title .highlight {
-    color: var(--primary-blue);
-    display: block;
-}
-
-.hero-subtitle {
-    font-size: 1.25rem;
-    color: var(--text-secondary);
-    margin-bottom: var(--spacing-xl);
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.hero-features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
-}
-
-.feature {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    color: var(--text-primary);
-    font-weight: 500;
-}
-
-.feature i {
-    color: var(--accent-blue);
-    font-size: 1.25rem;
-}
-
-.hero-cta {
-    display: flex;
-    gap: var(--spacing-md);
-    flex-wrap: wrap;
-}
-
-.hero-image {
-    position: relative;
-}
-
-.hero-image img {
-    width: 100%;
-    height: auto;
-    border-radius: var(--radius-xl);
-    box-shadow: var(--shadow-xl);
-}
-
 /* Services Overview */
 .services-overview {
     padding: var(--spacing-2xl) 0;
@@ -1405,14 +1326,6 @@ a:hover {
         flex-shrink: 0;
     }
     
-    .hero-container {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .hero-features {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    
     .why-content {
         grid-template-columns: 1fr 1fr;
     }
@@ -1483,14 +1396,6 @@ a:hover {
 }
 
 @media (min-width: 1024px) {
-    .hero-title {
-        font-size: 3.5rem;
-    }
-    
-    .hero-features {
-        grid-template-columns: repeat(4, 1fr);
-    }
-    
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1741,22 +1646,6 @@ a:hover {
     /* Ensure bars don't interfere with clicks */
     .hamburger .bar {
         pointer-events: none;
-    }
-    
-    .hero-title {
-        font-size: 2rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.125rem;
-    }
-    
-    .hero-features {
-        grid-template-columns: 1fr;
-    }
-    
-    .hero-cta {
-        flex-direction: column;
     }
     
     .section-header h2 {
