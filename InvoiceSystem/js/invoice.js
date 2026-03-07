@@ -226,8 +226,7 @@ class InvoiceGenerator {
             <div class="invoice-header">
                 <div class="business-info">
                     <div class="company-name">TechFlow Solutions</div>
-                    <div>Website Design & IT Services</div>
-                    <div>Greater Toronto Area</div>
+                    <div>IT Services & Business Automation in Toronto</div>
                     <div>Phone: (647) 572-8341</div>
                     <div>Email: info@techflowsolutions.ca</div>
                 </div>

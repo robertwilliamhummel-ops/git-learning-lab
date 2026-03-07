@@ -48,14 +48,13 @@ async function generateHeaderTemplate() {
             <div style="font-size:24px; font-weight:bold; color:#667eea; margin-bottom:5px;">
               TechFlow Solutions
             </div>
-            <div style="font-size:14px; color:#718096;">Website Design &amp; IT Services</div>
-            <div style="font-size:14px; color:#718096;">Greater Toronto Area</div>
+            <div style="font-size:14px; color:#718096;">IT Services &amp; Business Automation in Toronto</div>
             <div style="font-size:14px; color:#718096;">Phone: (647) 572-8341</div>
             <div style="font-size:14px; color:#718096;">Email: info@techflowsolutions.ca</div>
           </td>
           <td style="vertical-align:top; text-align:right;">
             <img src="${logoSrc}"
-                 style="height:90px; width:auto;" />
+                 style="height:150px; width:auto;" />
           </td>
         </tr>
       </table>
@@ -134,7 +133,7 @@ exports.createCheckoutSession = onCall(
                 product_data: {
                   name: `Invoice ${invoiceNumber}`,
                   description:
-                    "TechFlow Solutions - Website Design & IT Services",
+                    "TechFlow Solutions - IT Services & Business Automation in Toronto",
                 },
                 unit_amount: amountInCents,
               },
@@ -420,7 +419,7 @@ exports.sendInvoiceEmail = onCall(
                   currency: "cad",
                   product_data: {
                     name: `Invoice ${invoiceNumber}`,
-                    description: "TechFlow Solutions - Website Design & IT Services",
+                    description: "TechFlow Solutions - IT Services & Business Automation in Toronto",
                   },
                   unit_amount: amountInCents,
                 },
@@ -493,7 +492,7 @@ exports.sendInvoiceEmail = onCall(
     <h1 style="color: #667eea; margin: 0; font-size: 28px;">
       TechFlow Solutions
     </h1>
-    <p style="color: #666; margin: 5px 0;">Website Design & IT Services</p>
+    <p style="color: #666; margin: 5px 0;">IT Services & Business Automation in Toronto</p>
   </div>
 
   <!-- Invoice Info -->
