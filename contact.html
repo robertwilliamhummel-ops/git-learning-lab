@@ -54,42 +54,7 @@
     
     <style>
         /* Modern Contact Page Design */
-        :root {
-            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --success-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        /* Scroll Progress Bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
-            z-index: 9999;
-            transition: width 0.1s ease;
-        }
-
-        /* Enhanced Microchip Icon */
-        .nav-logo i.fa-microchip,
-        .footer-logo i.fa-microchip {
-            animation: microchipPulse 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
-        }
-
-        @keyframes microchipPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.5));
-            }
-            50% {
-                transform: scale(1.1);
-                filter: drop-shadow(0 0 20px rgba(102, 126, 234, 0.8));
-            }
-        }
-
+        /* Note: Scroll progress bar and microchip animations now in css/styles.css */
 
         /* Contact page-specific CTA styling */
         .hero-cta-contact {

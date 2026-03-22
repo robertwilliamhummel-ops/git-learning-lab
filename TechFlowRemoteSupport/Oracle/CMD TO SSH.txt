@@ -1,1 +1,0 @@
-ssh -i C:\Users\Reggie\Documents\git-learning-lab\TechFlowRemoteSupport\Oracle\ssh-key-2026-02-16.key ubuntu@40.233.65.143

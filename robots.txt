@@ -12,17 +12,11 @@ Disallow: /plans/
 Disallow: /pdf-service/
 
 # Block backend / hosting artifacts
-Disallow: /.firebase/
-Disallow: /functions/
 Disallow: /public/
-Disallow: /firebase.json
 Disallow: /CNAME
 
 # Block documentation and internal markdown files
 Disallow: /*.md$
-
-# Block legacy / deprecated pages
-Disallow: /seo-services.html
 
 # Sitemap
 Sitemap: https://techflowsolutions.ca/sitemap.xml
